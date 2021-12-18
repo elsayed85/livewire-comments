@@ -2,11 +2,10 @@
 
 namespace Spatie\LivewireComments\Support;
 
-
-use Spatie\LivewireComments\Policies\CommentPolicy;
-use Spatie\LivewireComments\Policies\ReactionPolicy;
-
 use Spatie\Comments\Support\Config as BaseConfig;
+use Spatie\LivewireComments\Policies\CommentPolicy;
+
+use Spatie\LivewireComments\Policies\ReactionPolicy;
 
 class Config extends BaseConfig
 {
