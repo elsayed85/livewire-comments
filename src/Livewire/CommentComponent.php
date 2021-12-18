@@ -42,7 +42,7 @@ class CommentComponent extends Component
         //$this->authorize('update', $this->comment);
 
         $this->comment->update([
-            'text' => $this->editCommentText,
+            'original_text' => $this->editCommentText,
         ]);
 
         $this->isEditing = false;
