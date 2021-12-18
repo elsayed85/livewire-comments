@@ -45,7 +45,7 @@ class CommentsComponent extends Component
                 'reactions',
                 'reactions.user',
                 'nestedComments.reactions',
-                'nestedComments.reactions.user'
+                'nestedComments.reactions.user',
             ])
             ->paginate(10);
 
