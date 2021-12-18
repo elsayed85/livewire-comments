@@ -41,6 +41,10 @@ class CommentComponent extends Component
     {
         //$this->authorize('update', $this->comment);
 
+        $this->validate([
+            'editCommentText' => 'required',
+        ]);
+
         $this->comment->update([
             'original_text' => $this->editCommentText,
         ]);
@@ -94,6 +98,6 @@ class CommentComponent extends Component
 
     public function render()
     {
-        return view('comments::comment');
+        return view('comments::livewire.comment');
     }
 }

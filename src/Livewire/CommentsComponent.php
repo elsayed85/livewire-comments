@@ -24,9 +24,11 @@ class CommentsComponent extends Component
 
     public function createComment()
     {
-        $comment = $this->model->comment($this->newCommentText);
+        $this->validate([
+            'newCommentText' => 'required',
+        ]);
 
-        $comment->save();
+        $this->model->comment($this->newCommentText);
 
         $this->newCommentText = '';
 
@@ -37,10 +39,17 @@ class CommentsComponent extends Component
     {
         $comments = $this->model
             ->comments()
-            ->with('user', 'nestedComments.user', 'reactions', 'reactions.user', 'nestedComments.reactions', 'nestedComments.reactions.user')
+            ->with([
+                'user',
+                'nestedComments.user',
+                'reactions',
+                'reactions.user',
+                'nestedComments.reactions',
+                'nestedComments.reactions.user'
+            ])
             ->paginate(10);
 
-        return view('comments::comments', [
+        return view('comments::livewire.comments', [
             'comments' => $comments,
         ]);
     }
