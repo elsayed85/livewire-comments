@@ -35,15 +35,15 @@
                         </button>
                     @endcan
 
-                    {{-- @can('destroy', $comment)  --}}
-                    <button
-                        type="button"
-                        class="text-gray-900 font-medium"
-                        wire:click="deleteComment"
-                    >
-                        Delete
-                    </button>
-                    {{-- @endcan --}}
+                    @can('delete', $comment)
+                        <button
+                            type="button"
+                            class="text-gray-900 font-medium"
+                            wire:click="deleteComment"
+                        >
+                            Delete
+                        </button>
+                    @endcan
                 @endauth
             </div>
 
@@ -57,11 +57,14 @@
             </div>
 
             @auth
-                <div class="my-4 flex space-x-8">
-                    @foreach(config('comments.allowed_reactions') as $reaction)
-                        <div class="border-1 border-red-600" wire:click="react('{{ $reaction }}')">{{ $reaction }}</div>
-                    @endforeach
-                </div>
+                @can('react', $comment)
+                    <div class="my-4 flex space-x-8">
+                        @foreach(config('comments.allowed_reactions') as $reaction)
+                            <div class="border-1 border-red-600"
+                                 wire:click="react('{{ $reaction }}')">{{ $reaction }}</div>
+                        @endforeach
+                    </div>
+                @endcan
             @endauth
         </div>
     </div>

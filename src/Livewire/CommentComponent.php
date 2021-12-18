@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class CommentComponent extends Component
 {
-    //use AuthorizesRequests;
+    use AuthorizesRequests;
 
     /** @var \Spatie\Comments\Models\Comment */
     public $comment;
@@ -39,7 +39,7 @@ class CommentComponent extends Component
 
     public function editComment()
     {
-        //$this->authorize('update', $this->comment);
+        $this->authorize('update', $this->comment);
 
         $this->validate([
             'editCommentText' => 'required',
@@ -54,7 +54,7 @@ class CommentComponent extends Component
 
     public function deleteComment()
     {
-        //$this->authorize('destroy', $this->comment);
+        $this->authorize('delete', $this->comment);
 
         $this->comment->delete();
 
@@ -63,7 +63,7 @@ class CommentComponent extends Component
 
     public function react(string $reaction)
     {
-        //$this->authorize('update', $this->comment);
+        $this->authorize('react', $this->comment);
 
         $this->comment->react($reaction);
 
@@ -72,6 +72,10 @@ class CommentComponent extends Component
 
     public function removeReaction(string $reaction)
     {
+        if ($reactionModel = $this->comment->findReaction($reaction)) {
+            $this->authorize('delete', $reactionModel);
+        }
+
         $this->comment->removeReaction($reaction);
 
         $this->emitSelf('refresh');
