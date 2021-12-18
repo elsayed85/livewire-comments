@@ -3,7 +3,7 @@
 namespace Spatie\LivewireComments\Tests\Support\Policies;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Comments\Policies\CommentPolicy;
+use Spatie\LivewireComments\Policies\CommentPolicy;
 
 class DenyCommentCreationPolicy extends CommentPolicy
 {

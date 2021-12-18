@@ -25,7 +25,7 @@
         "illuminate/contracts": "^8.73",
         "livewire/livewire": "^2.8",
         "spatie/laravel-comments": "dev-main",
-        "spatie/laravel-package-tools": "^1.9.2"
+        "spatie/laravel-package-tools": "^1.10.0"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.10",

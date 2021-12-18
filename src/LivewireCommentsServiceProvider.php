@@ -4,19 +4,19 @@ namespace Spatie\LivewireComments;
 
 use Illuminate\Support\Facades\Gate;
 use Livewire\Livewire;
-use Spatie\Comments\Livewire\CommentComponent;
-use Spatie\Comments\Livewire\CommentsComponent;
-use Spatie\Comments\Support\Config;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Spatie\LivewireComments\Livewire\CommentComponent;
+use Spatie\LivewireComments\Livewire\CommentsComponent;
+use Spatie\LivewireComments\Support\Config;
 
 class LivewireCommentsServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('laravel-comments')
-            ->hasViews();
+            ->name('laravel-comments-livewire')
+            ->hasViews('comments');
     }
 
     public function packageBooted()
