@@ -2,8 +2,6 @@
 
 namespace Spatie\LivewireComments\Tests\Support;
 
-use Spatie\Comments\CommentsServiceProvider;
-use Spatie\LivewireComments\LivewireCommentsServiceProvider;
 use function class_basename;
 use function config;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -11,7 +9,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\Comments\CommentsServiceProvider;
 use Spatie\LaravelRay\RayServiceProvider;
+use Spatie\LivewireComments\LivewireCommentsServiceProvider;
 
 class TestCase extends Orchestra
 {
