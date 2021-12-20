@@ -140,14 +140,14 @@
 
     <div class="ml-14 mt-6 relative">
 
-        @foreach ($comment->nestedComments as $comment)
-            <livewire:comments-comment :comment="$comment" :key="$comment->id"/>
+        @foreach ($comment->nestedComments as $nestedComment)
+            <livewire:comments-comment :comment="$nestedComment" :key="$nestedComment->id"/>
         @endforeach
 
         <div id="reply-form-{{ $comment->id }}">
             @if ($isReplying)
                 <livewire:comments-compose :on-submit="'reply:' . $comment->id"/>
+            @endif
         </div>
-        @endif
     </div>
 </div>
