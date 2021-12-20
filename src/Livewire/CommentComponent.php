@@ -12,44 +12,37 @@ class CommentComponent extends Component
     /** @var \Spatie\Comments\Models\Comment */
     public $comment;
 
-    protected $listeners = [
-        'refresh' => '$refresh',
-    ];
-
-    public $replyCommentText = '';
-
     public $isReplying = false;
 
     public $isEditing = false;
 
-    public $editCommentText = '';
-
-    public function mount()
+    public function getListeners()
     {
+        return [
+            'edit:' . $this->comment->id => 'edit',
+            'reply:' . $this->comment->id => 'reply',
+            'delete' => '$refresh',
+        ];
     }
 
-    public function updatedIsEditing($isEditing)
-    {
-        if (! $isEditing) {
-            return;
-        }
-
-        $this->editCommentText = $this->comment->original_text;
-    }
-
-    public function editComment()
+    public function edit(string $text)
     {
         $this->authorize('update', $this->comment);
 
-        $this->validate([
-            'editCommentText' => 'required',
-        ]);
-
         $this->comment->update([
-            'original_text' => $this->editCommentText,
+            'original_text' => $text,
         ]);
 
         $this->isEditing = false;
+    }
+
+    public function reply(string $text)
+    {
+        $this->comment->comment($text);
+
+        $this->comment->load('nestedComments');
+
+        $this->isReplying = false;
     }
 
     public function deleteComment()
@@ -58,7 +51,7 @@ class CommentComponent extends Component
 
         $this->comment->delete();
 
-        $this->emitUp('refresh');
+        $this->emitUp('delete');
     }
 
     public function react(string $reaction)
@@ -67,7 +60,7 @@ class CommentComponent extends Component
 
         $this->comment->react($reaction);
 
-        $this->emitSelf('refresh');
+        $this->comment->load('reactions');
     }
 
     public function removeReaction(string $reaction)
@@ -78,26 +71,7 @@ class CommentComponent extends Component
 
         $this->comment->removeReaction($reaction);
 
-        $this->emitSelf('refresh');
-    }
-
-    public function postReply()
-    {
-        if (! $this->comment->isTopLevel()) {
-            return;
-        }
-
-        $this->validate([
-            'replyCommentText' => 'required',
-        ]);
-
-        $this->comment->comment($this->replyCommentText);
-
-        $this->replyCommentText = '';
-
-        $this->isReplying = false;
-
-        $this->emitSelf('refresh');
+        $this->comment->load('reactions');
     }
 
     public function render()
