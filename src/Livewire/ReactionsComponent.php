@@ -21,9 +21,9 @@ class ReactionsComponent extends Component
         $this->emitUp('refresh');
     }
 
-    public function removeReaction(string $reaction)
+    public function deleteReaction(string $reaction)
     {
-        $this->comment->removeReaction($reaction);
+        $this->comment->deleteReaction($reaction);
     }
 
     public function render()

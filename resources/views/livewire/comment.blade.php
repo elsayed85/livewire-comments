@@ -46,8 +46,8 @@
 
             <div class="my-4 flex space-x-8">
                 @foreach($comment->reactions->summary() as $summary)
-                    <div wire:click="removeReaction('{{ $summary['reaction'] }}')"
-                         class="@if($summary['current_user_reacted']) ? 'bg-blue-200' : '' @endif">
+                    <div wire:click="deleteReaction('{{ $summary['reaction'] }}')"
+                         class="@if($summary['user_reacted']) ? 'bg-blue-200' : '' @endif">
                         {{ $summary['reaction'] }} {{ $summary['count'] }}
                     </div>
                 @endforeach

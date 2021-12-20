@@ -63,13 +63,13 @@ class CommentComponent extends Component
         $this->comment->load('reactions');
     }
 
-    public function removeReaction(string $reaction)
+    public function deleteReaction(string $reaction)
     {
         if ($reactionModel = $this->comment->findReaction($reaction)) {
             $this->authorize('delete', $reactionModel);
         }
 
-        $this->comment->removeReaction($reaction);
+        $this->comment->deleteReaction($reaction);
 
         $this->comment->load('reactions');
     }
