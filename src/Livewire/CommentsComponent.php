@@ -27,11 +27,6 @@ class CommentsComponent extends Component
         $this->goToPage(1);
     }
 
-    public function delete()
-    {
-        ray('delete');
-    }
-
     public function render()
     {
         $comments = $this->model
