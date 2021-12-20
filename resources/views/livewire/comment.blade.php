@@ -10,10 +10,7 @@
             </div>
             <div class="mt-1 flex-grow w-full">
                 @if ($isEditing)
-                    <x-comments-form
-                        submitMethod="editComment"
-                        fieldName="editCommentText"
-                    />
+                    <livewire:comments-compose :on-submit="'edit:' . $comment->id" :text="$comment->original_text" />
                 @else
                     <p class="text-gray-700">{!! $comment->text !!}</p>
                 @endif
@@ -71,14 +68,11 @@
 
     <div class="ml-14 mt-6">
         @if ($isReplying)
-            <x-comments-form
-                submitMethod="postReply"
-                fieldName="replyCommentText"
-            />
+            <livewire:comments-compose :on-submit="'reply:' . $comment->id" />
         @endif
 
         @foreach ($comment->nestedComments as $comment)
-            <livewire:comment :comment="$comment" :key="$comment->id"/>
+            <livewire:comments-comment :comment="$comment" :key="$comment->id"/>
         @endforeach
     </div>
 </div>

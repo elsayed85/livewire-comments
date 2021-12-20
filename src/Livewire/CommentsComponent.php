@@ -12,27 +12,24 @@ class CommentsComponent extends Component
     /** @var \Spatie\Comments\Models\Concerns\HasComments */
     public $model;
 
-    protected $listeners = [
-        'refresh' => '$refresh',
-    ];
-
-    public $newCommentText = '';
-
-    protected $rules = [
-        'newCommentText' => 'required',
-    ];
-
-    public function createComment()
+    public function getListeners()
     {
-        $this->validate([
-            'newCommentText' => 'required',
-        ]);
+        return [
+            'comment:' . $this->model->id => 'comment',
+            'delete' => '$refresh',
+        ];
+    }
 
-        $this->model->comment($this->newCommentText);
-
-        $this->newCommentText = '';
+    public function comment(string $text)
+    {
+        $this->model->comment($text);
 
         $this->goToPage(1);
+    }
+
+    public function delete()
+    {
+        ray('delete');
     }
 
     public function render()
