@@ -38,11 +38,8 @@ class CommentComponent extends Component
 
     public function reply(string $text)
     {
-        // @todo - Add authorize check here for consistency?
-
         $this->comment->comment($text);
 
-        // @todo - Remove nestedComments relation in favor of comments relation?
         $this->comment->load('nestedComments');
 
         $this->isReplying = false;
