@@ -139,7 +139,6 @@
     </div>
 
     <div class="ml-14 mt-6 relative">
-
         @foreach ($comment->nestedComments as $nestedComment)
             <livewire:comments-comment :comment="$nestedComment" :key="$nestedComment->id"/>
         @endforeach
