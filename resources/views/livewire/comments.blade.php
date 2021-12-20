@@ -8,7 +8,7 @@
                 <div class="space-y-8">
                     @if ($comments->count())
                         @foreach($comments as $comment)
-                            <livewire:comments-comment :comment="$comment" :key="$comment->id"/>
+                            <livewire:comments-comment :key="$comment->id" :comment="$comment" />
                         @endforeach
 
                         {{ $comments->links() }}
@@ -18,6 +18,7 @@
                 </div>
             </div>
         </div>
+
         @can('createComment', $model)
             <div class="bg-gray-50 px-4 py-6 sm:px-6">
                 @auth

@@ -1,10 +1,12 @@
-<div>
+<div id="comment{{ $comment->id }}">
     <div @class(['border border-gray-100'=> !$comment->isTopLevel(), 'bg-gray-50' => $comment->isTopLevel(), ' flex p-4
         pb-0 group rounded-md' ])>
+
         <div class="flex-shrink-0 mr-4">
             <img class="h-10 w-10 rounded-full" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
                  alt="{{ $comment->user->name }}">
         </div>
+
         <div class="flex-grow">
             <div class="flex gap-4 items-center">
                 <a href="#" class="font-medium text-gray-900">{{ $comment->user->name }}</a>
