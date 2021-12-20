@@ -2,10 +2,8 @@
 
 namespace Spatie\LivewireComments\Livewire;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use Spatie\Comments\Models\Comment;
 
 class ComposeComponent extends Component
 {
