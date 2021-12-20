@@ -20,9 +20,15 @@ class CommentComponent extends Component
     {
         return [
             'edit:' . $this->comment->id => 'edit',
+            'cancel:' . $this->comment->id => 'cancel',
             'reply:' . $this->comment->id => 'reply',
             'delete' => '$refresh',
         ];
+    }
+
+    public function startEditing()
+    {
+        $this->isEditing = true;
     }
 
     public function edit(string $text)
@@ -33,6 +39,11 @@ class CommentComponent extends Component
             'original_text' => $text,
         ]);
 
+        $this->isEditing = false;
+    }
+
+    public function cancel()
+    {
         $this->isEditing = false;
     }
 

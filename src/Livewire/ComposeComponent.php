@@ -11,10 +11,17 @@ class ComposeComponent extends Component
 
     public string $onSubmit;
 
+    public ?string $onCancel;
+
     public string $text;
 
-    public function mount(string $onSubmit, ?string $text = '')
-    {
+    public function mount(
+        string $onSubmit,
+        ?string $onCancel = null,
+        ?string $text = '',
+    ) {
+        $this->onCancel = $onCancel;
+
         $this->onSubmit = $onSubmit;
 
         $this->text = $text;
@@ -26,9 +33,15 @@ class ComposeComponent extends Component
             'text' => 'required',
         ]);
 
-        ray($this->onSubmit, $this->text);
-
         $this->emit($this->onSubmit, $this->text);
+        $this->emitSelf('submit');
+
+        $this->text = '';
+    }
+
+    public function cancel()
+    {
+        $this->emit($this->onCancel);
 
         $this->text = '';
     }
