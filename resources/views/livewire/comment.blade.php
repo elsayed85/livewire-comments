@@ -81,7 +81,7 @@
 
                 @foreach($comment->reactions->summary() as $summary)
                     <div wire:click="deleteReaction('{{ $summary['reaction'] }}')"
-                         class="@if($summary['current_user_reacted']) ? 'bg-blue-200' : '' @endif rounded-full cursor-pointer hover:bg-gray-300 bg-gray-200 py-1 px-2 text-sm">
+                         class="@if($summary['current_user']) ? 'bg-blue-200' : '' @endif rounded-full cursor-pointer hover:bg-gray-300 bg-gray-200 py-1 px-2 text-sm">
                         {{ $summary['reaction'] }} {{ $summary['count'] }}
                     </div>
                 @endforeach
