@@ -1,4 +1,7 @@
-<form wire:submit.prevent="submit" x-data="compose">
+<form
+    wire:submit.prevent="submit"
+    x-data="compose({ autoFocus: {{ $autoFocus ? 'true' : 'false' }}, placeholder: '{{ $placeholder }}' })"
+>
     <div wire:ignore>
         <textarea x-ref="editor" >{{ $text }}</textarea>
     </div>

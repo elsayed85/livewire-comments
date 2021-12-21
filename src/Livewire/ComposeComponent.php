@@ -11,23 +11,15 @@ class ComposeComponent extends Component
 
     public string $onSubmit;
 
-    public ?string $onCancel;
+    public string $onCancel = '';
 
-    public string $text;
+    public string $text = '';
 
-    public $primaryColor;
+    public bool $autoFocus = false;
 
-    public function mount(
-        string $onSubmit,
-        ?string $onCancel = null,
-        ?string $text = '',
-    ) {
-        $this->onCancel = $onCancel;
+    public string $placeholder = '';
 
-        $this->onSubmit = $onSubmit;
-
-        $this->text = $text;
-    }
+    public string $primaryColor = '';
 
     public function submit()
     {

@@ -16,7 +16,8 @@
                         :on-submit="'edit:' . $comment->id"
                         :on-cancel="'cancel:' . $comment->id"
                         :text="$comment->original_text"
-                        :primaryColor="$primaryColor"
+                        :primary-color="$primaryColor"
+                        auto-focus
                     />
                 @else
                     <p class=" text-gray-700">{!! $comment->text !!}</p>
@@ -32,7 +33,7 @@
             <livewire:comments-comment
                 :comment="$nestedComment"
                 :key="$nestedComment->id"
-                :primaryColor="$primaryColor"
+                :primary-color="$primaryColor"
             />
         @endforeach
 
@@ -41,11 +42,12 @@
                 <livewire:comments-compose
                     :on-submit="'reply:'  . $comment->id"
                     :on-cancel="'cancel:' . $comment->id"
-                    :primaryColor="$primaryColor"
+                    :primary-color="$primaryColor"
+                    placeholder="Leave a reply"
+                    auto-focus
                 />
             @endif
         </div>
-
 
         @if (!$isReplying)
             @if ($comment->isTopLevel())

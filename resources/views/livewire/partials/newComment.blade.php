@@ -7,8 +7,9 @@
                 </div>
                 <div class="min-w-0 flex-1">
                     <livewire:comments-compose
-                        :on-submit="'comment:' . $model->id"
+                        :onSubmit="'comment:' . $model->id"
                         :primaryColor="$primaryColor"
+                        placeholder="Leave a comment"
                     />
                 </div>
             </div>
