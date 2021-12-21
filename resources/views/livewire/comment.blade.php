@@ -139,7 +139,7 @@
 
         <div id="reply-form-{{ $comment->id }}">
             @if ($isReplying)
-            <livewire:comments-compose :on-submit="'reply:' . $comment->id" />
+            <livewire:comments-compose :on-submit="'reply:'  . $comment->id" :on-cancel="'cancel:' . $comment->id"  />
             @endif
         </div>
 

@@ -45,6 +45,7 @@ class CommentComponent extends Component
     public function cancel()
     {
         $this->isEditing = false;
+        $this->isReplying = false;
     }
 
     public function reply(string $text)
