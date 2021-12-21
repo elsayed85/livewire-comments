@@ -31,7 +31,7 @@
             @endcan
                 <div x-show="menuOpen"
                      class="p-4 flex items-center gap-2  text-sm cursor-pointer rounded-md hover:bg-gray-200"
-                     x-on:click="alert('copy')">
+                     x-on:click="navigator.clipboard.writeText(window.location.href.split('#')[0] + '#comment-{{ $comment->id }};menuOpen=false')">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5  w-5 stroke-gray-700" fill="none"
                          viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
