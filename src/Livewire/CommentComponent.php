@@ -15,6 +15,7 @@ class CommentComponent extends Component
     public $isReplying = false;
 
     public $isEditing = false;
+    public $primaryColor;
 
     public function getListeners()
     {

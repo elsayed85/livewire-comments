@@ -85,7 +85,7 @@
             <div class="mt-1 flex-grow w-full">
                 @if ($isEditing)
                 <livewire:comments-compose :on-submit="'edit:' . $comment->id" :on-cancel="'cancel:' . $comment->id"
-                    :text="$comment->original_text" />
+                    :text="$comment->original_text"  :primaryColor="$primaryColor"/>
                 @else
                 <p class="text-gray-700">{!! $comment->text !!}</p>
                 @endif
@@ -95,7 +95,7 @@
 
                 @foreach($comment->reactions->summary() as $summary)
                 <div wire:click="deleteReaction('{{ $summary['reaction'] }}')"
-                    @class(['rounded-full cursor-pointer hover:bg-gray-300 bg-gray-200 py-1 px-2 text-sm', 'border border-indigo-700 bg-indigo-700 bg-opacity-25 ' => $summary['user_reacted'] ])>
+                    class="rounded-full cursor-pointer hover:bg-gray-300 bg-gray-200 py-1 px-2 text-sm @if($summary['user_reacted']) border border-[{!! $primaryColor !!}] bg-[{!! $primaryColor !!}] bg-opacity-25 hover:bg-opacity-50 @endif">
                     {{ $summary['reaction'] }} {{ $summary['count'] }}
                 </div>
                 @endforeach
@@ -141,7 +141,7 @@
 
         <div id="reply-form-{{ $comment->id }}">
             @if ($isReplying)
-            <livewire:comments-compose :on-submit="'reply:'  . $comment->id" :on-cancel="'cancel:' . $comment->id" />
+            <livewire:comments-compose :on-submit="'reply:'  . $comment->id" :on-cancel="'cancel:' . $comment->id" :primaryColor="$primaryColor" />
             @endif
         </div>
 

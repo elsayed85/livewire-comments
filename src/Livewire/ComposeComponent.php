@@ -15,6 +15,8 @@ class ComposeComponent extends Component
 
     public string $text;
 
+    public  $primaryColor;
+
     public function mount(
         string $onSubmit,
         ?string $onCancel = null,

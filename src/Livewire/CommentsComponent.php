@@ -11,6 +11,7 @@ class CommentsComponent extends Component
 
     /** @var \Spatie\Comments\Models\Concerns\HasComments */
     public $model;
+    public $primaryColor = '#4338ca';
 
     public function getListeners()
     {
