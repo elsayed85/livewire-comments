@@ -136,7 +136,7 @@
 
     <div class="ml-14 mt-6 relative">
         @foreach ($comment->nestedComments as $nestedComment)
-        <livewire:comments-comment :comment="$nestedComment" :key="$nestedComment->id" />
+        <livewire:comments-comment :comment="$nestedComment" :key="$nestedComment->id" :primaryColor="$primaryColor"/>
         @endforeach
 
         <div id="reply-form-{{ $comment->id }}">
