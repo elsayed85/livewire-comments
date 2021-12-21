@@ -2,6 +2,7 @@
     id="comment{{ $comment->id }}"
     @class(["bg-white border-b border-gray-300 pb-8"=> $comment->isTopLevel()])
 >
+    <a id="comment-{{ $comment->id }}">
     <div class="flex p-4 pb-0 group rounded-md" )>
         <div @class(["flex-shrink-0 mr-4", "mt-4"=> !$comment->isTopLevel()])>
             @include('comments::livewire.partials.avatar')
