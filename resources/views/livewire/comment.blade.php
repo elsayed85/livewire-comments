@@ -16,8 +16,8 @@
                         {{ $comment->created_at->diffForHumans() }}
                     </span>
                 </div>
-                <div class="flex gap-4 items-center" x-data="{ menuOpen: false }"
-                x-on:click.outside="menuOpen = false">
+                <div class="flex gap-4 items-center" x-data="{ menuOpen: false, deleteConfirm: false }"
+                x-on:click.outside="menuOpen = deleteConfirm = false">
                     @unless($isEditing)
                     @can('update', $comment)
                     <div x-show="menuOpen" class="p-1 flex items-center gap-2 uppercase text-sm cursor-pointer rounded-md hover:bg-gray-200"
@@ -32,15 +32,15 @@
                     @endcan
                     @can('delete', $comment)
                     <div x-show="menuOpen" class="p-1 flex gap-2 items-center uppercase text-sm relative cursor-pointer rounded-md hover:bg-gray-200"
-                        x-data="{ open: false }" x-on:click.outside="open = false">
+                         x-on:click.outside="deleteConfirm = false">
 
-                        <svg x-on:click="open = !open" xmlns="http://www.w3.org/2000/svg"
+                        <svg x-on:click="deleteConfirm = !deleteConfirm" xmlns="http://www.w3.org/2000/svg"
                             class="h-5  w-5 stroke-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
                         delete
-                        <div x-show="open"
+                        <div x-show="deleteConfirm"
                             class="absolute z-50 w-64 bg-white shadow-sm mt-4 rounded-md top-0 transform translate-y-4 right-0">
                             <div
                                 class="w-5  inline-block absolute right-0 transform -translate-x-1/4 -translate-y-full">
@@ -116,10 +116,10 @@
                         </div>
 
                         @can('react', $comment)
-                        <div class=" px-1 py-1  grid grid-cols-5 w-56  ">
+                        <div x-on:click="open = !open" class=" px-1 py-1  grid grid-cols-5 w-56  ">
                             @foreach(config('comments.allowed_reactions') as $reaction)
-                            <div class="border-1 text-center col-span-1 hover:bg-gray-100 p-2 rounded-md cursor-pointer  border-red-600"
-                                wire:click="react('{{ $reaction }}')">{{ $reaction
+                            <div  class="border-1 text-center col-span-1 hover:bg-gray-100 p-2 rounded-md cursor-pointer  border-red-600"
+                                wire:click="react('{{ $reaction }}')" >{{ $reaction
                                 }}</div>
                             @endforeach
                         </div>
