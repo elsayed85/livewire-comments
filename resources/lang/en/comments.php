@@ -2,7 +2,7 @@
 
 return [
     'create_comment' => 'Comment',
-    'write_reply' => 'Write my reply',
+    'write_reply' => 'Leave a reply',
     'cancel' => 'Cancel',
     'edit' => 'Edit',
     'delete' => 'Delete',
