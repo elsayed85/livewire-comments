@@ -6,8 +6,10 @@
                     @include('comments::livewire.partials.avatar')
                 </div>
                 <div class="min-w-0 flex-1">
-                    <livewire:comments-compose :on-submit="'comment:' . $model->id"
-                                               :primaryColor="$primaryColor"/>
+                    <livewire:comments-compose
+                        :on-submit="'comment:' . $model->id"
+                        :primaryColor="$primaryColor"
+                    />
                 </div>
             </div>
         @endauth
