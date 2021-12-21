@@ -28,7 +28,7 @@
 
             <div x-show="menuOpen"
                  class="p-4 flex items-center gap-2  text-sm cursor-pointer rounded-md hover:bg-gray-200"
-                 x-on:click="navigator.clipboard.writeText(window.location.href.split('#')[0] + '#comment-{{ $comment->id }};menuOpen=false')">
+                 x-on:click="menuOpen=false;navigator.clipboard.writeText(window.location.href.split('#')[0] + '#comment-{{ $comment->id }}')">
                 @include('comments::livewire.svgs.edit')
 
                 {{  trans('comments-livewire::comments.copy_link') }}
