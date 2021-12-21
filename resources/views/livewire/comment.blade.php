@@ -136,9 +136,15 @@
                                 $userReacted = !is_bool(array_search($reaction, array_column($comment->reactions()->get()->toArray(), 'reaction')))
                             @endphp
 
-                            <div class="border-1 text-center col-span-1 hover:bg-gray-100 p-2 rounded-md cursor-pointer  @if($userReacted) bg-{!! $primaryColor !!} bg-opacity-25 hover:bg-opacity-50 @endif"
-                                wire:click="react('{{ $reaction }}')">{{ $reaction
-                                }}</div>
+                            <div class="border-1 text-center col-span-1 hover:bg-gray-100 p-2 rounded-md cursor-pointer  @if($userReacted) bg-{!! $primaryColor !!} hover:bg-{!! $primaryColor !!} bg-opacity-25 hover:bg-opacity-50 @endif"
+                                @if($userReacted) 
+                                    wire:click="deleteReaction('{{ $reaction }}')" 
+                                @else 
+                                    wire:click="react('{{ $reaction }}')" 
+                                @endif
+                                >
+                                {{ $reaction }}
+                                </div>
                             @endforeach
                         </div>
                         @endcan
