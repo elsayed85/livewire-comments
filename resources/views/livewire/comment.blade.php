@@ -17,7 +17,7 @@
                         {{ $comment->created_at->diffForHumans() }}
                     </span>
                 </div>
-                <div class="flex-grow gap-4 relative items-center" x-data="{ menuOpen: false, deleteConfirm: false }"
+                <div x-cloak class="flex-grow gap-4 relative items-center" x-data="{ menuOpen: false, deleteConfirm: false }"
                     x-on:click.outside="menuOpen = deleteConfirm = false">
                     @unless($isEditing)
 
@@ -102,7 +102,7 @@
                 @endif
             </div>
 
-            <div class="my-4 relative  flex items-center space-x-4">
+            <div class="my-4 relative  inline-block items-center space-x-4">
 
                 @foreach($comment->reactions->summary() as $summary)
                 <div wire:click="deleteReaction('{{ $summary['reaction'] }}')"
@@ -114,7 +114,7 @@
                 
                 
 
-                <div class="p-1 z-40 relative cursor-pointer rounded-md hover:bg-gray-200" x-data="{ open: false }"
+                <div x-cloak class="p-1 z-40 relative cursor-pointer rounded-md hover:bg-gray-200" x-data="{ open: false }"
                     x-on:click.outside="open = false">
                     @auth
                     <svg x-on:click="open = !open" xmlns="http://www.w3.org/2000/svg" class="h-5  w-5 stroke-gray-700"

@@ -1,8 +1,8 @@
 <form wire:submit.prevent="submit" x-data="compose">
     <div wire:ignore>
-        <textarea x-ref="editor">{{ $text }}</textarea>
+        <textarea x-ref="editor" autofocus>{{ $text }}</textarea>
     </div>
-    <input type="hidden" x-ref="input" wire:model.defer="text">
+    <input type="hidden" x-ref="input" wire:model.defer="text" >
     @error('text')
         <p class="mt-2 text-sm text-red-500">
             {{ $message }}
