@@ -9,7 +9,7 @@
         </div>
 
         <div @class(['flex-grow', 'border p-4 rounded-md border-gray-300'=> !$comment->isTopLevel()])>
-            <div class="flex gap-4  justify-between">
+            <div class="flex gap-4 relative z-50 justify-between">
                 <div class="flex gap-4 items-center">
                     <a href="#" class="font-medium text-gray-900">{{ $comment->user->name }}</a>
                     <div class="bg-gray-400 w-1 h-1 rounded-full"></div>
@@ -60,7 +60,7 @@
                             </svg>
                             Delete
                             <div x-show="deleteConfirm"
-                                class="absolute z-50 w-64 bg-white shadow-lg mt-4 rounded-md top-0 transform translate-y-4 right-0">
+                                class="absolute z-40 w-64 bg-white shadow-lg mt-4 rounded-md top-0 transform translate-y-4 right-0">
                                 <div
                                     class="w-5  inline-block absolute right-0 transform -translate-x-1/4 -translate-y-full">
                                     <div class=" h-3 w-3 bg-white rotate-45 rounded-tl-md transform origin-bottom-left">
@@ -102,7 +102,7 @@
                 @endif
             </div>
 
-            <div class="my-4 relative  inline-block items-center space-x-4">
+            <div class="my-4 relative  flex items-center space-x-4">
 
                 @foreach($comment->reactions->summary() as $summary)
                 <div wire:click="deleteReaction('{{ $summary['reaction'] }}')"
@@ -114,7 +114,7 @@
                 
                 
 
-                <div x-cloak class="p-1 z-40 relative cursor-pointer rounded-md hover:bg-gray-200" x-data="{ open: false }"
+                <div x-cloak class="p-1 z-30 relative cursor-pointer rounded-md hover:bg-gray-200" x-data="{ open: false }"
                     x-on:click.outside="open = false">
                     @auth
                     <svg x-on:click="open = !open" xmlns="http://www.w3.org/2000/svg" class="h-5  w-5 stroke-gray-700"

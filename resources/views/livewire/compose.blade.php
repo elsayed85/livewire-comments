@@ -1,6 +1,6 @@
-<form wire:submit.prevent="submit" x-data="compose">
+<form wire:submit.prevent="submit" x-data="compose" wire:init="console.log('test')">
     <div wire:ignore>
-        <textarea x-ref="editor" autofocus>{{ $text }}</textarea>
+        <textarea x-ref="editor" >{{ $text }}</textarea>
     </div>
     <input type="hidden" x-ref="input" wire:model.defer="text" >
     @error('text')
