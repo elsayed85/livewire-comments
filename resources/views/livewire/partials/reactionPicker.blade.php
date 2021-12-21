@@ -11,13 +11,10 @@
         <div x-show="open"
              class="absolute  bg-white shadow-lg  rounded-md left-full top-0 transform translate-x-4">
 
-
             @can('react', $comment)
-                <div x-on:click="open = !open" class=" px-1 py-1  grid gap-1 grid-cols-5 w-56  ">
+                <div x-on:click="open = !open" class="px-1 py-1  grid gap-1 grid-cols-5 w-56">
 
                     @foreach(config('comments.allowed_reactions') as $reaction)
-
-
                         @php
                             $userReacted = !is_bool(array_search($reaction, array_column($comment->reactions()->get()->toArray(), 'reaction')))
                         @endphp

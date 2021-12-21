@@ -7,5 +7,5 @@
         </div>
     @endforeach
 
-  @include('comments::livewire.partials.reactionPicker')
+    @include('comments::livewire.partials.reactionPicker')
 </div>
