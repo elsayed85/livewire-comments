@@ -57,7 +57,7 @@
                         <input
                             wire:click="$toggle('isReplying')" class="w-full border border-gray-300 rounded-md px-4"
                             type="text"
-                            placeholder="Write reply"
+                            placeholder="{{ trans('comments-livewire::comments.write_reply') }}"
                         />
                     </div>
                 @endauth
