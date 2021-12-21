@@ -1,11 +1,8 @@
 <div id="comment{{ $comment->id }}" @class(["bg-white border-b border-gray-300 pb-8"=> $comment->isTopLevel()])>
 
-
     <div class=' flex p-4 pb-0 group rounded-md' ])>
-
         <div @class(["flex-shrink-0 mr-4", "mt-4"=> !$comment->isTopLevel()])>
-            <img class="h-10 w-10 rounded-full" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-                 alt="{{ $comment->user->name }}">
+            @include('comments::livewire.partials.avatar')
         </div>
 
         <div @class(['flex-grow', 'border p-4 rounded-md border-gray-300'=> !$comment->isTopLevel()])>
@@ -72,11 +69,7 @@
                         </div>
                     @endauth
                 </div>
-
-
             </div>
-
-
         </div>
     </div>
 
@@ -99,9 +92,7 @@
                 @auth
                     <div class=" flex border border-gray-300 p-4 rounded-md">
                         <div class="flex-shrink-0 mr-4">
-                            <img class="h-10 w-10 rounded-full"
-                                 src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-                                 alt="{{ $comment->user->name }}">
+                            @include('comments::livewire.partials.avatar')
                         </div>
                         <input wire:click="$toggle('isReplying')" class="w-full border border-gray-300 rounded-md px-4"
                                type="text"
