@@ -1,4 +1,4 @@
-<form wire:submit.prevent="submit" x-data="compose" wire:init="console.log('test')">
+<form wire:submit.prevent="submit" x-data="compose">
     <div wire:ignore>
         <textarea x-ref="editor" >{{ $text }}</textarea>
     </div>
@@ -13,7 +13,7 @@
             class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-{{ $primaryColor }} hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
             Comment
-            
+
         </button>
         @isset($onCancel)
             <button type="button" wire:click="cancel">
