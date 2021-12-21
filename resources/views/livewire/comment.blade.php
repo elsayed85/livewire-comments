@@ -1,4 +1,6 @@
 <div id="comment{{ $comment->id }}">
+    
+
     <div @class(['border border-gray-300'=> !$comment->isTopLevel(), 'bg-gray-100' => $comment->isTopLevel(), ' flex p-4
         pb-0 group rounded-md' ])>
 
@@ -82,12 +84,12 @@
 
 
             </div>
-            <div class="mt-1 flex-grow w-full">
+            <div class="mt-1 flex-grow w-full markdown @if($comment->isTopLevel()) toplevel-markdown @endif">
                 @if ($isEditing)
                 <livewire:comments-compose :on-submit="'edit:' . $comment->id" :on-cancel="'cancel:' . $comment->id"
                     :text="$comment->original_text"  :primaryColor="$primaryColor"/>
                 @else
-                <p class="text-gray-700">{!! $comment->text !!}</p>
+                <p class=" text-gray-700">{!! $comment->text !!}</p>
                 @endif
             </div>
 

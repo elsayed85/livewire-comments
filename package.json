@@ -2,7 +2,7 @@
     "private": true,
     "main": "index.js",
     "scripts": {
-        "watch": "npx tailwindcss -i ./resources/css/health.css -o ./resources/dist/health.min.css --watch",
+        "watch": "npx tailwindcss -i ./resources/css/comments.css -o ./resources/dist/comments.min.css --watch",
         "build": "npx tailwindcss -i ./resources/css/health.css -o ./resources/dist/health.min.css --minify"
     },
     "dependencies": {
