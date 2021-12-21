@@ -1,10 +1,9 @@
 <div id="comment{{ $comment->id }}" @class(["bg-white border-b border-gray-300 pb-8" => $comment->isTopLevel()])>
     
 
-    <div @class([ '' => $comment->isTopLevel(), ' flex p-4
-        pb-0 group rounded-md' ])>
+    <div class=' flex p-4 pb-0 group rounded-md' ])>
 
-        <div class="flex-shrink-0 mt-4 mr-4">
+        <div @class(["flex-shrink-0 mr-4", "mt-4" => !$comment->isTopLevel()])>
             <img class="h-10 w-10 rounded-full" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
                 alt="{{ $comment->user->name }}">
         </div>
