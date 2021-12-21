@@ -109,16 +109,13 @@
                             d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <div x-show="open"
-                        class="absolute  bg-white shadow-sm mt-4 rounded-m left-1/2 transform -translate-x-1/2">
-                        <div class="w-5  inline-block absolute left-1/2 transform -translate-x-1/2 -translate-y-full">
-                            <div class=" h-3 w-3 bg-white rotate-45 rounded-tl-md transform origin-bottom-left">
-                            </div>
-                        </div>
+                        class="absolute   bg-white shadow-sm  rounded-md left-full top-0 transform translate-x-4">
+                        
 
                         @can('react', $comment)
                         <div x-on:click="open = !open" class=" px-1 py-1  grid grid-cols-5 w-56  ">
                             @foreach(config('comments.allowed_reactions') as $reaction)
-                            <div  class="border-1 text-center col-span-1 hover:bg-gray-100 p-2 rounded-md cursor-pointer  border-red-600"
+                            <div  class="border-1 text-center col-span-1 hover:bg-gray-100 p-2 rounded-md cursor-pointer  border-red-600" 
                                 wire:click="react('{{ $reaction }}')" >{{ $reaction
                                 }}</div>
                             @endforeach
