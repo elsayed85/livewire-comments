@@ -12,17 +12,15 @@ class CommentComponent extends Component
     /** @var \Spatie\Comments\Models\Comment */
     public $comment;
 
-    public $isReplying = false;
+    public $replyText = '';
 
     public $isEditing = false;
-    public $primaryColor;
+
+    public $editText = '';
 
     public function getListeners()
     {
         return [
-            'edit:' . $this->comment->id => 'edit',
-            'cancel:' . $this->comment->id => 'cancel',
-            'reply:' . $this->comment->id => 'reply',
             'delete' => '$refresh',
         ];
     }
@@ -30,14 +28,17 @@ class CommentComponent extends Component
     public function startEditing()
     {
         $this->isEditing = true;
+        $this->editText = $this->comment->original_text;
     }
 
-    public function edit(string $text)
+    public function edit()
     {
         $this->authorize('update', $this->comment);
 
+        $this->validate(['editText' => 'required']);
+
         $this->comment->update([
-            'original_text' => $text,
+            'original_text' => $this->editText,
         ]);
 
         $this->isEditing = false;
@@ -46,16 +47,17 @@ class CommentComponent extends Component
     public function cancel()
     {
         $this->isEditing = false;
-        $this->isReplying = false;
     }
 
-    public function reply(string $text)
+    public function reply()
     {
-        $this->comment->comment($text);
+        $this->validate(['replyText' => 'required']);
 
+        $this->comment->comment($this->replyText);
         $this->comment->load('nestedComments');
 
-        $this->isReplying = false;
+        $this->replyText = '';
+        $this->emit('reply-' . $this->comment->id);
     }
 
     public function deleteComment()

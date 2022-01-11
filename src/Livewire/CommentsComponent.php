@@ -11,21 +11,27 @@ class CommentsComponent extends Component
 
     /** @var \Spatie\Comments\Models\Concerns\HasComments */
     public $model;
-    public $primaryColor = '[#4338ca]';
+
+    public string $text = '';
 
     public function getListeners()
     {
         return [
-            'comment:' . $this->model->id => 'comment',
             'delete' => '$refresh',
         ];
     }
 
-    public function comment(string $text)
+    public function comment()
     {
-        $this->model->comment($text);
+        $this->validate(['text' => 'required']);
 
+        $this->model->comment($this->text);
+
+        $this->text = '';
+        // @todo This is weird behaviour when your comment appears on a later page.
+        // To revisit when we decide how to handle comment sorting.
         $this->goToPage(1);
+        $this->emit('comment');
     }
 
     public function render()

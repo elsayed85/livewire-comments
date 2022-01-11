@@ -20,7 +20,7 @@
                         @endphp
 
                         <div
-                            class="border-1 text-center col-span-1 hover:bg-gray-100 p-2 rounded-md cursor-pointer  @if($userReacted) bg-{!! $primaryColor !!} hover:bg-{!! $primaryColor !!} bg-opacity-25 hover:bg-opacity-50 @endif"
+                            class="border-1 text-center col-span-1 hover:bg-gray-100 p-2 rounded-md cursor-pointer @if($userReacted) bg-[#4338ca] hover:bg-[#4338ca] bg-opacity-25 hover:bg-opacity-50 @endif"
                             @if($userReacted)
                             wire:click="deleteReaction('{{ $reaction }}')"
                             @else

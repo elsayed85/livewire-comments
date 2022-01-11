@@ -1,8 +1,6 @@
 <div x-cloak class="flex-grow gap-4 relative items-center" x-data="{ menuOpen: false, deleteConfirm: false }"
      x-on:click.outside="menuOpen = deleteConfirm = false">
     @unless($isEditing)
-
-
         <button type="button" x-on:click="menuOpen = !menuOpen"
                 class="flex items-center float-right gap-2 hover:bg-gray-200  rounded-md cursor-pointer px-2 py-1">
             <svg x-show="!menuOpen" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5  " fill="none"
@@ -50,9 +48,12 @@
                             </div>
                         </div>
                         <div class=" normal-case p-4 ">
-                            <p class="font-bold text-lg">                    {{  trans('comments-livewire::comments.delete_confirmation_title') }}
+                            <p class="font-bold text-lg">
+                                {{ trans('comments-livewire::comments.delete_confirmation_title') }}
                             </p>
-                            <p class="mb-4"> {{  trans('comments-livewire::comments.delete_confirmation_text') }}</p>
+                            <p class="mb-4">
+                                {{ trans('comments-livewire::comments.delete_confirmation_text') }}
+                            </p>
                             <button type="button"
                                     class="text-white flex items-center float-right mb-2 gap-2  rounded-md bg-rose-600 px-4 py-2"
                                     wire:click="deleteComment">
@@ -62,13 +63,11 @@
                                           d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                 </svg>
                                 {{ trans('comments-livewire::comments.delete') }}
-
                             </button>
                         </div>
                     </div>
                 </div>
             @endcan
-
         </div>
     @endunless
 </div>
