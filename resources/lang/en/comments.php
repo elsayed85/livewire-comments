@@ -8,5 +8,6 @@ return [
     'delete' => 'Delete',
     'copy_link' => 'Copy link',
     'delete_confirmation_title' => 'Delete comment',
-    'delete_confirmation_text' => 'Are you sure? This can not be undone.'
+    'delete_confirmation_text' => 'Are you sure? This can not be undone.',
+    'create_reply' => 'Create reply',
 ];
