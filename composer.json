@@ -61,7 +61,11 @@
         "spatie/laravel-markdown": "Required to convert markdown to HTML"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {
