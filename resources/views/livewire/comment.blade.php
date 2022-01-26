@@ -15,7 +15,7 @@
                     <form wire:submit.prevent="edit">
                         <div x-data="compose({ text: @entangle('editText') })">
                             <div wire:ignore>
-                                <textarea placeholder="{{ trans('comments-livewire::comments.write_comment') }}">{{ $editText }}</textarea>
+                                <textarea placeholder="{{ __('comments-livewire::comments.write_comment') }}">{{ $editText }}</textarea>
                             </div>
                         </div>
                         @error('editText')
@@ -27,12 +27,12 @@
                             <button type="submit"
                                 class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-[#4338ca] hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                             >
-                                {{ trans('comments-livewire::comments.edit_comment') }}
+                                {{ __('comments-livewire::comments.edit_comment') }}
                             </button>
                             <button type="button"
                                 class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                             >
-                                {{ trans('comments-livewire::comments.cancel') }}
+                                {{ __('comments-livewire::comments.cancel') }}
                             </button>
                         </div>
                     </form>
@@ -79,10 +79,10 @@
                                         x-show="!isExpanded"
                                         @click="isExpanded = true"
                                         class="w-full border border-gray-300 rounded-md p-4"
-                                        placeholder="{{ trans('comments-livewire::comments.write_reply') }}"
+                                        placeholder="{{ __('comments-livewire::comments.write_reply') }}"
                                     >
                                     <div x-show="isExpanded" wire:ignore>
-                                        <textarea placeholder="{{ trans('comments-livewire::comments.write_reply') }}">{{ $replyText }}</textarea>
+                                        <textarea placeholder="{{ __('comments-livewire::comments.write_reply') }}">{{ $replyText }}</textarea>
                                     </div>
                                 </div>
                                 @error('replyText')
@@ -94,7 +94,7 @@
                                     <button type="submit"
                                         class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-[#4338ca] hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                     >
-                                        {{ trans('comments-livewire::comments.create_reply') }}
+                                        {{ __('comments-livewire::comments.create_reply') }}
                                     </button>
                                 </div>
                             </div>

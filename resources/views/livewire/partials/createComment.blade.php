@@ -9,7 +9,7 @@
                     <form wire:submit.prevent="comment">
                         <div x-data="compose({ text: @entangle('text') })" x-init="$wire.on('comment', clear)">
                             <div wire:ignore>
-                                <textarea placeholder="{{ trans('comments-livewire::comments.write_comment') }}">{{ $text }}</textarea>
+                                <textarea placeholder="{{ __('comments-livewire::comments.write_comment') }}">{{ $text }}</textarea>
                             </div>
                         </div>
                         @error('text')
@@ -21,7 +21,7 @@
                             <button type="submit"
                                 class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-[#4338ca] hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                             >
-                                {{ trans('comments-livewire::comments.create_comment') }}
+                                {{ __('comments-livewire::comments.create_comment') }}
                             </button>
                         </div>
                     </form>

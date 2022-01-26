@@ -20,7 +20,7 @@
                      class="p-4 flex items-center gap-2  text-sm cursor-pointer rounded-md hover:bg-gray-200"
                      wire:click="startEditing">
                     @include('comments::livewire.svgs.edit')
-                    {{  trans('comments-livewire::comments.edit') }}
+                    {{  __('comments-livewire::comments.edit') }}
                 </div>
             @endcan
 
@@ -29,7 +29,7 @@
                  x-on:click="menuOpen=false;navigator.clipboard.writeText(window.location.href.split('#')[0] + '#comment-{{ $comment->id }}')">
                 @include('comments::livewire.svgs.edit')
 
-                {{  trans('comments-livewire::comments.copy_link') }}
+                {{  __('comments-livewire::comments.copy_link') }}
             </div>
 
             @can('delete', $comment)
@@ -39,7 +39,7 @@
 
                     @include('comments::livewire.svgs.delete')
 
-                    {{ trans('comments-livewire::comments.delete') }}
+                    {{ __('comments-livewire::comments.delete') }}
                     <div x-show="deleteConfirm"
                          class="absolute z-40 w-64 bg-white shadow-lg mt-4 rounded-md top-0 transform translate-y-4 right-0">
                         <div
@@ -49,10 +49,10 @@
                         </div>
                         <div class=" normal-case p-4 ">
                             <p class="font-bold text-lg">
-                                {{ trans('comments-livewire::comments.delete_confirmation_title') }}
+                                {{ __('comments-livewire::comments.delete_confirmation_title') }}
                             </p>
                             <p class="mb-4">
-                                {{ trans('comments-livewire::comments.delete_confirmation_text') }}
+                                {{ __('comments-livewire::comments.delete_confirmation_text') }}
                             </p>
                             <button type="button"
                                     class="text-white flex items-center float-right mb-2 gap-2  rounded-md bg-rose-600 px-4 py-2"
@@ -62,7 +62,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                 </svg>
-                                {{ trans('comments-livewire::comments.delete') }}
+                                {{ __('comments-livewire::comments.delete') }}
                             </button>
                         </div>
                     </div>

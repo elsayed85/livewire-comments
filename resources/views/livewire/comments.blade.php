@@ -12,7 +12,7 @@
                     @endforeach
                     {{ $comments->links() }}
                 @else
-                    <p>No comments yet</p>
+                    <p>__('comments-livewire::comments.no_comments_yet')</p>
                 @endif
             </div>
         </div>

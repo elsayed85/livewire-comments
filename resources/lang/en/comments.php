@@ -11,5 +11,5 @@ return [
     'delete_confirmation_text' => 'Are you sure? This can not be undone.',
     'create_reply' => 'Create Reply',
     'create_comment' => 'Create Comment',
-
+    'just_now' => 'Just now',
 ];
