@@ -14,11 +14,20 @@ class CommentsComponent extends Component
 
     public string $text = '';
 
+    public bool $updatesViaMail = true;
+
     public function getListeners()
     {
         return [
             'delete' => '$refresh',
         ];
+    }
+
+    public function updatingUpdatesViaMail(bool $value)
+    {
+        $value
+            ? $this->model->optInOfNotifications(auth()->user())
+            : $this->model->optOutOfNotifications(auth()->user());
     }
 
     public function comment()
