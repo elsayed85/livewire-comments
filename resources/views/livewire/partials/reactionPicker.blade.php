@@ -16,12 +16,12 @@
 
                     @foreach(config('comments.allowed_reactions') as $reaction)
                         @php
-                            $userReacted = !is_bool(array_search($reaction, array_column($comment->reactions()->get()->toArray(), 'reaction')))
+                            $commentatorReacted = !is_bool(array_search($reaction, array_column($comment->reactions()->get()->toArray(), 'reaction')))
                         @endphp
 
                         <div
-                            class="border-1 text-center col-span-1 hover:bg-gray-100 p-2 rounded-md cursor-pointer @if($userReacted) bg-[#4338ca] hover:bg-[#4338ca] bg-opacity-25 hover:bg-opacity-50 @endif"
-                            @if($userReacted)
+                            class="border-1 text-center col-span-1 hover:bg-gray-100 p-2 rounded-md cursor-pointer @if($commentatorReacted) bg-[#4338ca] hover:bg-[#4338ca] bg-opacity-25 hover:bg-opacity-50 @endif"
+                            @if($commentatorReacted)
                             wire:click="deleteReaction('{{ $reaction }}')"
                             @else
                             wire:click="react('{{ $reaction }}')"

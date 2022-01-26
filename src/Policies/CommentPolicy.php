@@ -4,25 +4,50 @@ namespace Spatie\LivewireComments\Policies;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Comments\Models\Comment;
+use Spatie\Comments\Models\Concerns\Interfaces\CanComment;
 
 class CommentPolicy
 {
-    public function create(Model $user, Model $commentableModel): bool
+    /**
+     * @param CanComment|Model $commentator
+     * @param Model $commentableModel
+     *
+     * @return bool
+     */
+    public function create(Model $commentator, Model $commentableModel): bool
     {
         return true;
     }
 
-    public function update(Model $user, Comment $comment): bool
+    /**
+     * @param CanComment|Model $commentator
+     * @param Model $commentableModel
+     *
+     * @return bool
+     */
+    public function update(Model $commentator, Comment $comment): bool
     {
-        return $user->getKey() === $comment->user_id;
+        return $comment->madeBy($commentator);
     }
 
-    public function delete(Model $user, Comment $comment): bool
+    /**
+     * @param CanComment|Model $commentator
+     * @param Model $commentableModel
+     *
+     * @return bool
+     */
+    public function delete(Model $commentator, Comment $comment): bool
     {
-        return $user->getKey() === $comment->user_id;
+        return $comment->madeBy($commentator);
     }
 
-    public function react(Model $user, Model $commentableModel): bool
+    /**
+     * @param CanComment|Model $commentator
+     * @param Model $commentableModel
+     *
+     * @return bool
+     */
+    public function react(Model $commentator, Model $commentableModel): bool
     {
         return true;
     }

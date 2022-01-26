@@ -36,4 +36,7 @@
     <logging>
         <junit outputFile="build/report.junit.xml"/>
     </logging>
+    <php>
+        <env name="MAIL_MAILER" value="log" />
+    </php>
 </phpunit>
