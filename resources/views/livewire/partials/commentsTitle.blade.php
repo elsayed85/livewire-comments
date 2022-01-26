@@ -3,7 +3,7 @@
 
     @auth
         @if (config('comments.notifications.enabled'))
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 relative">
                 Send updates via mail
                 <input id="mail-checkbox" class="w-0 h-0 hidden" wire:model="updatesViaMail" type="checkbox">
                 <label for="mail-checkbox"
@@ -23,8 +23,5 @@
             transform: translateX(-100%);
         }
 
-        label:active:after {
-            width: 130px;
-        }
     </style>
 </div>
