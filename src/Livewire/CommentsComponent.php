@@ -39,12 +39,12 @@ class CommentsComponent extends Component
         $comments = $this->model
             ->comments()
             ->with([
-                'user',
-                'nestedComments.user',
+                'commentator',
+                'nestedComments.commentator',
                 'reactions',
-                'reactions.user',
+                'reactions.commentator',
                 'nestedComments.reactions',
-                'nestedComments.reactions.user',
+                'nestedComments.reactions.commentator',
             ])
             ->paginate(10);
 
