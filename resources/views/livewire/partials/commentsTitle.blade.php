@@ -7,7 +7,7 @@
         Send updates via mail
         <input id="mail-checkbox" class="w-0 h-0 hidden" wire:model="updatesViaMail" type="checkbox">
         <label for="mail-checkbox"
-            class=" cursor-pointer w-12 h-6 bg-slate-200 block rounded-full relative after:absolute after:top-1 after:left-1 after:w-4 after:h-4 after:bg-white after:rounded-full after:transition-all"></label>
+            class=" cursor-pointer w-12 h-6 bg-slate-200  block rounded-full relative after:absolute after:top-1 after:left-1 after:w-4 after:h-4 after:bg-white after:rounded-full after:transition-all"></label>
 
     </div>
 
