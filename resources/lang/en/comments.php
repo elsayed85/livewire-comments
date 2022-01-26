@@ -5,6 +5,7 @@ return [
     'write_reply' => 'Leave a reply',
     'cancel' => 'Cancel',
     'edit' => 'Edit',
+    'edit_comment' => 'Edit Comment',
     'delete' => 'Delete',
     'copy_link' => 'Copy Link',
     'delete_confirmation_title' => 'Delete Comment',
