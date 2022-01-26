@@ -67,6 +67,8 @@
                         </div>
                     </div>
                 </div>
+
+                @include('comments::livewire.partials.extraCommentHeaderMenuItems')
             @endcan
         </div>
     @endunless
