@@ -18,4 +18,5 @@
         </div>
     </div>
     @include('comments::livewire.partials.createComment')
+    @include('comments::livewire.partials.scripts')
 </section>

@@ -6,6 +6,7 @@ return [
     'cancel' => 'Cancel',
     'edit' => 'Edit',
     'edit_comment' => 'Edit Comment',
+    'no_comments_yet' => 'No comments yet...',
     'delete' => 'Delete',
     'copy_link' => 'Copy Link',
     'delete_confirmation_title' => 'Delete Comment',
