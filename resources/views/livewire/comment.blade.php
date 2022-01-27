@@ -1,13 +1,13 @@
 <div
     id="comment{{ $comment->id }}"
-    @class(["bg-white border-b border-gray-300 pb-8"=> $comment->isTopLevel()])
+    @class(["comment-top-level"=> $comment->isTopLevel()])
 >
-    <div class="flex p-4 pb-0 group rounded-md">
-        <div @class(["flex-shrink-0 mr-4", "mt-4"=> !$comment->isTopLevel()])>
+    <div class="comment-wrapper">
+        <div @class(["avatar", "top-level"=> $comment->isTopLevel()])>
             @include('comments::livewire.partials.avatar')
         </div>
 
-        <div @class(['flex-grow', 'border p-4 rounded-md border-gray-300'=> !$comment->isTopLevel()])>
+        <div @class(['comment-body', 'top-level'=> $comment->isTopLevel()])>
             @include('comments::livewire.partials.commentHeader')
 
             <div class="mt-1 flex-grow w-full markdown @if($comment->isTopLevel()) toplevel-markdown @endif">
@@ -105,3 +105,46 @@
         @endif
     </div>
 </div>
+
+<style>
+    .comment-top-level{
+        background-color:white;
+        border-bottom: 1px solid rgb(209 213 219);
+        padding-bottom: 2rem;
+    }
+
+    .comment-wrapper{
+        display: flex;
+        padding: 1rem;
+        padding-bottom: 0;
+        border-radius: 0.375rem;
+    }
+
+    .avatar{
+        flex-shrink: 0;
+        margin-right: 1rem;
+        margin-top:1rem;
+    }
+
+    .avatar img{
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 99999px
+    }
+
+    .avatar.top-level{
+        margin-top: 0rem;
+    }
+
+    .comment-body{
+        flex-grow: 1;
+        padding: 1rem;
+        border: 1px solid rgb(209 213 219);
+        border-radius: 0.375rem;
+    }
+
+    .comment-body.top-level{
+        padding: 0;
+        border:none;
+    }
+</style>
