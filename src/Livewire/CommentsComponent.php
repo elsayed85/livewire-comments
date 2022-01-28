@@ -26,8 +26,8 @@ class CommentsComponent extends Component
     public function updatingUpdatesViaMail(bool $value)
     {
         $value
-            ? $this->model->optInOfNotifications(auth()->user())
-            : $this->model->optOutOfNotifications(auth()->user());
+            ? $this->model->optInOnCommentNotifications(auth()->user())
+            : $this->model->optOutOfCommentNotifications(auth()->user());
     }
 
     public function comment()
