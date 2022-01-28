@@ -32,8 +32,6 @@
             -webkit-appearance: none;
             appearance: none;
             display: hidden;
-            position: absolute;
-            left: 1223455px;
         }
 
         #mail-checkbox+label {
