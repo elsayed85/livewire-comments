@@ -28,9 +28,10 @@
         }
 
         #mail-checkbox[type='checkbox'] {
-            display: hidden;
+            
             -webkit-appearance: none;
             appearance: none;
+            display: hidden;
         }
 
         #mail-checkbox+label {
