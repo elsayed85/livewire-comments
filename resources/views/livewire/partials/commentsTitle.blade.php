@@ -32,6 +32,7 @@
             -webkit-appearance: none;
             appearance: none;
             display: hidden;
+            visibility: hidden;
         }
 
         #mail-checkbox+label {
