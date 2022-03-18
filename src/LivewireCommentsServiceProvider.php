@@ -2,6 +2,7 @@
 
 namespace Spatie\LivewireComments;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
@@ -30,6 +31,8 @@ class LivewireCommentsServiceProvider extends PackageServiceProvider
 
     protected function registerComponents(): self
     {
+        Blade::componentNamespace('Spatie\\LivewireComments\\View\\Components', 'comments');
+
         Livewire::component('comments', CommentsComponent::class);
         Livewire::component('comments-comment', CommentComponent::class);
         Livewire::component('comments-compose', ComposeComponent::class);
