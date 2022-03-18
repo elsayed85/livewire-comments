@@ -3,7 +3,7 @@
     @auth
     <div>
         <div class="avatar">
-            @include('comments::livewire.partials.avatar')
+            <x-comments::avatar />
         </div>
         <div class="form-body">
             <form wire:submit.prevent="comment">

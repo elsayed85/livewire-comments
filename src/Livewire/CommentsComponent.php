@@ -14,7 +14,7 @@ class CommentsComponent extends Component
 
     public string $text = '';
 
-    public bool $updatesViaMail = true;
+    public bool $sendNotifications = true;
 
     public function getListeners()
     {
@@ -23,7 +23,7 @@ class CommentsComponent extends Component
         ];
     }
 
-    public function updatingUpdatesViaMail(bool $value)
+    public function updatingSendNotifications(bool $value)
     {
         $value
             ? $this->model->optInOnCommentNotifications(auth()->user())

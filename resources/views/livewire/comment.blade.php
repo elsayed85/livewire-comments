@@ -1,36 +1,45 @@
-<div id="comment{{ $comment->id }}" @class(["comment-top-level"=> $comment->isTopLevel()])
-    >
-    <div class="comment-wrapper">
-        <div @class(["avatar", "top-level"=> $comment->isTopLevel()])>
-            @include('comments::livewire.partials.avatar')
-        </div>
+<div id="comment-{{ $comment->id }}" @class(['comments-group', 'is-top-level' => $comment->isTopLevel()])>
+    <div class="comments-comment">
+        <x-comments::avatar :comment="$comment" />
+        <div class="comments-comment-inner">
+            <div class="comments-comment-header">
+                @if($url = $comment->commentatorProperties()->url)
+                    <a href="{{ $url }}">
+                        {{ $comment->commentatorProperties()->name }}
+                    </a>
+                @else
+                    {{ $comment->commentatorProperties()->name }}
+                @endif
+                <div class="divider"></div>
+                <a href="#comment-{{ $comment->id }}">
+                    <x-comments::date :date="$comment->created_at" />
+                </a>
+                @include('comments::livewire.partials.commentHeaderMenu')
+            </div>
 
-        <div @class(['comment-body', 'top-level'=> $comment->isTopLevel()])>
-            @include('comments::livewire.partials.commentHeader')
-
-            <div class=" markdown @if($comment->isTopLevel()) toplevel-markdown @endif">
+            <div>
                 @if ($isEditing)
-                <form wire:submit.prevent="edit">
-                    <div x-data="compose({ text: @entangle('editText') })">
-                        <div wire:ignore>
-                            <textarea
-                                placeholder="{{ __('comments-livewire::comments.write_comment') }}">{{ $editText }}</textarea>
+                    <form wire:submit.prevent="edit">
+                        <div x-data="compose({ text: @entangle('editText') })">
+                            <div wire:ignore>
+                                <textarea
+                                    placeholder="{{ __('comments-livewire::comments.write_comment') }}">{{ $editText }}</textarea>
+                            </div>
                         </div>
-                    </div>
-                    @error('editText')
-                    <p class="error-message">
-                        {{ $message }}
-                    </p>
-                    @enderror
-                    <div class="submit-button">
-                        <button type="submit">
-                            {{ __('comments-livewire::comments.edit_comment') }}
-                        </button>
-                        <button class="cancel-button" type="button">
-                            {{ __('comments-livewire::comments.cancel') }}
-                        </button>
-                    </div>
-                </form>
+                        @error('editText')
+                        <p class="error-message">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                        <div class="submit-button">
+                            <button type="submit">
+                                {{ __('comments-livewire::comments.edit_comment') }}
+                            </button>
+                            <button class="cancel-button" type="button">
+                                {{ __('comments-livewire::comments.cancel') }}
+                            </button>
+                        </div>
+                    </form>
                 @else
                 <div class="comment-text">{!! $comment->text !!}</div>
                 @endif
@@ -50,7 +59,7 @@
             <form wire:submit.prevent="reply">
                 <div class="comment-form">
                     <div class="avatar">
-                        @include('comments::livewire.partials.avatar')
+                        <x-comments::avatar :comment="$comment" />
                     </div>
                     <div>
                         <div x-data="{ ...compose({ text: @entangle('replyText'), defer: true }), isExpanded: false }"
