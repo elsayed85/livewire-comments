@@ -17,7 +17,7 @@ it('can mount the render the comments component for a model with comments', func
     Livewire::test(CommentsComponent::class, ['model' => $comment->commentable])->assertSuccessful();
 });
 
-it('can create a new comment', function() {
+it('can create a new comment', function () {
     login();
 
     $post = Post::factory()->create();
