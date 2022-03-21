@@ -17,3 +17,16 @@ it('can mount the render the comments component for a model with comments', func
 
     Livewire::test(CommentsComponent::class, ['model' => $comment->commentable])->assertSuccessful();
 });
+
+it('can create a new comment', function() {
+    login();
+
+    $post = Post::factory()->create();
+
+    Livewire::test(CommentsComponent::class, ['model' => $post])
+        ->assertSuccessful()
+        ->set('text', 'my new comment')
+        ->call('comment');
+
+    expect($post->comments->first()->original_text)->toBe('my new comment');
+});
