@@ -139,6 +139,12 @@
         width: 100%;
     }
 
+    .markdown .shiki {
+        background-color: #f5f5f5 !important;
+        padding: 0.5rem;
+        border-radius: 0.375rem;
+    }
+
     .comments-wrapper .error-message {
         margin-top: .5rem;
         font-size: 0.875rem;
@@ -149,27 +155,31 @@
     .comment-text {
         color: rgb(55 65 81);
     }
-    .nested-comments-wrapper .comment-form{
+
+    .nested-comments-wrapper .comment-form {
         display: flex;
         border: 1px solid rgb(209 213 219);
         padding: 1rem;
         border-radius: .375rem;
     }
-    .nested-comments-wrapper .comment-form>div{
+
+    .nested-comments-wrapper .comment-form>div {
         display: inline-block;
         flex: 1 1 0%;
     }
-    .nested-comments-wrapper .comment-form .avatar{
+
+    .nested-comments-wrapper .comment-form .avatar {
         flex: none;
     }
 
-    .nested-comments-wrapper .comment-form input{
+    .nested-comments-wrapper .comment-form input {
         width: 100%;
         border: 1px solid rgb(209 213 219);
         padding: 1rem;
         border-radius: .375rem;
     }
-    .nested-comments-wrapper{
+
+    .nested-comments-wrapper {
         margin-left: 4.5rem;
         margin-top: 1.5rem;
         position: relative;
