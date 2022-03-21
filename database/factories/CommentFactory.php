@@ -1,12 +1,11 @@
 <?php
 
-namespace Spatie\LivireComments\Database\Factories;
+namespace Spatie\LivewireComments\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Spatie\Comments\Models\Comment;
-use Spatie\Comments\Tests\Support\Models\BlogPost;
-use Spatie\Comments\Tests\Support\Models\Post;
-use Spatie\Comments\Tests\Support\Models\User;
+use Spatie\LivewireComments\Tests\Support\Models\Post;
+use Spatie\LivewireComments\Tests\Support\Models\User;
 
 class CommentFactory extends Factory
 {
@@ -15,12 +14,12 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
+            'commentator_id' => User::factory(),
+            'commentator_type' => User::class,
             'commentable_id' => Post::factory(),
             'commentable_type' => Post::class,
             'original_text' => 'original comment text',
             'text' => 'comment text',
-
         ];
     }
 }
