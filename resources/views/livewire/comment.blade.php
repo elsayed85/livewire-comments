@@ -14,9 +14,10 @@
                 <a href="#comment-{{ $comment->id }}">
                     <x-comments::date :date="$comment->created_at" />
                 </a>
-                @include('comments::livewire.partials.commentHeaderMenu')
+                @unless($isEditing)
+                    @include('comments::livewire.partials.commentHeaderMenu')
+                @endunless
             </div>
-
             <div>
                 @if ($isEditing)
                     <form wire:submit.prevent="edit">
@@ -41,7 +42,7 @@
                         </div>
                     </form>
                 @else
-                <div class="comment-text">{!! $comment->text !!}</div>
+                    <div>{!! $comment->text !!}</div>
                 @endif
             </div>
 

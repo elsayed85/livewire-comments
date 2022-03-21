@@ -6,7 +6,7 @@ return [
     'cancel' => 'Cancel',
     'edit' => 'Edit',
     'edit_comment' => 'Edit Comment',
-    'no_comments_yet' => 'No comments yet...',
+    'no_comments_yet' => 'No comments yet…',
     'delete' => 'Delete',
     'copy_link' => 'Copy Link',
     'delete_confirmation_title' => 'Delete Comment',
@@ -14,4 +14,5 @@ return [
     'create_reply' => 'Create Reply',
     'create_comment' => 'Create Comment',
     'just_now' => 'Just now',
+    'send_notifications' => 'Notify me when someone replies'
 ];
