@@ -1,290 +1,19 @@
 :root {
     --comments-avatar-size: 2.5rem;
+    --comments-avatar-margin: 0.75rem;
+    --comments-border-radius: 0.375rem;
     --comments-z-dropdown: 2;
-}
-
-.comments-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-}
-
-.comments-header strong {
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: rgb(17, 24, 39);
-}
-
-.comments-group.is-top-level {
-    background-color: white;
-    border-bottom: 1px solid rgb(209 213 219);
-    padding-bottom: 2rem;
-}
-
-.comments-comment {
-    display: flex;
-}
-
-.comments-comment-inner {
-    flex-grow: 1;
-    border-radius: 0.375rem;
-}
-
-.comments-comment-header {
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-    color: rgb(17, 24, 39);
-}
-
-.comments-comment-header .divider {
-    --size: 0.25rem;
-
-    background-color: rgb(156, 163, 175);
-    width: var(--size);
-    height: var(--size);
-    border-radius: var(--size);
-    margin: 0 0.75rem;
+    --comments-z-modal: 3;
 }
 
 /* @todo Process */
-
-.comments .error-message {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: rgb(239 68 68);
-}
-
-.nested-comments .comment-form {
-    display: flex;
-    border: 1px solid rgb(209 213 219);
-    padding: 1rem;
-    border-radius: 0.375rem;
-}
-
-.nested-comments .comment-form > div {
-    display: inline-block;
-    flex: 1 1 0%;
-}
-
-.nested-comments .comment-form .avatar {
-    flex: none;
-}
-
-.nested-comments .comment-form input {
-    width: 100%;
-    border: 1px solid rgb(209 213 219);
-    padding: 1rem;
-    border-radius: 0.375rem;
-}
-
-.nested-comments {
-    margin-left: 4.5rem;
-    margin-top: 1.5rem;
-    position: relative;
-}
-
-.comments-dropdown {
-    flex-grow: 1;
-    gap: 1rem;
-    position: relative;
-    align-items: center;
-    z-index: var(--comments-z-dropdown);
-}
-
-.comments-dropdown-trigger {
-    display: flex;
-    align-items: center;
-    float: right;
-    gap: 0.5rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    padding: 0.25rem 0.5rem;
-}
-
-.comments-dropdown-item {
-    display: flex;
-    align-items: center;
-    float: right;
-    gap: 0.5rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    padding: 0.25rem 0.5rem;
-}
-
-.comments-dropdown-item:hover {
-    background-color: rgb(229 231 235);
-}
-
-.comments-dropdown > button > svg {
-    height: 1.25rem;
-    width: 1.25rem;
-}
-
-.comments-dropdown-body {
-    position: absolute;
-    width: 12rem;
-    background-color: white;
-    border-radius: 0.375rem;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
-    right: 3rem;
-}
-
-.comments-dropdown-item {
-    width: 100%;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    border-radius: 0.375rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-}
-
-.comments-icon {
-    height: 1.25rem;
-    width: 1.25rem;
-    stroke: #374151;
-}
-
-.comments-dropdown-body .delete-confirmation {
-    position: absolute;
-    z-index: 40;
-    width: 16rem;
-    background-color: white;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
-    margin-top: 1rem;
-    border-radius: 0.375rem;
-    top: 0;
-    transform: translateY(1rem);
-    right: 0;
-}
-
-.delete-confirmation > div {
-    padding: 1rem;
-}
-
-.delete-confirmation .title {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    font-weight: 800;
-}
-
-.delete-confirmation body {
-    margin-bottom: 1rem;
-}
-
-.delete-confirmation .delete-button {
-    background-color: rgb(225 29 72);
-    color: white;
-    display: flex;
-    align-items: center;
-    float: right;
-    margin-bottom: 0.5rem;
-    gap: 0.5rem;
-    border-radius: 0.375rem;
-    padding: 0.5rem 1rem;
-}
-
-.delete-confirmation .delete-button:hover {
-    background-color: rgb(244 63 94);
-}
-
-.delete-confirmation .delete-button svg {
-    stroke: white;
-}
-
-.comment-form {
-    background-color: rgb(249 250 251);
-    padding: 1.5rem 1rem;
-}
-
-.comment-form > div {
-    display: flex;
-}
-
-.comment-form .avatar {
-    flex-shrink: 0;
-    margin-right: 1rem;
-}
-
-.comment-form .form-body {
-    flex: 1 1 0%;
-    min-width: 0;
-}
-
-.comment-form .submit-button,
-.comments .error-message {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: rgb(239 68 68);
-}
-
-.comment-form .submit-button,
-.comments .submit-button,
-.markdown .submit-button {
-    margin-top: 0.75rem;
-    display: flex;
-    align-items: center;
-}
-
-.comment-form .submit-button > :not([hidden]) ~ :not([hidden]),
-.comments .submit-button > :not([hidden]) ~ :not([hidden]),
-.markdown .submit-button > :not([hidden]) ~ :not([hidden]) {
-    margin-left: 1rem;
-}
-
-.comment-form .submit-button button,
-.comments .submit-button button,
-.markdown .submit-button button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    border: 1px solid rgba(0, 0, 0, 0);
-    font-weight: 500;
-    border-radius: 0.375rem;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    color: white;
-    background-color: #4338ca;
-}
-
-.markdown .submit-button .cancel-button {
-    background-color: rgb(209 213 219);
-    color: black;
-}
-
-.comment-form .submit-button button:hover,
-.comments .submit-button button:hover,
-.markdown .submit-button button:hover {
-    background-color: rgba(67, 56, 202, 0.75);
-    color: white;
-}
-
-.comment-form .submit-button button:focus,
-.comments .submit-button button:focus,
-.markdown .submit-button button:focus {
-    --tw-ring-inset: inset;
-    box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px) rgba(67, 56, 202, 0.75);
-}
-
-@media (min-width: 640px) {
-    .comment-form {
-        padding: 1.5rem 1.5rem;
-    }
-}
 
 .reaction-picker {
     padding: 0.25rem;
     z-index: 30;
     position: relative;
     cursor: pointer;
-    border-radius: 0.375rem;
+    border-radius: var(--comments-border-radius);
 }
 
 .reaction-picker > svg {
@@ -301,7 +30,7 @@
     background-color: white;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
         0 4px 6px -4px rgb(0 0 0 / 0.1);
-    border-radius: 0.375rem;
+    border-radius: var(--comments-border-radius);
     position: absolute;
     left: 100%;
     top: 0;
@@ -321,7 +50,7 @@
     text-align: center;
     grid-column: span 1 / span 1;
     padding: 0.5rem;
-    border-radius: 0.375rem;
+    border-radius: var(--comments-border-radius);
     cursor: pointer;
 }
 
@@ -377,8 +106,61 @@
     width: var(--comments-avatar-size);
     height: var(--comments-avatar-size);
     border-radius: var(--comments-avatar-size);
-    margin-right: 1rem;
-    margin-top: 0.125rem;
+    margin-right: var(--comments-avatar-margin);
+}
+
+/** @todo Remove hack, currently necessary to win agains Tailwind CDN specificity */
+.comments-button.comments-button {
+    border-radius: var(--comments-border-radius);
+    color: white;
+    background-color: #4338ca;
+    padding: 0.5rem 1rem;
+}
+
+.comments-button:hover {
+    background-color: rgba(67, 56, 202, 0.75);
+}
+
+.comments-button.is-small {
+    padding: 0.25rem 0.5rem;
+}
+
+.comments-button.is-danger {
+    background-color: rgb(225, 29, 72);
+}
+
+.comments-button.is-danger:hover {
+    background-color: rgb(244, 63, 94);
+}
+
+.comments-button svg {
+    stroke: white;
+}
+
+.comments-comment {
+    display: flex;
+}
+
+.comments-comment-inner {
+    flex-grow: 1;
+}
+
+.comments-comment-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: rgb(17, 24, 39);
+}
+
+.comments-comment-header .divider {
+    --size: 0.25rem;
+
+    background-color: rgb(156, 163, 175);
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+    margin: 0 0.75rem;
 }
 
 .comments-date {
@@ -387,6 +169,138 @@
 
 .comments-date:hover {
     text-decoration: underline;
+}
+
+.comments-dropdown {
+    flex-grow: 1;
+    gap: 1rem;
+    position: relative;
+    align-items: center;
+    z-index: var(--comments-z-dropdown);
+}
+
+.comments-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    float: right;
+    gap: 0.5rem;
+    border-radius: var(--comments-border-radius);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+}
+
+.comments-dropdown-items {
+    position: absolute;
+    width: 12rem;
+    background-color: white;
+    border-radius: var(--comments-border-radius);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    right: 3rem;
+}
+
+.comments-dropdown-item {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+}
+
+.comments-dropdown-item:first-child {
+    border-radius: var(--comments-border-radius) var(--comments-border-radius) 0 0;
+}
+
+.comments-dropdown-item:last-child {
+    border-radius: 0 0 var(--comments-border-radius) var(--comments-border-radius);
+}
+
+.comments-dropdown-trigger:hover,
+.comments-dropdown-item:hover {
+    background-color: rgb(229 231 235);
+}
+
+.comments-error {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: rgb(239 68 68);
+}
+
+.comments-form {
+    display: flex;
+}
+
+.comments-form-inner {
+    flex-grow: 1;
+}
+
+.comments-form-inner button {
+    margin-top: 0.5rem;
+}
+
+.comments-group.is-top-level {
+    background-color: white;
+    margin-bottom: 3rem;
+}
+
+.comments-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.comments-header strong {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: rgb(17, 24, 39);
+}
+
+.comments-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+    stroke: #374151;
+}
+
+.comments-modal {
+    position: absolute;
+    z-index: var(--comments-z-modal);
+    width: 16rem;
+    background-color: white;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-radius: var(--comments-border-radius);
+    top: 0;
+    right: 0;
+    padding: 1rem;
+}
+
+.comments-modal-title {
+    font-weight: 700;
+}
+
+.comments-modal-contents p {
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+}
+
+.comments-modal-contents button {
+    margin-left: auto;
+}
+
+.comments-nested {
+    padding-left: calc(var(--comments-avatar-size) + var(--comments-avatar-margin));
+}
+
+.comments-placeholder {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    height: var(--comments-avatar-size);
 }
 
 .comments-toggle {

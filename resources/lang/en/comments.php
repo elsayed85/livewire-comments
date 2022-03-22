@@ -11,8 +11,8 @@ return [
     'copy_link' => 'Copy Link',
     'delete_confirmation_title' => 'Delete Comment',
     'delete_confirmation_text' => 'Are you sure? This can not be undone.',
-    'create_reply' => 'Create Reply',
-    'create_comment' => 'Create Comment',
+    'create_reply' => 'Reply',
+    'create_comment' => 'Comment',
     'just_now' => 'Just now',
     'send_notifications' => 'Notify me when someone replies'
 ];

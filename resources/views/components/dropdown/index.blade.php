@@ -1,8 +1,13 @@
 <div
      class="comments-dropdown"
      x-cloak
-     x-data="{ dropdownOpen: false, deleteConfirm: false }"
-     @click.outside="dropdownOpen = deleteConfirm = false"
+     x-data="{
+        dropdownOpen: false,
+        closeDropdown() {
+            dropdownOpen = false;
+        },
+    }"
+     @click.outside="dropdownOpen = false"
 >
      <button class="comments-dropdown-trigger" type="button" @click="dropdownOpen = !dropdownOpen">
           <span x-show="!dropdownOpen">
@@ -12,6 +17,7 @@
                @include('comments::livewire.svgs.close')
           </span>
     </button>
-     <!-- @todo Remove delete confirm code -->
-     {{ $slot }}
+    <div x-show="dropdownOpen" class="comments-dropdown-items">
+          {{ $slot }}
+     </div>
 </div>

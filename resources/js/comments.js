@@ -1,5 +1,5 @@
-document.addEventListener('alpine:init', () => {
-    Alpine.data('compose', ({text, defer = false} = {}) => {
+document.addEventListener("alpine:init", () => {
+    Alpine.data("compose", ({ text, defer = false } = {}) => {
         // Store the editor as a non-reactive instance property
         let editor;
 
@@ -17,7 +17,7 @@ document.addEventListener('alpine:init', () => {
                     return;
                 }
 
-                const textarea = this.$el.querySelector('textarea');
+                const textarea = this.$el.querySelector("textarea");
 
                 if (!textarea) {
                     return;
@@ -25,10 +25,19 @@ document.addEventListener('alpine:init', () => {
 
                 editor = new SimpleMDE({
                     element: textarea,
-                    hideIcons: ['heading', 'image', 'preview', 'side-by-side', 'fullscreen', 'guide'],
+                    hideIcons: [
+                        "heading",
+                        "image",
+                        "preview",
+                        "side-by-side",
+                        "fullscreen",
+                        "guide",
+                    ],
                     spellChecker: false,
                     status: false,
                 });
+
+                editor.value(String(textarea.value).trim());
 
                 editor.codemirror.on("change", () => {
                     this.text = editor.value();
@@ -36,7 +45,7 @@ document.addEventListener('alpine:init', () => {
             },
 
             clear() {
-                editor.value('');
+                editor.value("");
             },
         };
     });
