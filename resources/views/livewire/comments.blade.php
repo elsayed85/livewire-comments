@@ -4,7 +4,7 @@
         @if(config('comments.notifications.enabled'))
             @auth
                 <x-comments::toggle wire:model="sendNotifications">
-                    {{ __('comments-livewire::comments.send_notifications') }}
+                    {{ __('comments::comments.send_notifications') }}
                 </x-comments::toggle>
             @endauth
         @endif
@@ -15,7 +15,7 @@
         @endforeach
         {{ $comments->links() }}
     @else
-        <p>{{ __('comments-livewire::comments.no_comments_yet') }}</p>
+        <p>{{ __('comments::comments.no_comments_yet') }}</p>
     @endif
     @can('createComment', $model)
         <div class="comments-form">
@@ -26,7 +26,7 @@
                     x-init="$wire.on('comment', clear)"
                 >
                     <div wire:ignore>
-                        <textarea placeholder="{{ __('comments-livewire::comments.write_comment') }}">
+                        <textarea placeholder="{{ __('comments::comments.write_comment') }}">
                             {{ $text }}
                         </textarea>
                     </div>
@@ -37,7 +37,7 @@
                     </p>
                 @enderror
                 <x-comments::button submit>
-                    {{ __('comments-livewire::comments.create_comment') }}
+                    {{ __('comments::comments.create_comment') }}
                 </x-comments::button>
             </form>
         </div>

@@ -25,21 +25,21 @@
                                 icon="edit"
                                 wire:click="startEditing"
                             >
-                                {{  __('comments-livewire::comments.edit') }}
+                                {{  __('comments::comments.edit') }}
                             </x-comments::dropdown.item>
                         @endcan
                         <x-comments::dropdown.item
                             icon="copy"
                             @click="closeDropdown(); navigator.clipboard.writeText(window.location.href.split('#')[0] + '#comment-{{ $comment->id }}')"
                         >
-                            {{  __('comments-livewire::comments.copy_link') }}
+                            {{  __('comments::comments.copy_link') }}
                         </x-comments::dropdown.item>
                         @can('delete', $comment)
                             <x-comments::dropdown.item
                                 icon="delete"
                                 @click="confirmDelete = true; dropdownOpen = false"
                             >
-                                {{ __('comments-livewire::comments.delete') }}
+                                {{ __('comments::comments.delete') }}
                             </x-comments::dropdown.item>
                         @endcan
                         @include('comments::livewire.partials.extraCommentHeaderMenuItems')
@@ -47,11 +47,11 @@
                     <x-comments::modal
                         x-show="confirmDelete"
                         @click.outside="confirmDelete = false"
-                        :title="__('comments-livewire::comments.delete_confirmation_title')"
+                        :title="__('comments::comments.delete_confirmation_title')"
                     >
-                        <p>{{ __('comments-livewire::comments.delete_confirmation_text') }}</p>
+                        <p>{{ __('comments::comments.delete_confirmation_text') }}</p>
                         <x-comments::button danger small wire:click="deleteComment">
-                            {{ __('comments-livewire::comments.delete') }}
+                            {{ __('comments::comments.delete') }}
                         </x-comments::button>
                     </x-comments::modal>
                 @endunless
@@ -61,7 +61,7 @@
                     <form class="comments-form-inner" wire:submit.prevent="edit">
                         <div x-data="compose({ text: @entangle('editText') })">
                             <div wire:ignore>
-                                <textarea placeholder="{{ __('comments-livewire::comments.write_comment') }}">
+                                <textarea placeholder="{{ __('comments::comments.write_comment') }}">
                                     {{ $editText }}
                                 </textarea>
                             </div>
@@ -72,10 +72,10 @@
                             </p>
                         @enderror
                         <x-comments::button submit>
-                            {{ __('comments-livewire::comments.edit_comment') }}
+                            {{ __('comments::comments.edit_comment') }}
                         </x-comments::button>
                         <x-comments::button link wire:click="stopEditing">
-                            {{ __('comments-livewire::comments.cancel') }}
+                            {{ __('comments::comments.cancel') }}
                         </x-comments::button>
                     </form>
                 </div>
@@ -156,11 +156,11 @@
                                 x-show="!isExpanded"
                                 @click="isExpanded = true"
                                 class="comments-placeholder"
-                                placeholder="{{ __('comments-livewire::comments.write_reply') }}"
+                                placeholder="{{ __('comments::comments.write_reply') }}"
                             >
                             <div x-show="isExpanded">
                                 <div wire:ignore>
-                                    <textarea placeholder="{{ __('comments-livewire::comments.write_reply') }}">
+                                    <textarea placeholder="{{ __('comments::comments.write_reply') }}">
                                         {{ $replyText }}
                                     </textarea>
                                 </div>
@@ -170,10 +170,10 @@
                                     </p>
                                 @enderror
                                 <x-comments::button submit>
-                                    {{ __('comments-livewire::comments.create_reply') }}
+                                    {{ __('comments::comments.create_reply') }}
                                 </x-comments::button>
                                 <x-comments::button link @click="isExpanded = false">
-                                    {{ __('comments-livewire::comments.cancel') }}
+                                    {{ __('comments::comments.cancel') }}
                                 </x-comments::button>
                             </div>
                         </div>
