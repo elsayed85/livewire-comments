@@ -11,10 +11,10 @@
 >
      <button class="comments-dropdown-trigger" type="button" @click="dropdownOpen = !dropdownOpen">
           <span x-show="!dropdownOpen">
-               @include('comments::livewire.svgs.menu')
+               <x-comments::icon.menu />
           </span>
           <span x-show="dropdownOpen">
-               @include('comments::livewire.svgs.close')
+               <x-comments::icon.close />
           </span>
     </button>
     <div x-show="dropdownOpen" class="comments-dropdown-items">

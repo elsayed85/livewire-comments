@@ -1,18 +1,12 @@
-@php
-    $type ??= null;
-    $size ??= null;
-    $htmlType ??= 'button';
-@endphp
 <button
-    type="{{ $htmlType }}"
+    type="{{ isset($submit) && $submit ? 'submit' : 'button' }}"
     @class([
         'comments-button',
-        'is-normal' => $size === 'normal',
-        'is-small' => $size === 'small',
-        'is-primary' => $type === 'primary',
-        'is-danger' => $type === 'danger',
+        'is-small' => isset($small) && $small,
+        'is-danger' => isset($danger) && $danger,
+        'is-link' => isset($link) && $link,
     ])"
-    {{ $attributes->except('type', 'size', 'htmlType') }}
+    {{ $attributes->except('type', 'size', 'submit') }}
 >
     {{ $slot }}
 </button>

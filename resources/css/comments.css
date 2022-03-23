@@ -1,106 +1,11 @@
 :root {
+    --comments-spacing: 3rem;
     --comments-avatar-size: 2.5rem;
     --comments-avatar-margin: 0.75rem;
     --comments-border-radius: 0.375rem;
     --comments-z-dropdown: 2;
     --comments-z-modal: 3;
 }
-
-/* @todo Process */
-
-.reaction-picker {
-    padding: 0.25rem;
-    z-index: 30;
-    position: relative;
-    cursor: pointer;
-    border-radius: var(--comments-border-radius);
-}
-
-.reaction-picker > svg {
-    height: 1.25rem;
-    width: 1.25rem;
-    stroke: #374151;
-}
-
-.reaction-picker:hover {
-    background-color: rgb(229 231 235);
-}
-
-.reaction-picker-modal {
-    background-color: white;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
-    border-radius: var(--comments-border-radius);
-    position: absolute;
-    left: 100%;
-    top: 0;
-    transform: translateX(1rem);
-}
-
-.reaction-picker-modal > div {
-    padding: 0.25rem;
-    display: grid;
-    gap: 0.25rem;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    width: 14rem;
-}
-
-.reaction-picker-modal .reaction-emoticon {
-    border: 1px solid rgba(243 244 246, 0);
-    text-align: center;
-    grid-column: span 1 / span 1;
-    padding: 0.5rem;
-    border-radius: var(--comments-border-radius);
-    cursor: pointer;
-}
-
-.reaction-picker-modal .reaction-emoticon:hover {
-    background-color: rgb(243 244 246);
-}
-
-.reaction-picker-modal .reaction-emoticon.reacted {
-    background-color: rgba(67, 56, 202, 0.25);
-}
-
-.reaction-picker-modal .reaction-emoticon.reacted:hover {
-    background-color: rgba(67, 56, 202, 0.5);
-}
-
-.reactions {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin: 1rem 0;
-}
-
-.reactions > :not([hidden]) ~ :not([hidden]) {
-    margin-left: 1rem;
-}
-
-.reactions > div {
-    border-radius: 99999px;
-    cursor: pointer;
-    background-color: rgb(229 231 235);
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    hover: bg-gray-300 bg-gray-200 py-1 px-2 text-sm;
-}
-
-.reactions > div:hover {
-    background-color: rgb(209 213 219);
-}
-
-.reactions > div.reacted {
-    border: 1px solid #4338ca;
-    background-color: rgba(67, 56, 202, 0.25);
-}
-
-.reactions > div.reacted:hover {
-    background-color: rgba(67, 56, 202, 0.5);
-}
-
-/* @todo end process */
 
 .comments-avatar {
     width: var(--comments-avatar-size);
@@ -123,6 +28,12 @@
 
 .comments-button.is-small {
     padding: 0.25rem 0.5rem;
+}
+
+.comments-button.is-link {
+    background-color: transparent;
+    color: rgb(156 163 175);
+    text-decoration: underline;
 }
 
 .comments-button.is-danger {
@@ -154,13 +65,14 @@
 }
 
 .comments-comment-header .divider {
-    --size: 0.25rem;
+    --size: 0.21rem;
 
     background-color: rgb(156, 163, 175);
     width: var(--size);
     height: var(--size);
     border-radius: var(--size);
-    margin: 0 0.75rem;
+    margin: 0 0.5rem;
+    transform: translateY(calc(var(--size) * 0.25));
 }
 
 .comments-date {
@@ -186,7 +98,7 @@
     gap: 0.5rem;
     border-radius: var(--comments-border-radius);
     cursor: pointer;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem;
 }
 
 .comments-dropdown-items {
@@ -196,7 +108,7 @@
     border-radius: var(--comments-border-radius);
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
         0 4px 6px -4px rgb(0 0 0 / 0.1);
-    right: 3rem;
+    right: 2rem;
 }
 
 .comments-dropdown-item {
@@ -242,15 +154,34 @@
     margin-top: 0.5rem;
 }
 
-.comments-group.is-top-level {
-    background-color: white;
-    margin-bottom: 3rem;
+.comments-group {
+    position: relative;
+    padding-bottom: var(--comments-spacing);
+    margin-bottom: var(--comments-spacing);
+}
+
+.comments-group:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: calc(var(--comments-avatar-size) + var(--comments-avatar-margin));
+    border-bottom: 1px solid #ddd;
+}
+
+.comments-group .comments-group {
+    padding-bottom: 0;
+    margin-bottom: calc(var(--comments-spacing) / 2);
+}
+
+.comments-group .comments-group:after {
+    content: none;
 }
 
 .comments-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2rem;
+    margin-bottom: var(--comments-spacing);
 }
 
 .comments-header strong {
@@ -278,20 +209,34 @@
     padding: 1rem;
 }
 
+.comments-modal.is-left {
+    right: auto;
+    left: 0;
+}
+
+.comments-modal.is-compact {
+    padding: 0.5rem;
+}
+
 .comments-modal-title {
-    font-weight: 700;
+    font-weight: 500;
+}
+
+.comments-modal-contents {
+    font-weight: normal;
+    line-height: 1.25;
 }
 
 .comments-modal-contents p {
-    line-height: 1.25;
     margin-bottom: 0.5rem;
 }
 
-.comments-modal-contents button {
-    margin-left: auto;
+.comments-modal-contents .comments-button {
+    float: right;
 }
 
 .comments-nested {
+    margin-top: 1.5rem;
     padding-left: calc(var(--comments-avatar-size) + var(--comments-avatar-margin));
 }
 
@@ -301,6 +246,82 @@
     width: 100%;
     padding: 10px;
     height: var(--comments-avatar-size);
+}
+
+.comments-reactions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.comments-reaction {
+    display: flex;
+    align-items: center;
+    border-radius: var(--comments-border-radius);
+    cursor: pointer;
+    background-color: rgb(229 231 235);
+    padding: 0 0.5rem;
+    height: 1.75rem;
+    font-size: 0.75rem;
+}
+
+.comments-reaction:hover {
+    background-color: rgb(209 213 219);
+}
+
+.comments-reaction.is-reacted {
+    border: 1px solid #4338ca;
+    background-color: rgba(67, 56, 202, 0.25);
+}
+
+.comments-reaction.is-reacted:hover {
+    background-color: rgba(67, 56, 202, 0.5);
+}
+
+.comments-reaction-picker {
+    position: relative;
+}
+
+/** @todo Remove hack, currently necessary to win agains Tailwind CDN specificity */
+.comments-reaction-picker-trigger.comments-reaction-picker-trigger {
+    display: flex;
+    align-items: center;
+    height: 1.75rem;
+    padding: 0 0.5rem;
+    cursor: pointer;
+    border-radius: var(--comments-border-radius);
+    background-color: #f2f2f2;
+}
+
+.comments-reaction-picker-trigger:hover {
+    background-color: rgb(229 231 235);
+}
+
+.comments-reaction-picker-reactions {
+    display: grid;
+    gap: 0.25rem;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.comments-reaction-picker-reaction {
+    height: 1.75rem;
+    padding: 0 0.25rem;
+    border-radius: var(--comments-border-radius);
+    cursor: pointer;
+}
+
+.comments-reaction-picker-reaction:hover {
+    background-color: rgb(243 244 246);
+}
+
+.comments-reaction-picker-reaction.is-reacted {
+    background-color: rgba(67, 56, 202, 0.25);
+}
+
+.comments-reaction-picker-reaction.is-reacted:hover {
+    background-color: rgba(67, 56, 202, 0.5);
 }
 
 .comments-toggle {

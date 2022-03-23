@@ -1,4 +1,4 @@
 <button class="comments-dropdown-item" {{ $attributes->except('icon') }}>
-    @include('comments::livewire.svgs.' . $icon)
+    <x-dynamic-component :component="'comments::icon.' . $icon" />
     {{ $slot }}
 </button>

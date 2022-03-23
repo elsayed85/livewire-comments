@@ -1,6 +1,6 @@
 <div
     id="comment-{{ $comment->id }}"
-    @class(['comments-group', 'is-top-level' => $comment->isTopLevel()])
+    class="comments-group"
     x-data="{ confirmDelete: false }"
 >
     <div class="comments-comment">
@@ -50,48 +50,92 @@
                         :title="__('comments-livewire::comments.delete_confirmation_title')"
                     >
                         <p>{{ __('comments-livewire::comments.delete_confirmation_text') }}</p>
-                        <x-comments::button type="danger" size="small" wire:click="deleteComment">
+                        <x-comments::button danger small wire:click="deleteComment">
                             {{ __('comments-livewire::comments.delete') }}
                         </x-comments::button>
                     </x-comments::modal>
                 @endunless
             </div>
             @if($isEditing)
-                <form wire:submit.prevent="edit">
-                    <div x-data="compose({ text: @entangle('editText') })">
-                        <div wire:ignore>
-                            <textarea placeholder="{{ __('comments-livewire::comments.write_comment') }}">
-                                {{ $editText }}
-                            </textarea>
+                <div class="comments-form">
+                    <form class="comments-form-inner" wire:submit.prevent="edit">
+                        <div x-data="compose({ text: @entangle('editText') })">
+                            <div wire:ignore>
+                                <textarea placeholder="{{ __('comments-livewire::comments.write_comment') }}">
+                                    {{ $editText }}
+                                </textarea>
+                            </div>
                         </div>
-                    </div>
-                    @error('editText')
-                        <p class="error-message">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                    <div class="submit-button">
-                        <button type="submit">
+                        @error('editText')
+                            <p class="comments-error">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                        <x-comments::button submit>
                             {{ __('comments-livewire::comments.edit_comment') }}
-                        </button>
-                        <button class="cancel-button" type="button">
+                        </x-comments::button>
+                        <x-comments::button link wire:click="stopEditing">
                             {{ __('comments-livewire::comments.cancel') }}
-                        </button>
-                    </div>
-                </form>
+                        </x-comments::button>
+                    </form>
+                </div>
             @else
                 <div>{!! $comment->text !!}</div>
-                @include('comments::livewire.partials.reactions')
+                <div class="comments-reactions">
+                    @foreach($comment->reactions->summary() as $summary)
+                        <div
+                            wire:click="deleteReaction('{{ $summary['reaction'] }}')"
+                            @class(['comments-reaction', 'is-reacted' => $summary['commentator_reacted']])
+                        >
+                            {{ $summary['reaction'] }} {{ $summary['count'] }}
+                        </div>
+                    @endforeach
+                    <div
+                        x-cloak
+                        x-data="{ open: false }"
+                        @click.outside="open = false"
+                        class="comments-reaction-picker"
+                    >
+                        @can('react', $comment)
+                            <button class="comments-reaction-picker-trigger" type="button" @click="open = !open">
+                                <x-comments::icon.smile />
+                            </button>
+                            <x-comments::modal x-show="open" compact left>
+                                <div class="comments-reaction-picker-reactions">
+                                    @foreach(config('comments.allowed_reactions') as $reaction)
+                                        @php
+                                            $commentatorReacted = ! is_bool(array_search(
+                                                $reaction,
+                                                array_column($comment->reactions()->get()->toArray(), 'reaction'),
+                                            ));
+                                        @endphp
+                                        <button
+                                            type="button"
+                                            @class(['comments-reaction-picker-reaction', 'is-reacted' => $commentatorReacted])
+                                            @if($commentatorReacted)
+                                                wire:click="deleteReaction('{{ $reaction }}')"
+                                            @else
+                                                wire:click="react('{{ $reaction }}')"
+                                            @endif
+                                        >
+                                            {{ $reaction }}
+                                        </button>
+                                    @endforeach
+                                </div>
+                            </x-comments::modal>
+                        @endcan
+                    </div>
+                </div>
             @endif
         </div>
     </div>
-    <div class="comments-nested">
-        @foreach ($comment->nestedComments as $nestedComment)
-            <livewire:comments-comment :comment="$nestedComment" :key="$nestedComment->id" />
-        @endforeach
-        @if($comment->isTopLevel())
+    @if($comment->isTopLevel())
+        <div class="comments-nested">
+            @foreach ($comment->nestedComments as $nestedComment)
+                <livewire:comments-comment :comment="$nestedComment" :key="$nestedComment->id" />
+            @endforeach
             @auth
-                <div class="comments-form" id="reply-form-{{ $comment->id }}">
+                <div class="comments-form">
                     <x-comments::avatar :comment="$comment" />
                     <form class="comments-form-inner" wire:submit.prevent="reply">
                         <div
@@ -125,14 +169,17 @@
                                         {{ $message }}
                                     </p>
                                 @enderror
-                                <x-comments::button>
+                                <x-comments::button submit>
                                     {{ __('comments-livewire::comments.create_reply') }}
+                                </x-comments::button>
+                                <x-comments::button link @click="isExpanded = false">
+                                    {{ __('comments-livewire::comments.cancel') }}
                                 </x-comments::button>
                             </div>
                         </div>
                     </form>
                 </div>
             @endauth
-        @endif
-    </div>
+        </div>
+    @endif
 </div>
