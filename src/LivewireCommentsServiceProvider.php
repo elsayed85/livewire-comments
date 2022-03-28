@@ -4,8 +4,6 @@ namespace Spatie\LivewireComments;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\HtmlString;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
