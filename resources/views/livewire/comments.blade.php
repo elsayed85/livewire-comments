@@ -21,16 +21,10 @@
         <div class="comments-form">
             <x-comments::avatar />
             <form class="comments-form-inner" wire:submit.prevent="comment">
-                <div
-                    x-data="compose({ text: @entangle('text') })"
-                    x-init="$wire.on('comment', clear)"
-                >
-                    <div wire:ignore>
-                        <textarea placeholder="{{ __('comments::comments.write_comment') }}">
-                            {{ $text }}
-                        </textarea>
-                    </div>
-                </div>
+                @include('comments::livewire.partials.editor', [
+                    'property' => 'text',
+                    'placeholder' => __('comments::comments.write_comment'),
+                ])
                 @error('text')
                     <p class="comments-error">
                         {{ $message }}

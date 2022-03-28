@@ -7,12 +7,6 @@ document.addEventListener("alpine:init", () => {
             text,
 
             init() {
-                if (!defer) {
-                    this.load();
-                }
-            },
-
-            load() {
                 if (editor) {
                     return;
                 }
@@ -37,7 +31,7 @@ document.addEventListener("alpine:init", () => {
                     status: false,
                 });
 
-                editor.value(String(textarea.value).trim());
+                editor.value(this.text);
 
                 editor.codemirror.on("change", () => {
                     this.text = editor.value();

@@ -59,13 +59,7 @@
             @if($isEditing)
                 <div class="comments-form">
                     <form class="comments-form-inner" wire:submit.prevent="edit">
-                        <div x-data="compose({ text: @entangle('editText') })">
-                            <div wire:ignore>
-                                <textarea placeholder="{{ __('comments::comments.write_comment') }}">
-                                    {{ $editText }}
-                                </textarea>
-                            </div>
-                        </div>
+                        @include('comments::livewire.partials.editor', ['property' => 'editText'])
                         @error('editText')
                             <p class="comments-error">
                                 {{ $message }}
@@ -139,16 +133,10 @@
                     <x-comments::avatar :comment="$comment" />
                     <form class="comments-form-inner" wire:submit.prevent="reply">
                         <div
-                            x-data="{ ...compose({ text: @entangle('replyText'), defer: true }), isExpanded: false }"
+                            x-data="{ isExpanded: false }"
                             x-init="
                                 $wire.on('reply-{{ $comment->id }}', () => {
-                                    clear();
                                     isExpanded = false;
-                                });
-                                $watch('isExpanded', (isExpanded) => {
-                                    if (isExpanded) {
-                                        load();
-                                    }
                                 });
                             "
                         >
@@ -158,24 +146,25 @@
                                 class="comments-placeholder"
                                 placeholder="{{ __('comments::comments.write_reply') }}"
                             >
-                            <div x-show="isExpanded">
-                                <div wire:ignore>
-                                    <textarea placeholder="{{ __('comments::comments.write_reply') }}">
-                                        {{ $replyText }}
-                                    </textarea>
+                            <template x-if="isExpanded">
+                                <div>
+                                    @include('comments::livewire.partials.editor', [
+                                        'property' => 'replyText',
+                                        'placeholder' => __('comments::comments.write_reply'),
+                                    ])
+                                    @error('replyText')
+                                        <p class="comments-error">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                    <x-comments::button submit>
+                                        {{ __('comments::comments.create_reply') }}
+                                    </x-comments::button>
+                                    <x-comments::button link @click="isExpanded = false">
+                                        {{ __('comments::comments.cancel') }}
+                                    </x-comments::button>
                                 </div>
-                                @error('replyText')
-                                    <p class="comments-error">
-                                        {{ $message }}
-                                    </p>
-                                @enderror
-                                <x-comments::button submit>
-                                    {{ __('comments::comments.create_reply') }}
-                                </x-comments::button>
-                                <x-comments::button link @click="isExpanded = false">
-                                    {{ __('comments::comments.cancel') }}
-                                </x-comments::button>
-                            </div>
+                            </template>
                         </div>
                     </form>
                 </div>

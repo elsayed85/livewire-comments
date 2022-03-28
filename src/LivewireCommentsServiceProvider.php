@@ -9,7 +9,6 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\LivewireComments\Livewire\CommentComponent;
 use Spatie\LivewireComments\Livewire\CommentsComponent;
-use Spatie\LivewireComments\Livewire\ComposeComponent;
 use Spatie\LivewireComments\Support\Config;
 
 class LivewireCommentsServiceProvider extends PackageServiceProvider
@@ -35,7 +34,6 @@ class LivewireCommentsServiceProvider extends PackageServiceProvider
 
         Livewire::component('comments', CommentsComponent::class);
         Livewire::component('comments-comment', CommentComponent::class);
-        Livewire::component('comments-compose', ComposeComponent::class);
 
         return $this;
     }

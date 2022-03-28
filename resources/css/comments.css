@@ -62,6 +62,8 @@
     align-items: center;
     font-weight: 500;
     color: rgb(17, 24, 39);
+    min-height: 2rem;
+    margin-bottom: 0.25rem;
 }
 
 .comments-comment-header .divider {
