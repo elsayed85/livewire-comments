@@ -9,7 +9,6 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\LivewireComments\Livewire\CommentComponent;
 use Spatie\LivewireComments\Livewire\CommentsComponent;
-use Spatie\LivewireComments\Livewire\ComposeComponent;
 use Spatie\LivewireComments\Support\Config;
 
 class LivewireCommentsServiceProvider extends PackageServiceProvider
@@ -17,13 +16,15 @@ class LivewireCommentsServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('laravel-comments-livewire')
+            ->name('laravel-comments')
             ->hasTranslations()
             ->hasViews('comments');
     }
 
     public function packageBooted()
     {
+        config()->set('comments.editor', 'comments::editors.simplemde');
+
         $this
             ->registerComponents()
             ->registerPolicies();
@@ -35,7 +36,6 @@ class LivewireCommentsServiceProvider extends PackageServiceProvider
 
         Livewire::component('comments', CommentsComponent::class);
         Livewire::component('comments-comment', CommentComponent::class);
-        Livewire::component('comments-compose', ComposeComponent::class);
 
         return $this;
     }

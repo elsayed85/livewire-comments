@@ -1,92 +1,182 @@
-<div id="comment{{ $comment->id }}" @class(["comment-top-level"=> $comment->isTopLevel()])
-    >
-    <div class="comment-wrapper">
-        <div @class(["avatar", "top-level"=> $comment->isTopLevel()])>
-            @include('comments::livewire.partials.avatar')
-        </div>
-
-        <div @class(['comment-body', 'top-level'=> $comment->isTopLevel()])>
-            @include('comments::livewire.partials.commentHeader')
-
-            <div class=" markdown @if($comment->isTopLevel()) toplevel-markdown @endif">
-                @if ($isEditing)
-                <form wire:submit.prevent="edit">
-                    <div x-data="compose({ text: @entangle('editText') })">
-                        <div wire:ignore>
-                            <textarea
-                                placeholder="{{ __('comments-livewire::comments.write_comment') }}">{{ $editText }}</textarea>
-                        </div>
-                    </div>
-                    @error('editText')
-                    <p class="error-message">
-                        {{ $message }}
-                    </p>
-                    @enderror
-                    <div class="submit-button">
-                        <button type="submit">
-                            {{ __('comments-livewire::comments.edit_comment') }}
-                        </button>
-                        <button class="cancel-button" type="button">
-                            {{ __('comments-livewire::comments.cancel') }}
-                        </button>
-                    </div>
-                </form>
+<div
+    id="comment-{{ $comment->id }}"
+    class="comments-group"
+    x-data="{ confirmDelete: false }"
+>
+    <div class="comments-comment">
+        <x-comments::avatar :comment="$comment" />
+        <div class="comments-comment-inner">
+            <div class="comments-comment-header">
+                @if($url = $comment->commentatorProperties()->url)
+                    <a href="{{ $url }}">
+                        {{ $comment->commentatorProperties()->name }}
+                    </a>
                 @else
-                <div class="comment-text">{!! $comment->text !!}</div>
+                    {{ $comment->commentatorProperties()->name }}
                 @endif
+                <div class="divider"></div>
+                <a href="#comment-{{ $comment->id }}">
+                    <x-comments::date :date="$comment->created_at" />
+                </a>
+                @unless($isEditing)
+                    <x-comments::dropdown>
+                        @can('update', $comment)
+                            <x-comments::dropdown.item
+                                icon="edit"
+                                wire:click="startEditing"
+                            >
+                                {{  __('comments::comments.edit') }}
+                            </x-comments::dropdown.item>
+                        @endcan
+                        <x-comments::dropdown.item
+                            icon="copy"
+                            @click="closeDropdown(); navigator.clipboard.writeText(window.location.href.split('#')[0] + '#comment-{{ $comment->id }}')"
+                        >
+                            {{  __('comments::comments.copy_link') }}
+                        </x-comments::dropdown.item>
+                        @can('delete', $comment)
+                            <x-comments::dropdown.item
+                                icon="delete"
+                                @click="confirmDelete = true; dropdownOpen = false"
+                            >
+                                {{ __('comments::comments.delete') }}
+                            </x-comments::dropdown.item>
+                        @endcan
+                        @include('comments::extraCommentHeaderMenuItems')
+                    </x-comments::dropdown>
+                    <x-comments::modal
+                        x-show="confirmDelete"
+                        @click.outside="confirmDelete = false"
+                        :title="__('comments::comments.delete_confirmation_title')"
+                    >
+                        <p>{{ __('comments::comments.delete_confirmation_text') }}</p>
+                        <x-comments::button danger small wire:click="deleteComment">
+                            {{ __('comments::comments.delete') }}
+                        </x-comments::button>
+                    </x-comments::modal>
+                @endunless
             </div>
-
-            @include('comments::livewire.partials.reactions')
-        </div>
-    </div>
-
-    <div class="nested-comments-wrapper">
-        @foreach ($comment->nestedComments as $nestedComment)
-        <livewire:comments-comment :comment="$nestedComment" :key="$nestedComment->id" />
-        @endforeach
-        @if($comment->isTopLevel())
-        @auth
-        <div id="reply-form-{{ $comment->id }}">
-            <form wire:submit.prevent="reply">
-                <div class="comment-form">
-                    <div class="avatar">
-                        @include('comments::livewire.partials.avatar')
-                    </div>
-                    <div>
-                        <div x-data="{ ...compose({ text: @entangle('replyText'), defer: true }), isExpanded: false }"
-                            x-init="
-                                        $wire.on('reply-{{ $comment->id }}', () => {
-                                            clear();
-                                            isExpanded = false;
-                                        });
-                                        $watch('isExpanded', (isExpanded) => {
-                                            if (isExpanded) {
-                                                load();
-                                            }
-                                        });
-                                    ">
-                            <input x-show="!isExpanded" @click="isExpanded = true"
-                                placeholder="{{ __('comments-livewire::comments.write_reply') }}">
-                            <div x-show="isExpanded" wire:ignore>
-                                <textarea
-                                    placeholder="{{ __('comments-livewire::comments.write_reply') }}">{{ $replyText }}</textarea>
-                            </div>
-                        </div>
-                        @error('replyText')
-                        <p class="error-message">
-                            {{ $message }}
-                        </p>
+            @if($isEditing)
+                <div class="comments-form">
+                    <form class="comments-form-inner" wire:submit.prevent="edit">
+                        <x-dynamic-component
+                            :component="config('comments.editor')"
+                            model="editText"
+                            :comment="$comment"
+                            autofocus
+                        />
+                        @error('editText')
+                            <p class="comments-error">
+                                {{ $message }}
+                            </p>
                         @enderror
-                        <div class="submit-button">
-                            <button type="submit">
-                                {{ __('comments-livewire::comments.create_reply') }}
-                            </button>
+                        <x-comments::button submit>
+                            {{ __('comments::comments.edit_comment') }}
+                        </x-comments::button>
+                        <x-comments::button link wire:click="stopEditing">
+                            {{ __('comments::comments.cancel') }}
+                        </x-comments::button>
+                    </form>
+                </div>
+            @else
+                <div>{!! $comment->text !!}</div>
+                <div class="comments-reactions">
+                    @foreach($comment->reactions->summary() as $summary)
+                        <div
+                            wire:click="deleteReaction('{{ $summary['reaction'] }}')"
+                            @class(['comments-reaction', 'is-reacted' => $summary['commentator_reacted']])
+                        >
+                            {{ $summary['reaction'] }} {{ $summary['count'] }}
                         </div>
+                    @endforeach
+                    <div
+                        x-cloak
+                        x-data="{ open: false }"
+                        @click.outside="open = false"
+                        class="comments-reaction-picker"
+                    >
+                        @can('react', $comment)
+                            <button class="comments-reaction-picker-trigger" type="button" @click="open = !open">
+                                <x-comments::icons.smile />
+                            </button>
+                            <x-comments::modal x-show="open" compact left>
+                                <div class="comments-reaction-picker-reactions">
+                                    @foreach(config('comments.allowed_reactions') as $reaction)
+                                        @php
+                                            $commentatorReacted = ! is_bool(array_search(
+                                                $reaction,
+                                                array_column($comment->reactions()->get()->toArray(), 'reaction'),
+                                            ));
+                                        @endphp
+                                        <button
+                                            type="button"
+                                            @class(['comments-reaction-picker-reaction', 'is-reacted' => $commentatorReacted])
+                                            @if($commentatorReacted)
+                                                wire:click="deleteReaction('{{ $reaction }}')"
+                                            @else
+                                                wire:click="react('{{ $reaction }}')"
+                                            @endif
+                                        >
+                                            {{ $reaction }}
+                                        </button>
+                                    @endforeach
+                                </div>
+                            </x-comments::modal>
+                        @endcan
                     </div>
                 </div>
-            </form>
+            @endif
         </div>
-        @endauth
-        @endif
     </div>
+    @if($comment->isTopLevel())
+        <div class="comments-nested">
+            @foreach ($comment->nestedComments as $nestedComment)
+                <livewire:comments-comment :comment="$nestedComment" :key="$nestedComment->id" />
+            @endforeach
+            @auth
+                <div class="comments-form">
+                    <x-comments::avatar :comment="$comment" />
+                    <form class="comments-form-inner" wire:submit.prevent="reply">
+                        <div
+                            x-data="{ isExpanded: false }"
+                            x-init="
+                                $wire.on('reply-{{ $comment->id }}', () => {
+                                    isExpanded = false;
+                                });
+                            "
+                        >
+                            <input
+                                x-show="!isExpanded"
+                                @click="isExpanded = true"
+                                class="comments-placeholder"
+                                placeholder="{{ __('comments::comments.write_reply') }}"
+                            >
+                            <template x-if="isExpanded">
+                                <div>
+                                    <x-dynamic-component
+                                        :component="config('comments.editor')"
+                                        model="replyText"
+                                        :comment="$comment"
+                                        :placeholder="__('comments::comments.write_reply')"
+                                        autofocus
+                                    />
+                                    @error('replyText')
+                                        <p class="comments-error">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                    <x-comments::button submit>
+                                        {{ __('comments::comments.create_reply') }}
+                                    </x-comments::button>
+                                    <x-comments::button link @click="isExpanded = false">
+                                        {{ __('comments::comments.cancel') }}
+                                    </x-comments::button>
+                                </div>
+                            </template>
+                        </div>
+                    </form>
+                </div>
+            @endauth
+        </div>
+    @endif
 </div>
