@@ -11,10 +11,10 @@
 >
      <button class="comments-dropdown-trigger" type="button" @click="dropdownOpen = !dropdownOpen">
           <span x-show="!dropdownOpen">
-               <x-comments::icon.menu />
+               <x-comments::icons.menu />
           </span>
           <span x-show="dropdownOpen">
-               <x-comments::icon.close />
+               <x-comments::icons.close />
           </span>
     </button>
     <div x-show="dropdownOpen" class="comments-dropdown-items">

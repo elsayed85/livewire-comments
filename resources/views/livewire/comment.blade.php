@@ -92,7 +92,7 @@
                     >
                         @can('react', $comment)
                             <button class="comments-reaction-picker-trigger" type="button" @click="open = !open">
-                                <x-comments::icon.smile />
+                                <x-comments::icons.smile />
                             </button>
                             <x-comments::modal x-show="open" compact left>
                                 <div class="comments-reaction-picker-reactions">
