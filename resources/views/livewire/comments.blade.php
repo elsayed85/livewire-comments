@@ -21,10 +21,11 @@
         <div class="comments-form">
             <x-comments::avatar />
             <form class="comments-form-inner" wire:submit.prevent="comment">
-                @include('comments::livewire.partials.editor', [
-                    'property' => 'text',
-                    'placeholder' => __('comments::comments.write_comment'),
-                ])
+                <x-dynamic-component
+                    :component="config('comments.editor')"
+                    model="text"
+                    :placeholder="__('comments::comments.write_comment')"
+                />
                 @error('text')
                     <p class="comments-error">
                         {{ $message }}

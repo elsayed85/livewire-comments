@@ -42,7 +42,7 @@
                                 {{ __('comments::comments.delete') }}
                             </x-comments::dropdown.item>
                         @endcan
-                        @include('comments::livewire.partials.extraCommentHeaderMenuItems')
+                        @include('comments::extraCommentHeaderMenuItems')
                     </x-comments::dropdown>
                     <x-comments::modal
                         x-show="confirmDelete"
@@ -59,7 +59,12 @@
             @if($isEditing)
                 <div class="comments-form">
                     <form class="comments-form-inner" wire:submit.prevent="edit">
-                        @include('comments::livewire.partials.editor', ['property' => 'editText'])
+                        <x-dynamic-component
+                            :component="config('comments.editor')"
+                            model="editText"
+                            :comment="$comment"
+                            autofocus
+                        />
                         @error('editText')
                             <p class="comments-error">
                                 {{ $message }}
@@ -148,10 +153,13 @@
                             >
                             <template x-if="isExpanded">
                                 <div>
-                                    @include('comments::livewire.partials.editor', [
-                                        'property' => 'replyText',
-                                        'placeholder' => __('comments::comments.write_reply'),
-                                    ])
+                                    <x-dynamic-component
+                                        :component="config('comments.editor')"
+                                        model="replyText"
+                                        :comment="$comment"
+                                        :placeholder="__('comments::comments.write_reply')"
+                                        autofocus
+                                    />
                                     @error('replyText')
                                         <p class="comments-error">
                                             {{ $message }}
