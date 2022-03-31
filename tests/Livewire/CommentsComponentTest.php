@@ -5,10 +5,12 @@ use Spatie\Comments\Models\Comment;
 use Spatie\LivewireComments\Livewire\CommentsComponent;
 use Spatie\LivewireComments\Tests\Support\Models\Post;
 
-it('can mount the render the comments component for a model without comments', function () {
-    $post = Post::factory()->create();
+beforeEach(function() {
+   $this->post = Post::factory()->create();
+});
 
-    Livewire::test(CommentsComponent::class, ['model' => $post])->assertSuccessful();
+it('can mount the render the comments component for a model without comments', function () {
+    Livewire::test(CommentsComponent::class, ['model' => $this->post])->assertSuccessful();
 });
 
 it('can mount the render the comments component for a model with comments', function () {
@@ -20,12 +22,24 @@ it('can mount the render the comments component for a model with comments', func
 it('can create a new comment', function () {
     login();
 
-    $post = Post::factory()->create();
-
-    Livewire::test(CommentsComponent::class, ['model' => $post])
+    Livewire::test(CommentsComponent::class, ['model' => $this->post])
         ->assertSuccessful()
         ->set('text', 'my new comment')
         ->call('comment');
 
-    expect($post->comments->first()->original_text)->toBe('my new comment');
+    expect($this->post->comments->first()->original_text)->toBe('my new comment');
+});
+
+it('will not render avatars when the option is disabled', function() {
+    login();
+
+    Livewire::test(CommentsComponent::class, ['model' => $this->post])
+        ->assertSuccessful()
+        ->assertSee('avatar');
+
+    config()->set('comments.ui.show_avatars', false);
+
+    Livewire::test(CommentsComponent::class, ['model' => $this->post])
+        ->assertSuccessful()
+        ->assertDontSee('avatar');
 });

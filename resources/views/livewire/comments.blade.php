@@ -11,7 +11,7 @@
     </header>
     @if($comments->count())
         @foreach($comments as $comment)
-            <livewire:comments-comment :key="$comment->id" :comment="$comment" />
+            <livewire:comments-comment :key="$comment->id" :comment="$comment"/>
         @endforeach
         {{ $comments->links() }}
     @else
@@ -19,7 +19,9 @@
     @endif
     @can('createComment', $model)
         <div class="comments-form">
-            <x-comments::avatar />
+            @if(config('comments.ui.show_avatars', true))
+                <x-comments::avatar/>
+            @endif
             <form class="comments-form-inner" wire:submit.prevent="comment">
                 <x-dynamic-component
                     :component="config('comments.editor')"
@@ -27,9 +29,9 @@
                     :placeholder="__('comments::comments.write_comment')"
                 />
                 @error('text')
-                    <p class="comments-error">
-                        {{ $message }}
-                    </p>
+                <p class="comments-error">
+                    {{ $message }}
+                </p>
                 @enderror
                 <x-comments::button submit>
                     {{ __('comments::comments.create_comment') }}

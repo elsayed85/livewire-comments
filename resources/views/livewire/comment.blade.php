@@ -4,7 +4,11 @@
     x-data="{ confirmDelete: false }"
 >
     <div class="comments-comment">
-        <x-comments::avatar :comment="$comment" />
+
+        @if(config('comments.ui.show_avatars', true))
+            <x-comments::avatar :comment="$comment" />
+        @endif
+
         <div class="comments-comment-inner">
             <div class="comments-comment-header">
                 @if($url = $comment->commentatorProperties()->url)
@@ -135,7 +139,9 @@
             @endforeach
             @auth
                 <div class="comments-form">
-                    <x-comments::avatar :comment="$comment" />
+                    @if(config('comments.ui.show_avatars', true))
+                        <x-comments::avatar :comment="$comment" />
+                    @endif
                     <form class="comments-form-inner" wire:submit.prevent="reply">
                         <div
                             x-data="{ isExpanded: false }"
