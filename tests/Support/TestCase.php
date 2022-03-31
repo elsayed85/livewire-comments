@@ -36,6 +36,8 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
+        config()->set('app.key', 'base64:LjpSHzPr1BBeuRWrlUcN2n2OWZ36o8+VpTLZdHcdG7Q=');
+
         config()->set('database.default', 'testing');
 
         $migration = include __DIR__.'/../../database/migrations/create_comments_tables.php.stub';

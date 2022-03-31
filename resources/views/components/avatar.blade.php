@@ -8,6 +8,7 @@
 @endphp
 
 <img
+    class="comments-avatar"
     src="{{ isset($comment) ? $comment->commentatorProperties()->avatar : $defaultAvatar }}"
     alt="avatar"
 >

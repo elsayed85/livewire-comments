@@ -31,6 +31,11 @@ class CommentComponent extends Component
         $this->editText = $this->comment->original_text;
     }
 
+    public function stopEditing()
+    {
+        $this->isEditing = false;
+    }
+
     public function edit()
     {
         $this->authorize('update', $this->comment);
