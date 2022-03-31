@@ -5,8 +5,8 @@ use Spatie\Comments\Models\Comment;
 use Spatie\LivewireComments\Livewire\CommentsComponent;
 use Spatie\LivewireComments\Tests\Support\Models\Post;
 
-beforeEach(function() {
-   $this->post = Post::factory()->create();
+beforeEach(function () {
+    $this->post = Post::factory()->create();
 });
 
 it('can mount the render the comments component for a model without comments', function () {
@@ -30,7 +30,7 @@ it('can create a new comment', function () {
     expect($this->post->comments->first()->original_text)->toBe('my new comment');
 });
 
-it('will not render avatars when the option is disabled', function() {
+it('will not render avatars when the option is disabled', function () {
     login();
 
     Livewire::test(CommentsComponent::class, ['model' => $this->post])
