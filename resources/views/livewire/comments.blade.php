@@ -1,6 +1,6 @@
 <section class="comments">
     <header class="comments-header">
-        <p><strong>Comments</strong></p>
+        <p><strong></strong></p>
         @if(config('comments.notifications.enabled'))
             @auth
                 <x-comments::toggle wire:model="sendNotifications">
@@ -15,7 +15,7 @@
         @endforeach
         {{ $comments->links() }}
     @else
-        <p>{{ __('comments::comments.no_comments_yet') }}</p>
+        <p class="comment-no-comment-yet">{{ __('comments::comments.no_comments_yet') }}</p>
     @endif
     @can('createComment', $model)
         <div class="comments-form">

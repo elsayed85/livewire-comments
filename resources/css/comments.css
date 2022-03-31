@@ -50,11 +50,19 @@
 
 .comments-comment {
     display: flex;
+    background-color: #fbfbfb;
+    padding: 1rem;;
+    border-radius: 0.2rem;
+}
+.comments-nested .comments-comment{
+    background-color: #FFF;
+    padding: 0;
 }
 
 .comments-comment-inner {
     flex-grow: 1;
 }
+
 
 .comments-comment-header {
     position: relative;
@@ -79,6 +87,7 @@
 
 .comments-date {
     color: rgb(156 163 175);
+    font-size: 0.8rem;
 }
 
 .comments-date:hover {
@@ -265,8 +274,8 @@
     cursor: pointer;
     background-color: rgb(229 231 235);
     padding: 0 0.5rem;
-    height: 1.75rem;
-    font-size: 0.75rem;
+    height: 1.5rem;
+    font-size: 0.65rem;
 }
 
 .comments-reaction:hover {
@@ -369,3 +378,114 @@
 .comments-toggle input:checked + span:after {
     left: calc(100% - 1.25rem);
 }
+
+.comment-no-comment-yet{ 
+    text-align: center;
+    margin: 2rem 0 4rem 0;
+    color: gray;
+    font-style: italic;
+}
+
+.CodeMirror-scroll, .CodeMirror{
+    min-height: 10rem !important;
+}
+
+.comments-comment-inner code {
+    padding: 0.2rem 0.5rem;
+    background-color: #f2f2f2;
+    border-radius: 0.3rem;
+
+}
+
+.comments-comment-inner .shiki code{
+    padding: 0;
+    background-color: transparent;
+}
+
+.comments-comment-inner .shiki  {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-radius: 0.2rem;
+    background-color: #f2f2f2 !important;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+
+
+.comments-comment-inner a{
+    color: #4338ca;
+    text-decoration: underline;
+}
+
+.comments-comment-inner .comments-comment-header a{
+    text-decoration: none;
+}
+
+.comments-comment-inner > div:nth-child(2) > *:not(:first-child), 
+.comments-comment-inner > div:nth-child(2)  blockquote > *:not(:first-child),
+.comments-comment-inner > div:nth-child(2)  ul > *:not(:first-child):not(li),
+.comments-comment-inner > div:nth-child(2)  ol > *:not(:first-child):not(li)
+{
+    margin-top: 1rem;
+}
+
+.comments-comment-inner > div:nth-child(2)  h1{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.comments-comment-inner > div:nth-child(2)  h2{
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.comments-comment-inner > div:nth-child(2)  h3{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.comments-comment-inner > div:nth-child(2)  h4{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.comments-comment-inner > div:nth-child(2)  h5{
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.comments-comment-inner > div:nth-child(2)  h6{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.comments-comment-inner > div:nth-child(2)  blockquote{
+    background-color: #fbfbfb;
+    padding: 1rem;
+    border-left: solid 3px #ddd;
+}
+
+.comments-comment-inner > div:nth-child(2)  ul, .comments-comment-inner > div:nth-child(2)  ol{
+    padding-left: 1rem;
+
+}
+
+.comments-comment-inner > div:nth-child(2) ul li{
+    list-style: circle;
+}
+
+.comments-comment-inner > div:nth-child(2) ol li{
+    list-style:decimal;
+}
+
+.comments-comment-inner > div:nth-child(2) > *,
+.comments-comment-inner 
+{
+    max-width: 100%;
+}
+
+.comments-comment-inner > div:nth-child(2) {
+    max-width: calc(100% - var(--comments-avatar-size));
+}
+
