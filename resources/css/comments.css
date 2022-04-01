@@ -493,3 +493,10 @@
     max-width: calc(100% - var(--comments-avatar-size));
 }
 
+.comments-info-message {
+    background-color: #dae9fa;
+    border-radius: var(--comments-border-radius);
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+}

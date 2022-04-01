@@ -60,6 +60,11 @@
                     @endif
                 @endunless
             </div>
+
+            @if(true || $comment->isPending())
+                <div class="comments-info-message">This is a pending comment that is awaiting approval</div>
+            @endif
+
             @if($isEditing)
                 <div class="comments-form">
                     <form class="comments-form-inner" wire:submit.prevent="edit">
