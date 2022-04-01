@@ -61,7 +61,7 @@
                 @endunless
             </div>
 
-            @if(true || $comment->isPending())
+            @if($comment->isPending())
                 <div class="comments-info-message">This is a pending comment that is awaiting approval</div>
             @endif
 
@@ -151,7 +151,7 @@
                 />
             @endforeach
             @auth
-                @if($writable)
+                @if($writable && $nestedComment->isApproved())
                     <div class="comments-form">
                         @if($showAvatar)
                             <x-comments::avatar :comment="$comment"/>
