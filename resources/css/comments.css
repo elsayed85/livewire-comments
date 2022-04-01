@@ -51,7 +51,7 @@
 .comments-comment {
     display: flex;
     background-color: #fbfbfb;
-    padding: 1rem;;
+    padding: 1rem;
     border-radius: 0.2rem;
 }
 .comments-nested .comments-comment{
@@ -131,7 +131,11 @@
     cursor: pointer;
     font-size: 0.875rem;
     font-weight: 500;
-    line-height: 1.25rem;
+    line-height: 0.2rem;
+}
+
+.comments-dropdown-item.danger:hover {
+    color: rgb(239 68 68);
 }
 
 .comments-dropdown-item:first-child {
@@ -379,7 +383,7 @@
     left: calc(100% - 1.25rem);
 }
 
-.comment-no-comment-yet{ 
+.comment-no-comment-yet{
     text-align: center;
     margin: 2rem 0 4rem 0;
     color: gray;
@@ -422,7 +426,7 @@
     text-decoration: none;
 }
 
-.comments-comment-inner > div:nth-child(2) > *:not(:first-child), 
+.comments-comment-inner > div:nth-child(2) > *:not(:first-child),
 .comments-comment-inner > div:nth-child(2)  blockquote > *:not(:first-child),
 .comments-comment-inner > div:nth-child(2)  ul > *:not(:first-child):not(li),
 .comments-comment-inner > div:nth-child(2)  ol > *:not(:first-child):not(li)
@@ -480,7 +484,7 @@
 }
 
 .comments-comment-inner > div:nth-child(2) > *,
-.comments-comment-inner 
+.comments-comment-inner
 {
     max-width: 100%;
 }

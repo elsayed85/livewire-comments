@@ -24,7 +24,7 @@
             @endif
             <form class="comments-form-inner" wire:submit.prevent="comment">
                 <x-dynamic-component
-                    :component="config('comments.editor')"
+                    :component="\Spatie\LivewireComments\Support\Config::editor()"
                     model="text"
                     :placeholder="__('comments::comments.write_comment')"
                 />

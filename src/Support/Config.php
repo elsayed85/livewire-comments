@@ -20,4 +20,9 @@ class Config extends BaseConfig
     {
         return config('comments.policies.reaction', ReactionPolicy::class);
     }
+
+    public static function editor(): string
+    {
+        return config()->get('comments.ui',  'comments::editors.simplemde');
+    }
 }

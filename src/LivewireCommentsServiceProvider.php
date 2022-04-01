@@ -23,8 +23,6 @@ class LivewireCommentsServiceProvider extends PackageServiceProvider
 
     public function packageBooted()
     {
-        config()->set('comments.editor', 'comments::editors.simplemde');
-
         $this
             ->registerComponents()
             ->registerPolicies();

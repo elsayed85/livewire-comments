@@ -26,21 +26,18 @@
                     <x-comments::dropdown>
                         @can('update', $comment)
                             <x-comments::dropdown.item
-                                icon="edit"
                                 wire:click="startEditing"
                             >
                                 {{  __('comments::comments.edit') }}
                             </x-comments::dropdown.item>
                         @endcan
                         <x-comments::dropdown.item
-                            icon="copy"
                             @click="closeDropdown(); navigator.clipboard.writeText(window.location.href.split('#')[0] + '#comment-{{ $comment->id }}')"
                         >
                             {{  __('comments::comments.copy_link') }}
                         </x-comments::dropdown.item>
                         @can('delete', $comment)
-                            <x-comments::dropdown.item
-                                icon="delete"
+                            <x-comments::dropdown.item class="danger"
                                 @click="confirmDelete = true; dropdownOpen = false"
                             >
                                 {{ __('comments::comments.delete') }}
@@ -64,7 +61,7 @@
                 <div class="comments-form">
                     <form class="comments-form-inner" wire:submit.prevent="edit">
                         <x-dynamic-component
-                            :component="config('comments.editor')"
+                            :component="\Spatie\LivewireComments\Support\Config::editor()"
                             model="editText"
                             :comment="$comment"
                             autofocus
@@ -160,7 +157,7 @@
                             <template x-if="isExpanded">
                                 <div>
                                     <x-dynamic-component
-                                        :component="config('comments.editor')"
+                                        :component="\Spatie\LivewireComments\Support\Config::editor()"
                                         model="replyText"
                                         :comment="$comment"
                                         :placeholder="__('comments::comments.write_reply')"
