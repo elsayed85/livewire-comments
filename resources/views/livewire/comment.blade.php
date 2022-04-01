@@ -5,7 +5,7 @@
 >
     <div class="comments-comment">
 
-        @if(config('comments.ui.show_avatars', true))
+        @if($showAvatar)
             <x-comments::avatar :comment="$comment" />
         @endif
 
@@ -132,11 +132,15 @@
     @if($comment->isTopLevel())
         <div class="comments-nested">
             @foreach ($comment->nestedComments as $nestedComment)
-                <livewire:comments-comment :comment="$nestedComment" :key="$nestedComment->id" />
+                <livewire:comments-comment
+                    :key="$nestedComment->id"
+                    :comment="$nestedComment"
+                    :show-avatar="$showAvatar"
+                />
             @endforeach
             @auth
                 <div class="comments-form">
-                    @if(config('comments.ui.show_avatars', true))
+                    @if($showAvatar)
                         <x-comments::avatar :comment="$comment" />
                     @endif
                     <form class="comments-form-inner" wire:submit.prevent="reply">

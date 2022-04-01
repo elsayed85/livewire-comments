@@ -12,6 +12,8 @@ class CommentComponent extends Component
     /** @var \Spatie\Comments\Models\Comment */
     public $comment;
 
+    public bool $showAvatar;
+
     public $replyText = '';
 
     public $isEditing = false;

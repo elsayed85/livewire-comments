@@ -43,3 +43,11 @@ it('will not render avatars when the option is disabled', function () {
         ->assertSuccessful()
         ->assertDontSee('avatar');
 });
+
+it('will not render avatars when the config is enable but turned off on the component', function () {
+    login();
+
+    Livewire::test(CommentsComponent::class, ['model' => $this->post, 'showAvatars' => false])
+        ->assertSuccessful()
+        ->assertDontSee('avatar');
+});

@@ -25,4 +25,9 @@ class Config extends BaseConfig
     {
         return config()->get('comments.ui',  'comments::editors.simplemde');
     }
+
+    public static function showAvatars(): bool
+    {
+        return config('comments.ui.show_avatars', true);
+    }
 }

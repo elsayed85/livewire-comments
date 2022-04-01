@@ -4,6 +4,7 @@ namespace Spatie\LivewireComments\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Spatie\LivewireComments\Support\Config;
 
 class CommentsComponent extends Component
 {
@@ -15,6 +16,13 @@ class CommentsComponent extends Component
     public string $text = '';
 
     public bool $sendNotifications = true;
+
+    public bool $showAvatars;
+
+    public function mount(?bool $showAvatars = null)
+    {
+        $this->showAvatars = $showAvatars ?? Config::showAvatars();
+    }
 
     public function getListeners()
     {

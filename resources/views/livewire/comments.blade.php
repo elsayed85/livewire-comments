@@ -1,7 +1,7 @@
 <section class="comments">
     <header class="comments-header">
         <p><strong></strong></p>
-        @if(config('comments.notifications.enabled'))
+        @if($showAvatars)
             @auth
                 <x-comments::toggle wire:model="sendNotifications">
                     {{ __('comments::comments.send_notifications') }}
@@ -11,7 +11,11 @@
     </header>
     @if($comments->count())
         @foreach($comments as $comment)
-            <livewire:comments-comment :key="$comment->id" :comment="$comment"/>
+            <livewire:comments-comment
+                :key="$comment->id"
+                :comment="$comment"
+                :show-avatar="$showAvatars"
+            />
         @endforeach
         {{ $comments->links() }}
     @else
@@ -19,7 +23,7 @@
     @endif
     @can('createComment', $model)
         <div class="comments-form">
-            @if(config('comments.ui.show_avatars', true))
+            @if($showAvatars)
                 <x-comments::avatar/>
             @endif
             <form class="comments-form-inner" wire:submit.prevent="comment">
