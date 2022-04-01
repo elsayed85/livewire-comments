@@ -23,7 +23,7 @@ class Config extends BaseConfig
 
     public static function editor(): string
     {
-        return config()->get('comments.ui',  'comments::editors.simplemde');
+        return config('comments.ui.editor', 'comments::editors.simplemde');
     }
 
     public static function showAvatars(): bool

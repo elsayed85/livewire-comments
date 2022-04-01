@@ -16,12 +16,13 @@ class CommentsComponent extends Component
     public string $text = '';
 
     public bool $sendNotifications = true;
-
     public bool $showAvatars;
+    public bool $writable;
 
-    public function mount(?bool $showAvatars = null)
+    public function mount(bool $readOnly = false, ?bool $showAvatars = null)
     {
         $this->showAvatars = $showAvatars ?? Config::showAvatars();
+        $this->writable = ! $readOnly;
     }
 
     public function getListeners()

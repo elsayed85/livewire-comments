@@ -51,3 +51,22 @@ it('will not render avatars when the config is enable but turned off on the comp
         ->assertSuccessful()
         ->assertDontSee('avatar');
 });
+
+it('supports a read only mode', function () {
+    login();
+
+    $comment = $this->post->comment('my comment');
+    $comment->comment('another comment');
+
+    Livewire::test(CommentsComponent::class, ['model' => $this->post])
+        ->assertSuccessful()
+        ->assertSee('Edit')
+        ->assertSee('Leave a comment')
+        ->assertSee('Leave a reply');
+
+    Livewire::test(CommentsComponent::class, ['model' => $this->post, 'readOnly' => true])
+        ->assertSuccessful()
+        ->assertDontSee('Edit')
+        ->assertDontSee('Leave a comment')
+        ->assertDontSee('Leave a reply');
+});

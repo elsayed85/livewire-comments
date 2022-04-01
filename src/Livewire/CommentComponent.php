@@ -14,6 +14,8 @@ class CommentComponent extends Component
 
     public bool $showAvatar;
 
+    public bool $writable;
+
     public $replyText = '';
 
     public $isEditing = false;
