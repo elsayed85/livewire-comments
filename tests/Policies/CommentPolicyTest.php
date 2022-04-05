@@ -47,7 +47,7 @@ it('will allow to delete comments that the user created', function () {
     expect($this->currentUser->can('delete', $commentByAnotherUser))->toBeFalse();
 });
 
-it('will allow an approved comment to be seen by anyone', function() {
+it('will allow an approved comment to be seen by anyone', function () {
     $comment = $this->post->comment('comment');
 
     expect($comment->isApproved())->toBeTrue();
@@ -58,7 +58,7 @@ it('will allow an approved comment to be seen by anyone', function() {
     expect($anotherUser->can('see', $comment))->toBeTrue();
 });
 
-it('will allow pending comments to be seen by the user that made the comment', function() {
+it('will allow pending comments to be seen by the user that made the comment', function () {
     config()->set('comments.automatically_approve_all_comments', false);
     $comment = $this->post->comment('comment');
     expect($comment->isApproved())->toBeFalse();
@@ -69,16 +69,14 @@ it('will allow pending comments to be seen by the user that made the comment', f
     expect($anotherUser->can('see', $comment))->toBeFalse();
 });
 
-it('will allow pending comments to be seen by the users that can approve comments', function() {
+it('will allow pending comments to be seen by the users that can approve comments', function () {
     config()->set('comments.automatically_approve_all_comments', false);
     $comment = $this->post->comment('comment');
     expect($comment->isApproved())->toBeFalse();
 
     $anotherUser = User::factory()->create();
 
-    PendingCommentNotification::sendTo(fn() => $anotherUser);
+    PendingCommentNotification::sendTo(fn () => $anotherUser);
 
     expect($anotherUser->can('see', $comment))->toBeTrue();
 });
-
-
