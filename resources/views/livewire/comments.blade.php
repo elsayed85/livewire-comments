@@ -11,12 +11,14 @@
     </header>
     @if($comments->count())
         @foreach($comments as $comment)
+            @can('see', $comment)
             <livewire:comments-comment
                 :key="$comment->id"
                 :comment="$comment"
                 :show-avatar="$showAvatars"
                 :writable="$writable"
             />
+            @endcan
         @endforeach
         {{ $comments->links() }}
     @else

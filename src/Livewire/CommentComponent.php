@@ -87,6 +87,20 @@ class CommentComponent extends Component
         $this->comment->load('reactions');
     }
 
+    public function approve()
+    {
+        $this->authorize('approve', $this->comment);
+
+        $this->comment->approve();
+    }
+
+    public function reject()
+    {
+        $this->authorize('reject', $this->comment);
+
+        $this->comment->reject();
+    }
+
     public function deleteReaction(string $reaction)
     {
         if ($reactionModel = $this->comment->findReaction($reaction)) {

@@ -63,6 +63,20 @@
 
             @if($comment->isPending())
                 <div class="comments-info-message">This is a pending comment that is awaiting approval</div>
+
+                @can('reject', $comment)
+                    <button class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded bg-red-200" wire:click="reject">
+                        Reject
+                    </button>
+                @endcan
+
+                @can('approve', $comment)
+                    <button class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded bg-green-200" wire:click="approve">
+                        Approve
+                    </button>
+                @endcan
+
+
             @endif
 
             @if($isEditing)
@@ -143,18 +157,20 @@
     @if($comment->isTopLevel())
         <div class="comments-nested">
             @foreach ($comment->nestedComments as $nestedComment)
+                @can('see', $nestedComment)
                 <livewire:comments-comment
                     :key="$nestedComment->id"
                     :comment="$nestedComment"
                     :show-avatar="$showAvatar"
                     :writable="$writable"
                 />
+                @endcan
             @endforeach
             @auth
-                @if($writable && $nestedComment->isApproved())
+                @if($writable)
                     <div class="comments-form">
                         @if($showAvatar)
-                            <x-comments::avatar :comment="$comment"/>
+                            <x-comments::avatar/>
                         @endif
 
 
@@ -173,6 +189,7 @@
                                     class="comments-placeholder"
                                     placeholder="{{ __('comments::comments.write_reply') }}"
                                 >
+
                                 <template x-if="isExpanded">
                                     <div>
                                         <x-dynamic-component
