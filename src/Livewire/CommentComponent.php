@@ -78,15 +78,6 @@ class CommentComponent extends Component
         $this->emitUp('delete');
     }
 
-    public function react(string $reaction)
-    {
-        $this->authorize('react', $this->comment);
-
-        $this->comment->react($reaction);
-
-        $this->comment->load('reactions');
-    }
-
     public function approve()
     {
         $this->authorize('approve', $this->comment);
@@ -101,13 +92,13 @@ class CommentComponent extends Component
         $this->comment->reject();
     }
 
-    public function deleteReaction(string $reaction)
+    public function toggleReaction(string $reaction)
     {
-        if ($reactionModel = $this->comment->findReaction($reaction)) {
-            $this->authorize('delete', $reactionModel);
-        }
+        $reactionModel = $this->comment->findReaction($reaction);
 
-        $this->comment->deleteReaction($reaction);
+        $reactionModel
+            ? $reactionModel->delete()
+            : $this->comment->react($reaction);
 
         $this->comment->load('reactions');
     }

@@ -106,7 +106,8 @@
                 <div class="comments-reactions">
                     @foreach($comment->reactions->summary() as $summary)
                         <div
-                            wire:click="deleteReaction('{{ $summary['reaction'] }}')"
+                            wire:key="{{ $comment->id }}{{$summary['reaction']}}"
+                            wire:click="toggleReaction('{{ $summary['reaction'] }}')"
                             @class(['comments-reaction', 'is-reacted' => $summary['commentator_reacted']])
                         >
                             {{ $summary['reaction'] }} {{ $summary['count'] }}
@@ -136,11 +137,7 @@
                                             <button
                                                 type="button"
                                                 @class(['comments-reaction-picker-reaction', 'is-reacted' => $commentatorReacted])
-                                                @if($commentatorReacted)
-                                                wire:click="deleteReaction('{{ $reaction }}')"
-                                                @else
-                                                wire:click="react('{{ $reaction }}')"
-                                                @endif
+                                                wire:click="toggleReaction('{{ $reaction }}')"
                                             >
                                                 {{ $reaction }}
                                             </button>
