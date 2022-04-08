@@ -25,13 +25,14 @@ class CommentsComponent extends Component
     {
         $this->showAvatars = $showAvatars ?? Config::showAvatars();
         $this->writable = ! $readOnly;
-        $this->selectedNotificationSubscriptionType = NotificationSubscriptionType::Participating->value;
+        $this->selectedNotificationSubscriptionType = auth()->user()?->notificationSubscriptionType($this->model)?->value ?? NotificationSubscriptionType::Participating->value;
     }
 
     public function getListeners()
     {
         return [
             'delete' => '$refresh',
+            'reply-created' => 'saveNotificationSubscription',
         ];
     }
 
@@ -52,6 +53,9 @@ class CommentsComponent extends Component
         // @todo This is weird behaviour when your comment appears on a later page.
         // To revisit when we decide how to handle comment sorting.
         $this->goToPage(1);
+
+        $this->saveNotificationSubscription();
+
         $this->emit('comment');
     }
 
@@ -62,6 +66,7 @@ class CommentsComponent extends Component
 
     public function saveNotificationSubscription()
     {
+        ray('saveNotificationSubscription')->green();
         /** @var \Spatie\Comments\Models\Concerns\Interfaces\CanComment $currentUser */
         $currentUser = auth()->user();
 

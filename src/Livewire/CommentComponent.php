@@ -67,6 +67,8 @@ class CommentComponent extends Component
 
         $this->replyText = '';
         $this->emit('reply-' . $this->comment->id);
+        $this->emitUp('reply-created');
+
     }
 
     public function deleteComment()
