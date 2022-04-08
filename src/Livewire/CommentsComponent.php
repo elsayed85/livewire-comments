@@ -25,17 +25,16 @@ class CommentsComponent extends Component
         bool  $readOnly = false,
         ?bool $hideAvatars = null,
         bool  $hideNotificationOptions = false,
-    )
-    {
-        $this->writable = !$readOnly;
+    ) {
+        $this->writable = ! $readOnly;
 
         $showAvatars = is_null($hideAvatars)
             ? null
-            : !$hideAvatars;
+            : ! $hideAvatars;
 
         $this->showAvatars = $showAvatars ?? Config::showAvatars();
 
-        $this->showNotificationOptions = !$hideNotificationOptions;
+        $this->showNotificationOptions = ! $hideNotificationOptions;
 
         $this->selectedNotificationSubscriptionType = auth()->user()
                 ?->notificationSubscriptionType($this->model)?->value ?? NotificationSubscriptionType::Participating->value;
@@ -79,7 +78,7 @@ class CommentsComponent extends Component
 
     public function saveNotificationSubscription()
     {
-        if (!$this->showNotificationOptions) {
+        if (! $this->showNotificationOptions) {
             return;
         }
 
