@@ -28,7 +28,7 @@ class CommentsComponent extends Component
     ) {
         $this->writable = ! $readOnly;
 
-        $showAvatars  = is_null($hideAvatars)
+        $showAvatars = is_null($hideAvatars)
             ? null
             : ! $hideAvatars;
 
@@ -38,7 +38,6 @@ class CommentsComponent extends Component
 
         $this->selectedNotificationSubscriptionType = auth()->user()
                 ?->notificationSubscriptionType($this->model)?->value ?? NotificationSubscriptionType::Participating->value;
-
     }
 
     public function getListeners()
