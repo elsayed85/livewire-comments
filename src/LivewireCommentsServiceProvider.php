@@ -17,7 +17,6 @@ class LivewireCommentsServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-comments')
-            ->hasTranslations()
             ->hasViews('comments');
     }
 
