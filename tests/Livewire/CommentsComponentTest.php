@@ -97,5 +97,3 @@ it('will subscribe to participating strategy when making the first comment', fun
 
     expect($type)->toBe(NotificationSubscriptionType::Participating);
 });
-
-
