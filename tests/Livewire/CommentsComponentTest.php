@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Livewire;
+use Spatie\Comments\Enums\NotificationSubscriptionType;
 use Spatie\Comments\Models\Comment;
 use Spatie\LivewireComments\Livewire\CommentsComponent;
 use Spatie\LivewireComments\Tests\Support\Models\Post;
@@ -70,3 +71,17 @@ it('supports a read only mode', function () {
         ->assertDontSee('Leave a comment')
         ->assertDontSee('Leave a reply');
 });
+
+it('can subscribe to notifications explicitly', function () {
+    $currentUser = login();
+
+    Livewire::test(CommentsComponent::class, ['model' => $this->post])
+        ->assertSuccessful()
+        ->updateProperty('selectedNotificationSubscriptionType', NotificationSubscriptionType::All->value);
+
+    $type = $currentUser->notificationSubscriptionType($this->post);
+
+    expect($type)->toBe(NotificationSubscriptionType::All);
+});
+
+
