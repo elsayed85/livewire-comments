@@ -71,6 +71,7 @@ it('will allow pending comments to be seen by the user that made the comment', f
 
 it('will allow pending comments to be seen by the users that can approve comments', function () {
     config()->set('comments.automatically_approve_all_comments', false);
+
     $comment = $this->post->comment('comment');
     expect($comment->isApproved())->toBeFalse();
 

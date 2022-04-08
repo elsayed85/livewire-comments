@@ -85,3 +85,17 @@ it('can subscribe to notifications explicitly', function () {
 });
 
 
+it('will subscribe to participating strategy when making the first comment', function () {
+    $currentUser = login();
+
+    Livewire::test(CommentsComponent::class, ['model' => $this->post])
+        ->assertSuccessful()
+        ->updateProperty('text', 'Here are my thought on using final')
+        ->call('comment');
+
+    $type = $currentUser->notificationSubscriptionType($this->post);
+
+    expect($type)->toBe(NotificationSubscriptionType::Participating);
+});
+
+
