@@ -16,16 +16,27 @@ class CommentsComponent extends Component
 
     public string $text = '';
 
-    public bool $sendNotifications = true;
-    public bool $showAvatars;
     public bool $writable;
+    public bool $showAvatars;
+    public bool $showNotificationOptions;
     public string $selectedNotificationSubscriptionType = '';
 
-    public function mount(bool $readOnly = false, ?bool $showAvatars = null)
+    public function mount(
+        bool $readOnly = false,
+        ?bool $hideAvatars = false,
+        bool $hideNotificationOptions = false,
+    )
     {
-        $this->showAvatars = $showAvatars ?? Config::showAvatars();
+        ray($readOnly);
         $this->writable = ! $readOnly;
-        $this->selectedNotificationSubscriptionType = auth()->user()?->notificationSubscriptionType($this->model)?->value ?? NotificationSubscriptionType::Participating->value;
+
+        $this->showAvatars = (!$hideAvatars) ?? Config::showAvatars();
+
+        $this->showNotificationOptions = ! $hideNotificationOptions;
+
+        $this->selectedNotificationSubscriptionType = auth()->user()
+                ?->notificationSubscriptionType($this->model)?->value ?? NotificationSubscriptionType::Participating->value;
+
     }
 
     public function getListeners()
@@ -66,7 +77,10 @@ class CommentsComponent extends Component
 
     public function saveNotificationSubscription()
     {
-        ray('saveNotificationSubscription')->green();
+        if (! $this->showNotificationOptions) {
+            return;
+        }
+
         /** @var \Spatie\Comments\Models\Concerns\Interfaces\CanComment $currentUser */
         $currentUser = auth()->user();
 

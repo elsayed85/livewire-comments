@@ -3,19 +3,20 @@
         @if($writable)
             <p><strong></strong></p>
             @auth
-
-                <select wire:model="selectedNotificationSubscriptionType">
-                    <option value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::Participating->value  }}">
-                        {{ \Spatie\Comments\Enums\NotificationSubscriptionType::Participating->value  }}
-                    </option>
-                    <option value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::All->value  }}">
-                        {{ \Spatie\Comments\Enums\NotificationSubscriptionType::All->value  }}
-                    </option>
-                    <option value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::None->value  }}">
-                        {{ \Spatie\Comments\Enums\NotificationSubscriptionType::None->value  }}
-                    </option>
-                </select>
-
+                @if($showNotificationOptions)
+                    <select wire:model="selectedNotificationSubscriptionType">
+                        <option
+                            value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::Participating->value  }}">
+                            {{ \Spatie\Comments\Enums\NotificationSubscriptionType::Participating->value  }}
+                        </option>
+                        <option value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::All->value  }}">
+                            {{ \Spatie\Comments\Enums\NotificationSubscriptionType::All->value  }}
+                        </option>
+                        <option value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::None->value  }}">
+                            {{ \Spatie\Comments\Enums\NotificationSubscriptionType::None->value  }}
+                        </option>
+                    </select>
+                @endif
             @endif
         @endauth
     </header>
