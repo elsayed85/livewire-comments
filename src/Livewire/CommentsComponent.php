@@ -23,14 +23,16 @@ class CommentsComponent extends Component
 
     public function mount(
         bool $readOnly = false,
-        ?bool $hideAvatars = false,
+        ?bool $hideAvatars = null,
         bool $hideNotificationOptions = false,
-    )
-    {
-        ray($readOnly);
+    ) {
         $this->writable = ! $readOnly;
 
-        $this->showAvatars = (!$hideAvatars) ?? Config::showAvatars();
+        $showAvatars  = is_null($hideAvatars)
+            ? null
+            : ! $hideAvatars;
+
+        $this->showAvatars = $showAvatars ?? Config::showAvatars();
 
         $this->showNotificationOptions = ! $hideNotificationOptions;
 
