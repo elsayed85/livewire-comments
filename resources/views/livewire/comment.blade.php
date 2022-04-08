@@ -107,7 +107,9 @@
                     @foreach($comment->reactions->summary() as $summary)
                         <div
                             wire:key="{{ $comment->id }}{{$summary['reaction']}}"
+                            @auth
                             wire:click="toggleReaction('{{ $summary['reaction'] }}')"
+                            @endauth
                             @class(['comments-reaction', 'is-reacted' => $summary['commentator_reacted']])
                         >
                             {{ $summary['reaction'] }} {{ $summary['count'] }}
