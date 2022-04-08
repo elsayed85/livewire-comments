@@ -2,6 +2,8 @@
 
 namespace Spatie\LivewireComments\Livewire;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Comments\Enums\NotificationSubscriptionType;
@@ -19,12 +21,14 @@ class CommentsComponent extends Component
     public bool $writable;
     public bool $showAvatars;
     public bool $showNotificationOptions;
+    public bool $newestFirst;
     public string $selectedNotificationSubscriptionType = '';
 
     public function mount(
         bool  $readOnly = false,
         ?bool $hideAvatars = null,
         bool  $hideNotificationOptions = false,
+        bool $newestFirst = false,
     ) {
         $this->writable = ! $readOnly;
 
@@ -36,6 +40,8 @@ class CommentsComponent extends Component
 
         $this->showNotificationOptions = ! $hideNotificationOptions;
 
+        $this->newestFirst = $newestFirst;
+
         $this->selectedNotificationSubscriptionType = auth()->user()
                 ?->notificationSubscriptionType($this->model)?->value ?? NotificationSubscriptionType::Participating->value;
     }
@@ -46,13 +52,6 @@ class CommentsComponent extends Component
             'delete' => '$refresh',
             'reply-created' => 'saveNotificationSubscription',
         ];
-    }
-
-    public function updatingSendNotifications(bool $value)
-    {
-        $value
-            ? $this->model->optInOnCommentNotifications(auth()->user())
-            : $this->model->optOutOfCommentNotifications(auth()->user());
     }
 
     public function comment()
@@ -102,12 +101,18 @@ class CommentsComponent extends Component
             ->comments()
             ->with([
                 'commentator',
+                'nestedComments' => function(HasMany $builder) {
+                    if ($this->newestFirst) {
+                        $builder->latest();
+                    }
+                },
                 'nestedComments.commentator',
                 'reactions',
                 'reactions.commentator',
                 'nestedComments.reactions',
                 'nestedComments.reactions.commentator',
             ])
+            ->when($this->newestFirst, fn(Builder $builder) => $builder->latest())
             ->paginate(10000);
 
         return view('comments::livewire.comments', [
