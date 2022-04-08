@@ -22,19 +22,20 @@ class CommentsComponent extends Component
     public string $selectedNotificationSubscriptionType = '';
 
     public function mount(
-        bool $readOnly = false,
+        bool  $readOnly = false,
         ?bool $hideAvatars = null,
-        bool $hideNotificationOptions = false,
-    ) {
-        $this->writable = ! $readOnly;
+        bool  $hideNotificationOptions = false,
+    )
+    {
+        $this->writable = !$readOnly;
 
-        $showAvatars  = is_null($hideAvatars)
+        $showAvatars = is_null($hideAvatars)
             ? null
-            : ! $hideAvatars;
+            : !$hideAvatars;
 
         $this->showAvatars = $showAvatars ?? Config::showAvatars();
 
-        $this->showNotificationOptions = ! $hideNotificationOptions;
+        $this->showNotificationOptions = !$hideNotificationOptions;
 
         $this->selectedNotificationSubscriptionType = auth()->user()
                 ?->notificationSubscriptionType($this->model)?->value ?? NotificationSubscriptionType::Participating->value;
@@ -79,7 +80,7 @@ class CommentsComponent extends Component
 
     public function saveNotificationSubscription()
     {
-        if (! $this->showNotificationOptions) {
+        if (!$this->showNotificationOptions) {
             return;
         }
 
@@ -109,7 +110,7 @@ class CommentsComponent extends Component
                 'nestedComments.reactions',
                 'nestedComments.reactions.commentator',
             ])
-            ->paginate(10);
+            ->paginate(10000);
 
         return view('comments::livewire.comments', [
             'comments' => $comments,
