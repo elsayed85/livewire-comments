@@ -3,21 +3,31 @@
         @if($writable)
             <p><strong></strong></p>
             @auth
-                <x-comments::toggle wire:model="sendNotifications">
-                    {{ __('comments::comments.send_notifications') }}
-                </x-comments::toggle>
+
+                <select wire:model="selectedNotificationSubscriptionType">
+                    <option value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::Participating->value  }}">
+                        {{ \Spatie\Comments\Enums\NotificationSubscriptionType::Participating->value  }}
+                    </option>
+                    <option value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::All->value  }}">
+                        {{ \Spatie\Comments\Enums\NotificationSubscriptionType::All->value  }}
+                    </option>
+                    <option value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::None->value  }}">
+                        {{ \Spatie\Comments\Enums\NotificationSubscriptionType::None->value  }}
+                    </option>
+                </select>
+
             @endif
         @endauth
     </header>
     @if($comments->count())
         @foreach($comments as $comment)
             @can('see', $comment)
-            <livewire:comments-comment
-                :key="$comment->id"
-                :comment="$comment"
-                :show-avatar="$showAvatars"
-                :writable="$writable"
-            />
+                <livewire:comments-comment
+                    :key="$comment->id"
+                    :comment="$comment"
+                    :show-avatar="$showAvatars"
+                    :writable="$writable"
+                />
             @endcan
         @endforeach
         {{ $comments->links() }}

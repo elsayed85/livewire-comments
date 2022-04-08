@@ -52,7 +52,7 @@ class CommentPolicy
         return true;
     }
 
-    public function see(CanComment $user, Comment $comment): bool
+    public function see(?CanComment $user, Comment $comment): bool
     {
         if ($comment->isApproved()) {
             return true;
