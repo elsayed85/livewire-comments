@@ -91,6 +91,8 @@ class CommentComponent extends Component
         $this->authorize('reject', $this->comment);
 
         $this->comment->reject();
+
+        $this->emitUp('delete');
     }
 
     public function toggleReaction(string $reaction)
