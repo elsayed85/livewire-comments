@@ -83,5 +83,3 @@ it('can subscribe to notifications explicitly', function () {
 
     expect($type)->toBe(NotificationSubscriptionType::All);
 });
-
-
