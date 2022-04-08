@@ -39,7 +39,6 @@ class CommentsComponent extends Component
 
         $this->selectedNotificationSubscriptionType = auth()->user()
                 ?->notificationSubscriptionType($this->model)?->value ?? NotificationSubscriptionType::Participating->value;
-
     }
 
     public function getListeners()
