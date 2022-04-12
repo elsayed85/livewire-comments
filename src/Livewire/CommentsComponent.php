@@ -23,16 +23,19 @@ class CommentsComponent extends Component
     public bool $showNotificationOptions;
     public bool $newestFirst;
     public string $selectedNotificationSubscriptionType = '';
-    public $noCommentsText = null;
-
+    public ?string $noCommentsText = null;
+    public bool $showReplies;
 
     public function mount(
         bool  $readOnly = false,
         ?bool $hideAvatars = null,
         bool  $hideNotificationOptions = false,
         bool $newestFirst = false,
+        bool $noReplies = false,
     ) {
         $this->writable = ! $readOnly;
+
+        $this->showReplies = ! $noReplies;
 
         $showAvatars = is_null($hideAvatars)
             ? null

@@ -24,6 +24,8 @@ class CommentComponent extends Component
 
     public $editText = '';
 
+    public bool $showReplies;
+
     public function getListeners()
     {
         return [

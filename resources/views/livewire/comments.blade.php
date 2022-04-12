@@ -34,6 +34,7 @@
                     :show-avatar="$showAvatars"
                     :newest-first="$newestFirst"
                     :writable="$writable"
+                    :show-replies="$showReplies"
                 />
             @endcan
         @endforeach

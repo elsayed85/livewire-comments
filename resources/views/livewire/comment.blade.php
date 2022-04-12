@@ -157,31 +157,33 @@
             @endif
         </div>
     </div>
-    @if($comment->isTopLevel())
-        <div class="comments-nested">
-            @if($this->newestFirst)
-                @auth
-                    @include('comments::components.forms.replyTo')
-                @endauth
-            @endif
+    @if($showReplies)
+        @if($comment->isTopLevel())
+            <div class="comments-nested">
+                @if($this->newestFirst)
+                    @auth
+                        @include('comments::components.forms.replyTo')
+                    @endauth
+                @endif
 
-            @foreach ($comment->nestedComments as $nestedComment)
-                @can('see', $nestedComment)
-                    <livewire:comments-comment
-                        :key="$nestedComment->id"
-                        :comment="$nestedComment"
-                        :show-avatar="$showAvatar"
-                        :newest-first="$newestFirst"
-                        :writable="$writable"
-                    />
-                @endcan
-            @endforeach
+                @foreach ($comment->nestedComments as $nestedComment)
+                    @can('see', $nestedComment)
+                        <livewire:comments-comment
+                            :key="$nestedComment->id"
+                            :comment="$nestedComment"
+                            :show-avatar="$showAvatar"
+                            :newest-first="$newestFirst"
+                            :writable="$writable"
+                        />
+                    @endcan
+                @endforeach
 
-            @if(! $this->newestFirst)
-                @auth
-                    @include('comments::components.forms.replyTo')
-                @endauth
-            @endif
-        </div>
+                @if(! $this->newestFirst)
+                    @auth
+                        @include('comments::components.forms.replyTo')
+                    @endauth
+                @endif
+            </div>
+        @endif
     @endif
 </div>
