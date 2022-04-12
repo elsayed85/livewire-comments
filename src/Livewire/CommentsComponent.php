@@ -25,7 +25,6 @@ class CommentsComponent extends Component
     public string $selectedNotificationSubscriptionType = '';
     public $noCommentsText = null;
 
-
     public function mount(
         bool  $readOnly = false,
         ?bool $hideAvatars = null,
