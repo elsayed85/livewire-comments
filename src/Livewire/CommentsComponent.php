@@ -101,7 +101,7 @@ class CommentsComponent extends Component
             ->comments()
             ->with([
                 'commentator',
-                'nestedComments' => function(HasMany $builder) {
+                'nestedComments' => function (HasMany $builder) {
                     if ($this->newestFirst) {
                         $builder->latest();
                     }
@@ -112,7 +112,7 @@ class CommentsComponent extends Component
                 'nestedComments.reactions',
                 'nestedComments.reactions.commentator',
             ])
-            ->when($this->newestFirst, fn(Builder $builder) => $builder->latest())
+            ->when($this->newestFirst, fn (Builder $builder) => $builder->latest())
             ->paginate(10000);
 
         return view('comments::livewire.comments', [
