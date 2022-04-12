@@ -97,3 +97,12 @@ it('will subscribe to participating strategy when making the first comment', fun
 
     expect($type)->toBe(NotificationSubscriptionType::Participating);
 });
+
+it('can display a custom text when there are no comments', function () {
+    Livewire::test(CommentsComponent::class, [
+        'noCommentsText' => 'my custom text',
+        'model' => $this->post,
+    ])
+        ->assertSuccessful()
+        ->assertSee('my custom text');
+});

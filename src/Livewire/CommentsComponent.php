@@ -23,6 +23,8 @@ class CommentsComponent extends Component
     public bool $showNotificationOptions;
     public bool $newestFirst;
     public string $selectedNotificationSubscriptionType = '';
+    public $noCommentsText = null;
+
 
     public function mount(
         bool  $readOnly = false,
