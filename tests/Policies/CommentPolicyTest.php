@@ -9,6 +9,8 @@ beforeEach(function () {
     $this->currentUser = login();
 
     $this->post = Post::factory()->create();
+
+    Spatie\Once\Cache::getInstance()->flush();
 });
 
 it('will allow a comment to be created', function () {
@@ -35,6 +37,15 @@ it('will allow to update comments that the user created', function () {
     expect($this->currentUser->can('update', $commentByAnotherUser))->toBeFalse();
 });
 
+it('will allow users that approve comments to update comments by other users', function() {
+    $comment = $this->post->comment('comment');
+
+    $admin = User::factory()->create();
+    PendingCommentNotification::sendTo(fn() => $admin);
+
+    expect($admin->can('update', $comment))->toBeTrue();
+});
+
 it('will allow to delete comments that the user created', function () {
     $this->post->comment('comment');
     $commentByCurrentUser = latestComment();
@@ -45,6 +56,15 @@ it('will allow to delete comments that the user created', function () {
 
     expect($this->currentUser->can('delete', $commentByCurrentUser))->toBeTrue();
     expect($this->currentUser->can('delete', $commentByAnotherUser))->toBeFalse();
+});
+
+it('will allow users that approve comments to delete comments by other users', function() {
+    $comment = $this->post->comment('comment');
+
+    $admin = User::factory()->create();
+    PendingCommentNotification::sendTo(fn() => $admin);
+
+    expect($admin->can('delete', $comment))->toBeTrue();
 });
 
 it('will allow an approved comment to be seen by anyone', function () {
@@ -78,6 +98,7 @@ it('will allow pending comments to be seen by the users that can approve comment
     $anotherUser = User::factory()->create();
 
     PendingCommentNotification::sendTo(fn () => $anotherUser);
+    Spatie\Once\Cache::getInstance()->flush();
 
     expect($anotherUser->can('see', $comment))->toBeTrue();
 });
