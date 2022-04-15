@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-comments` will be documented in this file.
 
+## 0.0.5 - 2022-04-15
+
+**Full Changelog**: https://github.com/spatie/laravel-comments-livewire/compare/0.0.4...0.0.5
+
 ## 0.0.4 - 2022-04-11
 
 **Full Changelog**: https://github.com/spatie/laravel-comments-livewire/compare/0.0.3...0.0.4
