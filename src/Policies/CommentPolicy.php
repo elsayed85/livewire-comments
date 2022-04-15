@@ -14,7 +14,7 @@ class CommentPolicy
      *
      * @return bool
      */
-    public function create(Model $commentator, Model $commentableModel): bool
+    public function create(?CanComment $user): bool
     {
         return true;
     }
