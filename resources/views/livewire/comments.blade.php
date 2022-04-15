@@ -1,3 +1,7 @@
+@php
+    use Spatie\Comments\Enums\NotificationSubscriptionType;
+@endphp
+
 <section class="comments">
     @if ($this->newestFirst)
         @include('comments::components.forms.newComment')
@@ -8,18 +12,20 @@
             <p><strong></strong></p>
             @auth
                 @if($showNotificationOptions)
-                    <select wire:model="selectedNotificationSubscriptionType">
-                        <option
-                            value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::Participating->value  }}">
-                            {{ \Spatie\Comments\Enums\NotificationSubscriptionType::Participating->value  }}
-                        </option>
-                        <option value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::All->value  }}">
-                            {{ \Spatie\Comments\Enums\NotificationSubscriptionType::All->value  }}
-                        </option>
-                        <option value="{{ \Spatie\Comments\Enums\NotificationSubscriptionType::None->value  }}">
-                            {{ \Spatie\Comments\Enums\NotificationSubscriptionType::None->value  }}
-                        </option>
-                    </select>
+                    <div>
+                        <span>
+                        Send notifications:
+                        </span>
+
+                        <select wire:model="selectedNotificationSubscriptionType">
+                            @foreach(NotificationSubscriptionType::cases() as $case)
+                                <option
+                                    value="{{ $case->value }}">
+                                    {{ strtolower($case->description()) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 @endif
             @endif
         @endauth
