@@ -37,11 +37,11 @@ it('will allow to update comments that the user created', function () {
     expect($this->currentUser->can('update', $commentByAnotherUser))->toBeFalse();
 });
 
-it('will allow users that approve comments to update comments by other users', function() {
+it('will allow users that approve comments to update comments by other users', function () {
     $comment = $this->post->comment('comment');
 
     $admin = User::factory()->create();
-    PendingCommentNotification::sendTo(fn() => $admin);
+    PendingCommentNotification::sendTo(fn () => $admin);
 
     expect($admin->can('update', $comment))->toBeTrue();
 });
@@ -58,11 +58,11 @@ it('will allow to delete comments that the user created', function () {
     expect($this->currentUser->can('delete', $commentByAnotherUser))->toBeFalse();
 });
 
-it('will allow users that approve comments to delete comments by other users', function() {
+it('will allow users that approve comments to delete comments by other users', function () {
     $comment = $this->post->comment('comment');
 
     $admin = User::factory()->create();
-    PendingCommentNotification::sendTo(fn() => $admin);
+    PendingCommentNotification::sendTo(fn () => $admin);
 
     expect($admin->can('delete', $comment))->toBeTrue();
 });
