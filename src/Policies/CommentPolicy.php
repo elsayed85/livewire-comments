@@ -5,6 +5,8 @@ namespace Spatie\LivewireComments\Policies;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Comments\Models\Comment;
 use Spatie\Comments\Models\Concerns\Interfaces\CanComment;
+use Spatie\Comments\Notifications\ApprovedCommentNotification;
+use Spatie\Comments\Notifications\PendingCommentNotification;
 
 class CommentPolicy
 {
@@ -25,9 +27,13 @@ class CommentPolicy
      *
      * @return bool
      */
-    public function update(Model $commentator, Comment $comment): bool
+    public function update(?CanComment $user, Comment $comment): bool
     {
-        return $comment->madeBy($commentator);
+        if ($comment->getApprovingUsers()->contains($user)) {
+            return true;
+        }
+
+        return $comment->madeBy($user);
     }
 
     /**
@@ -36,9 +42,13 @@ class CommentPolicy
      *
      * @return bool
      */
-    public function delete(Model $commentator, Comment $comment): bool
+    public function delete(?CanComment $user, Comment $comment): bool
     {
-        return $comment->madeBy($commentator);
+        if ($comment->getApprovingUsers()->contains($user)) {
+            return true;
+        }
+
+        return $comment->madeBy($user);
     }
 
     /**
@@ -47,7 +57,7 @@ class CommentPolicy
      *
      * @return bool
      */
-    public function react(Model $commentator, Model $commentableModel): bool
+    public function react(?CanComment $user, Model $commentableModel): bool
     {
         return true;
     }
