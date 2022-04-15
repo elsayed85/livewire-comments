@@ -5,8 +5,6 @@ namespace Spatie\LivewireComments\Policies;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Comments\Models\Comment;
 use Spatie\Comments\Models\Concerns\Interfaces\CanComment;
-use Spatie\Comments\Notifications\ApprovedCommentNotification;
-use Spatie\Comments\Notifications\PendingCommentNotification;
 
 class CommentPolicy
 {
