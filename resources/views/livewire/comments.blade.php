@@ -9,22 +9,23 @@
 
     <header class="comments-header">
         @if($writable)
-            <p><strong></strong></p>
             @auth
                 @if($showNotificationOptions)
-                    <div>
-                        <span>
-                        Send notifications:
-                        </span>
+                    <div class="comments-subscription">
+                        <x-comments::dropdown>
+                            <x-slot name="trigger">
+                                <span class="comments-subscription-trigger">
+                                    Send notifications:
+                                    <span class="comments-subscription-current">{{ $selectedNotificationSubscriptionType }}</span>
+                                </span>
+                            </x-slot>
 
-                        <select wire:model="selectedNotificationSubscriptionType">
                             @foreach(NotificationSubscriptionType::cases() as $case)
-                                <option
-                                    value="{{ $case->value }}">
-                                    {{ strtolower($case->description()) }}
-                                </option>
+                                <x-comments::dropdown.item wire:click="doSomething('{{ $case->value }}')">
+                                    {{ $case->description() }}
+                                </x-comments::dropdown.item>
                             @endforeach
-                        </select>
+                        </x-comments::dropdown>
                     </div>
                 @endif
             @endif
