@@ -75,8 +75,10 @@ class CommentsComponent extends Component
         $this->emit('comment');
     }
 
-    public function updatedSelectedNotificationSubscriptionType()
+    public function updateSelectedNotificationSubscriptionType($type)
     {
+        $this->selectedNotificationSubscriptionType = $type;
+
         $this->saveNotificationSubscription();
     }
 

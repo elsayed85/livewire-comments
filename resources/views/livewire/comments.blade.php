@@ -21,7 +21,7 @@
                             </x-slot>
 
                             @foreach(NotificationSubscriptionType::cases() as $case)
-                                <x-comments::dropdown.item wire:click="doSomething('{{ $case->value }}')">
+                                <x-comments::dropdown.item wire:click="updateSelectedNotificationSubscriptionType('{{ $case->value }}')">
                                     {{ $case->description() }}
                                 </x-comments::dropdown.item>
                             @endforeach
