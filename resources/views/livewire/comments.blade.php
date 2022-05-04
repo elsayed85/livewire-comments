@@ -2,7 +2,7 @@
     use Spatie\Comments\Enums\NotificationSubscriptionType;
 @endphp
 
-<section class="comments">
+<section {{-- class="comments" --}}>
     @if ($this->newestFirst)
         @include('comments::components.forms.newComment')
     @endif
