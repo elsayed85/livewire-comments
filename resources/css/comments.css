@@ -54,6 +54,7 @@
     padding: 1rem;
     border-radius: 0.2rem;
 }
+
 .comments-nested .comments-comment{
     background-color: #FFF;
     padding: 0;
@@ -62,7 +63,6 @@
 .comments-comment-inner {
     flex-grow: 1;
 }
-
 
 .comments-comment-header {
     position: relative;
@@ -516,4 +516,8 @@
 
 .comments-subscription-current {
     font-weight: 600;
+}
+
+.comments-comment .shiki {
+    font-size: 0.85rem;
 }
