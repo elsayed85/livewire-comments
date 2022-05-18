@@ -50,9 +50,6 @@
 
 .comments-comment {
     display: flex;
-    background-color: #fbfbfb;
-    padding: 1rem;
-    border-radius: 0.2rem;
 }
 
 .comments-nested .comments-comment{
