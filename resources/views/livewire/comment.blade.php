@@ -22,7 +22,6 @@
                 <a href="#comment-{{ $comment->id }}">
                     <x-comments::date :date="$comment->created_at"/>
                 </a>
-
                 @unless($isEditing)
                     @if($writable)
                         <x-comments::dropdown>
