@@ -1,7 +1,7 @@
 <button
     type="{{ isset($submit) && $submit ? 'submit' : 'button' }}"
     @class([
-        // 'comments-button',
+        'comments-button',
         'is-small' => isset($small) && $small,
         'is-danger' => isset($danger) && $danger,
         'is-link' => isset($link) && $link,
