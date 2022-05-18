@@ -262,7 +262,8 @@
     color: gray;
 }
 
-.comments-placeholder {
+.comments-placeholder,
+.comments-textarea {
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 100%;
@@ -458,6 +459,10 @@
 
 .comments-text ol li {
     list-style:decimal;
+}
+
+.comments-textarea {
+    min-height: 10rem;
 }
 
 .CodeMirror-scroll, .CodeMirror{
