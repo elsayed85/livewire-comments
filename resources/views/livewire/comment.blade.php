@@ -4,11 +4,9 @@
     x-data="{ confirmDelete: false }"
 >
     <div class="comments-comment">
-
         @if($showAvatar)
             <x-comments::avatar :comment="$comment"/>
         @endif
-
         <div class="comments-comment-inner">
             <div class="comments-comment-header">
                 @if($url = $comment->commentatorProperties()->url)
@@ -59,10 +57,10 @@
                     @endif
                 @endunless
             </div>
-
             @if($comment->isPending())
-                <div class="comments-info-message">This is a pending comment that is awaiting approval</div>
-
+                <div class="comments-info-message">
+                    This is a pending comment that is awaiting approval
+                </div>
                 @can('reject', $comment)
                     <button
                         class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded bg-red-200"
@@ -70,7 +68,6 @@
                         Reject
                     </button>
                 @endcan
-
                 @can('approve', $comment)
                     <button
                         class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded bg-green-200"
@@ -78,10 +75,7 @@
                         Approve
                     </button>
                 @endcan
-
-
             @endif
-
             @if($isEditing)
                 <div class="comments-form">
                     <form class="comments-form-inner" wire:submit.prevent="edit">
@@ -105,7 +99,9 @@
                     </form>
                 </div>
             @else
-                <div>{!! $comment->text !!}</div>
+                <div class="comment-text">
+                    {!! $comment->text !!}
+                </div>
                 <div class="comments-reactions">
                     @foreach($comment->reactions->summary() as $summary)
                         <div
@@ -125,7 +121,6 @@
                             @click.outside="open = false"
                             class="comments-reaction-picker"
                         >
-
                             @can('react', $comment)
                                 <button class="comments-reaction-picker-trigger" type="button" @click="open = !open">
                                     <x-comments::icons.smile/>
@@ -164,7 +159,6 @@
                         @include('comments::livewire.partials.replyTo')
                     @endauth
                 @endif
-
                 @foreach ($comment->nestedComments as $nestedComment)
                     @can('see', $nestedComment)
                         <livewire:comments-comment
@@ -176,7 +170,6 @@
                         />
                     @endcan
                 @endforeach
-
                 @if(! $this->newestFirst)
                     @auth
                         @include('comments::livewire.partials.replyTo')
