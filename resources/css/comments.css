@@ -90,7 +90,6 @@
 
 .comments-dropdown {
     flex-grow: 1;
-    gap: 1rem;
     position: relative;
     align-items: center;
 }
