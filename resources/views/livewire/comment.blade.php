@@ -162,7 +162,7 @@
             <div class="comments-nested">
                 @if($this->newestFirst)
                     @auth
-                        @include('comments::components.forms.replyTo')
+                        @include('comments::livewire.partials.replyTo')
                     @endauth
                 @endif
 
@@ -180,7 +180,7 @@
 
                 @if(! $this->newestFirst)
                     @auth
-                        @include('comments::components.forms.replyTo')
+                        @include('comments::livewire.partials.replyTo')
                     @endauth
                 @endif
             </div>

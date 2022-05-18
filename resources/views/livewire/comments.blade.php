@@ -4,7 +4,7 @@
 
 <section class="comments">
     @if ($this->newestFirst)
-        @include('comments::components.forms.newComment')
+        @include('comments::livewire.partials.newComment')
     @endif
 
     <header class="comments-header">
@@ -51,6 +51,6 @@
     @endif
 
     @if (! $this->newestFirst)
-        @include('comments::components.forms.newComment')
+        @include('comments::livewire.partials.newComment')
     @endif
 </section>

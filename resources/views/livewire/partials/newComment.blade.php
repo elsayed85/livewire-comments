@@ -1,4 +1,4 @@
-@if ($writable)
+@if($writable)
     @can('createComment', $model)
         <div class="comments-form">
             @if($showAvatars)
@@ -15,7 +15,6 @@
                     {{ $message }}
                 </p>
                 @enderror
-
                 <x-comments::button submit>
                     {{ __('comments::comments.create_comment') }}
                 </x-comments::button>

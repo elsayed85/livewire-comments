@@ -3,16 +3,14 @@
         @if($showAvatar)
             <x-comments::avatar/>
         @endif
-
-
         <form class="comments-form-inner" wire:submit.prevent="reply">
             <div
                 x-data="{ isExpanded: false }"
                 x-init="
-                                $wire.on('reply-{{ $comment->id }}', () => {
-                                    isExpanded = false;
-                                });
-                            "
+                    $wire.on('reply-{{ $comment->id }}', () => {
+                        isExpanded = false;
+                    });
+                "
             >
                 <input
                     x-show="!isExpanded"
@@ -20,7 +18,6 @@
                     class="comments-placeholder"
                     placeholder="{{ __('comments::comments.write_reply') }}"
                 >
-
                 <template x-if="isExpanded">
                     <div>
                         <x-dynamic-component
