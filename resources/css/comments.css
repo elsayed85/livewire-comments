@@ -74,15 +74,9 @@
     margin-bottom: 0.25rem;
 }
 
-.comments-comment-header .divider {
-    --size: 0.21rem;
-
-    background-color: rgb(156, 163, 175);
-    width: var(--size);
-    height: var(--size);
-    border-radius: var(--size);
-    margin: 0 0.5rem;
-    transform: translateY(calc(var(--size) * 0.25));
+.comments-comment-header-divider {
+    color: rgb(156, 163, 175);
+    margin: 0 0.25rem;
 }
 
 .comments-date {

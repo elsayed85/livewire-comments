@@ -18,7 +18,7 @@
                 @else
                     {{ $comment->commentatorProperties()->name }}
                 @endif
-                <div class="divider"></div>
+                <span class="comments-comment-header-divider">&bull;</span>
                 <a href="#comment-{{ $comment->id }}">
                     <x-comments::date :date="$comment->created_at"/>
                 </a>
