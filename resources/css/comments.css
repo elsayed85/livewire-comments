@@ -207,6 +207,14 @@
     stroke: #374151;
 }
 
+.comments-info-message {
+    background-color: #dae9fa;
+    border-radius: var(--comments-border-radius);
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+}
+
 .comments-modal {
     position: absolute;
     z-index: var(--comments-z-modal);
@@ -249,6 +257,12 @@
 .comments-nested {
     margin-top: 1.5rem;
     padding-left: calc(var(--comments-avatar-size) + var(--comments-avatar-margin));
+}
+
+.comments-no-comment-yet {
+    text-align: center;
+    margin: 2rem 0 4rem 0;
+    color: gray;
 }
 
 .comments-placeholder {
@@ -339,6 +353,23 @@
     background-color: rgba(67, 56, 202, 0.5);
 }
 
+.comments-subscription {
+    margin-left: auto;
+    font-size: 0.8rem;
+}
+
+.comments-subscription-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    height: 1.25rem;
+    padding: 0 0.5rem;
+}
+
+.comments-subscription-current {
+    font-weight: 600;
+}
+
 .comments-text {
     max-width: calc(100% - var(--comments-avatar-size));
 }
@@ -352,6 +383,10 @@
     padding: 0.2rem 0.5rem;
     background-color: #f2f2f2;
     border-radius: 0.3rem;
+}
+
+.comments-text .shiki {
+    font-size: 0.85rem;
 }
 
 .comments-text .shiki code {
@@ -428,41 +463,6 @@
     list-style:decimal;
 }
 
-.comment-no-comment-yet{
-    text-align: center;
-    margin: 2rem 0 4rem 0;
-    color: gray;
-}
-
 .CodeMirror-scroll, .CodeMirror{
     min-height: 10rem !important;
-}
-
-.comments-info-message {
-    background-color: #dae9fa;
-    border-radius: var(--comments-border-radius);
-    padding: 0.5rem;
-    font-size: 0.8rem;
-    margin-bottom: 0.25rem;
-}
-
-.comments-subscription {
-    margin-left: auto;
-    font-size: 0.8rem;
-}
-
-.comments-subscription-trigger {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    height: 1.25rem;
-    padding: 0 0.5rem;
-}
-
-.comments-subscription-current {
-    font-weight: 600;
-}
-
-.comments-comment .shiki {
-    font-size: 0.85rem;
 }

@@ -47,7 +47,7 @@
         @endforeach
         {{ $comments->links() }}
     @else
-        <p class="comment-no-comment-yet">{{ $this->noCommentsText ?? __('comments::comments.no_comments_yet') }}</p>
+        <p class="comments-no-comment-yet">{{ $this->noCommentsText ?? __('comments::comments.no_comments_yet') }}</p>
     @endif
 
     @if (! $this->newestFirst)
