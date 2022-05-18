@@ -263,6 +263,10 @@
     height: var(--comments-avatar-size);
 }
 
+.comments-placeholder:focus {
+    outline: none;
+}
+
 .comments-reactions {
     position: relative;
     display: flex;
