@@ -79,6 +79,10 @@
     margin: 0 0.25rem;
 }
 
+.comments-comment-header .comments-dropdown-trigger {
+    margin-left: auto;
+}
+
 .comments-date {
     color: rgb(156 163 175);
     font-size: 0.8rem;
@@ -97,7 +101,6 @@
 .comments-dropdown-trigger {
     display: flex;
     align-items: center;
-    float: right;
     gap: 0.5rem;
     border-radius: var(--comments-border-radius);
     cursor: pointer;
