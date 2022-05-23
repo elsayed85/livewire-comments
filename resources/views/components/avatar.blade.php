@@ -3,7 +3,7 @@
 
     if ($user = auth()->user()) {
         $segment = md5(strtolower($user->email));
-        $defaultAvatar = "https://www.gravatar.com/avatar/{$segment}";
+        $defaultAvatar = "https://www.gravatar.com/avatar/{$segment}?d=mp";
     }
 @endphp
 
