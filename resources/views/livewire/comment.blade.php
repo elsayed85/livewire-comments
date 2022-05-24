@@ -28,20 +28,22 @@
                             href="#comment-{{ $comment->id }}"
                             @click.prevent="urlCopied = true"
                         >
-                            <x-comments::date :date="$comment->created_at" />
+                            <x-comments::date :date="$comment->created_at"/>
                             <span x-show="urlCopied">(copied to clipboard)</span>
                         </a>
                     </li>
-                    @can('update', $comment)
-                        <li>
-                            <a href="#" wire:click.prevent="startEditing" aria-role="button">Edit</a>
-                        </li>
-                    @endcan
-                    @can('delete', $comment)
-                        <li>
-                            <a href="#" @click.prevent="confirmDelete = true" aria-role="button">Delete</a>
-                        </li>
-                    @endcan
+                    @if($writable)
+                        @can('update', $comment)
+                            <li>
+                                <a href="#" wire:click.prevent="startEditing" aria-role="button">Edit</a>
+                            </li>
+                        @endcan
+                        @can('delete', $comment)
+                            <li>
+                                <a href="#" @click.prevent="confirmDelete = true" aria-role="button">Delete</a>
+                            </li>
+                        @endcan
+                    @endif
                     @include('comments::extraCommentHeaderActions')
                 </ul>
             </div>
@@ -96,7 +98,7 @@
                             <div
                                 wire:key="{{ $comment->id }}{{$summary['reaction']}}"
                                 @auth
-                                wire:click="toggleReaction('{{ $summary['reaction'] }}')"
+                                    wire:click="toggleReaction('{{ $summary['reaction'] }}')"
                                 @endauth
                                 @class(['comments-reaction', 'is-reacted' => $summary['commentator_reacted']])
                             >
@@ -111,7 +113,8 @@
                                 class="comments-reaction-picker"
                             >
                                 @can('react', $comment)
-                                    <button class="comments-reaction-picker-trigger" type="button" @click="open = !open">
+                                    <button class="comments-reaction-picker-trigger" type="button"
+                                            @click="open = !open">
                                         <x-comments::icons.smile/>
                                     </button>
                                     <x-comments::modal x-show="open" compact left>
