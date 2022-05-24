@@ -60,14 +60,6 @@
                             editor.codemirror.on("change", () => {
                                 this.text = editor.value();
                             });
-
-                            editor.codemirror.setOption("extraKeys", {
-                                "Cmd-Enter": (cm) => {
-                                    this.$el.closest("form").dispatchEvent(
-                                        new CustomEvent("submit", {"bubbles":true, "cancelable": true})
-                                    );
-                                },
-                            });
                         });
                     },
 
