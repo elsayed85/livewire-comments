@@ -54,6 +54,7 @@
     background-color: var(--comments-color-accent);
     padding: 0.25rem 0.75rem;
     font-weight: 500;
+    line-height: 1.35;
 }
 
 .comments-button:hover {
@@ -61,7 +62,8 @@
 }
 
 .comments-button.is-small {
-    padding: 0.1rem 0.5rem;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.8rem;
 }
 
 .comments-button.is-link {
@@ -129,8 +131,8 @@
     margin: 0 0.25rem;
 }
 
-.comments-comment-header-actions a:hover,
-.comments-comment-header-actions button:hover {
+.comments-comment-header-actions li > a:hover,
+.comments-comment-header-actions li > button:hover {
     text-decoration: underline;
 }
 
@@ -331,6 +333,8 @@
     position: absolute;
     z-index: var(--comments-z-modal);
     width: 16rem;
+    color: var(--comments-color-text);
+    font-size: 1rem;
     background-color: var( --comments-color-background);
     box-shadow: var( --comments-shadow);
     border-radius: var(--comments-border-radius);
@@ -342,6 +346,10 @@
 .comments-modal.is-left {
     right: auto;
     left: 0;
+}
+
+.comments-modal.is-bottom {
+    top: 100%;
 }
 
 .comments-modal.is-compact {

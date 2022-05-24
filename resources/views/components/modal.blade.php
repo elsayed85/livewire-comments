@@ -1,6 +1,6 @@
 <div
     x-cloak
-    @class(['comments-modal', 'is-compact' => $compact ?? false, 'is-left' => $left ?? false])
+    @class(['comments-modal', 'is-compact' => $compact ?? false, 'is-left' => $left ?? false, 'is-bottom' => $bottom ?? false])
     {{ $attributes }}
 >
     @isset($title)

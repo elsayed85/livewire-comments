@@ -43,6 +43,18 @@
                         @can('delete', $comment)
                             <li>
                                 <a href="#" @click.prevent="confirmDelete = true" aria-role="button">Delete</a>
+                                <x-comments::modal
+                                    left
+                                    bottom
+                                    x-show="confirmDelete"
+                                    @click.outside="confirmDelete = false"
+                                    :title="__('comments::comments.delete_confirmation_title')"
+                                >
+                                    <p>{{ __('comments::comments.delete_confirmation_text') }}</p>
+                                    <x-comments::button danger small wire:click="deleteComment">
+                                        {{ __('comments::comments.delete') }}
+                                    </x-comments::button>
+                                </x-comments::modal>
                             </li>
                         @endcan
                     @endif
@@ -177,16 +189,4 @@
             </div>
         @endif
     @endif
-    @can('delete', $comment)
-        <x-comments::modal
-            x-show="confirmDelete"
-            @click.outside="confirmDelete = false"
-            :title="__('comments::comments.delete_confirmation_title')"
-        >
-            <p>{{ __('comments::comments.delete_confirmation_text') }}</p>
-            <x-comments::button danger small wire:click="deleteComment">
-                {{ __('comments::comments.delete') }}
-            </x-comments::button>
-        </x-comments::modal>
-    @endcan
 </div>
