@@ -77,7 +77,7 @@ it('can subscribe to notifications explicitly', function () {
 
     Livewire::test(CommentsComponent::class, ['model' => $this->post])
         ->assertSuccessful()
-        ->updateProperty('selectedNotificationSubscriptionType', NotificationSubscriptionType::All->value);
+        ->call('updateSelectedNotificationSubscriptionType', NotificationSubscriptionType::All->value);
 
     $type = $currentUser->notificationSubscriptionType($this->post);
 
