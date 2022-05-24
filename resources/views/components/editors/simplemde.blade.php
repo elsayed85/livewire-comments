@@ -17,7 +17,7 @@
 @push('comments-scripts')
     <script>
         document.addEventListener("alpine:init", () => {
-            Alpine.data("compose", ({ text, autofocus = false } = {}) => {
+            window.Alpine.data("compose", ({ text, autofocus = false } = {}) => {
                 // Store the editor as a non-reactive instance property
                 let editor;
 
