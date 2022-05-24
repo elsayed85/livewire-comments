@@ -145,7 +145,7 @@
         </div>
     </div>
     @if($showReplies)
-        @if($comment->isTopLevel() && $comment->nestedComments->isNotEmpty())
+        @if($comment->isTopLevel())
             <div class="comments-nested">
                 @if($this->newestFirst)
                     @auth
