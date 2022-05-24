@@ -42,6 +42,7 @@
                             <a href="#" @click.prevent="confirmDelete = true" aria-role="button">Delete</a>
                         </li>
                     @endcan
+                    @include('comments::extraCommentHeaderActions')
                 </ul>
             </div>
             @if($comment->isPending())
