@@ -170,6 +170,10 @@
     margin-top: 0.5rem;
 }
 
+.comments-newest-first > .comments-form {
+    margin-bottom: var(--comments-spacing);
+}
+
 .comments-group {
     position: relative;
     padding-bottom: var(--comments-spacing);

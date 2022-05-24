@@ -2,11 +2,7 @@
     use Spatie\Comments\Enums\NotificationSubscriptionType;
 @endphp
 
-<section class="comments">
-    @if ($this->newestFirst)
-        @include('comments::livewire.partials.newComment')
-    @endif
-
+<section class="comments {{ $newestFirst ? 'comments-newest-first' : '' }}">
     <header class="comments-header">
         @if($writable)
             @auth
@@ -31,6 +27,10 @@
             @endif
         @endauth
     </header>
+
+    @if ($newestFirst)
+        @include('comments::livewire.partials.newComment')
+    @endif
 
     @if($comments->count())
         @foreach($comments as $comment)
