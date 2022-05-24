@@ -14,7 +14,7 @@
     margin-right: var(--comments-avatar-margin);
 }
 
-/** @todo Remove hack, currently necessary to win agains Tailwind CDN specificity */
+/** Added to win agains Tailwind CDN specificity */
 .comments-button.comments-button {
     border-radius: var(--comments-border-radius);
     color: white;
@@ -311,7 +311,7 @@
     position: relative;
 }
 
-/** @todo Remove hack, currently necessary to win agains Tailwind CDN specificity */
+/** Added to win agains Tailwind CDN specificity */
 .comments-reaction-picker-trigger.comments-reaction-picker-trigger {
     display: flex;
     align-items: center;
