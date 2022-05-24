@@ -368,31 +368,31 @@
     font-weight: 600;
 }
 
-.comments-text {
+.comment-text {
     max-width: calc(100% - var(--comments-avatar-size));
 }
 
-.comments-text > *,
+.comment-text > *,
 .comments-comment-inner {
     max-width: 100%;
 }
 
-.comments-text code {
+.comment-text code {
     padding: 0.2rem 0.5rem;
     background-color: #f2f2f2;
     border-radius: 0.3rem;
 }
 
-.comments-text .shiki {
+.comment-text .shiki {
     font-size: 0.85rem;
 }
 
-.comments-text .shiki code {
+.comment-text .shiki code {
     padding: 0;
     background-color: transparent;
 }
 
-.comments-text .shiki {
+.comment-text .shiki {
     padding: 0.5rem;
     margin: 0.5rem 0;
     border-radius: 0.2rem;
@@ -401,67 +401,67 @@
     overflow-x: scroll;
 }
 
-.comments-text a {
+.comment-text a {
     color: #4338ca;
     text-decoration: underline;
 }
 
-.comments-text > *:not(:first-child),
-.comments-text blockquote > *:not(:first-child),
-.comments-text ul > *:not(:first-child):not(li),
-.comments-text ol > *:not(:first-child):not(li) {
-    margin-top: 1rem;
+.comment-text > *:not(:first-child),
+.comment-text blockquote > *:not(:first-child),
+.comment-text ul > *:not(:first-child):not(li),
+.comment-text ol > *:not(:first-child):not(li) {
+    margin-top: 0.5rem;
 }
 
-.comments-text h1 {
+.comment-text h1 {
     font-size: 2rem;
     font-weight: bold;
 }
 
-.comments-text h2 {
+.comment-text h2 {
     font-size: 1.7rem;
     font-weight: bold;
 }
 
-.comments-text h3 {
+.comment-text h3 {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-.comments-text h4 {
+.comment-text h4 {
     font-size: 1.3rem;
     font-weight: bold;
 }
 
-.comments-text h5 {
+.comment-text h5 {
     font-size: 1.1rem;
     font-weight: bold;
 }
 
-.comments-text h6 {
+.comment-text h6 {
     font-size: 1rem;
     font-weight: bold;
 }
 
-.comments-text blockquote {
+.comment-text blockquote {
     background-color: #fbfbfb;
     padding: 1rem;
     border-left: solid 3px #ddd;
 }
 
-.comments-text ul, .comments-text ol {
+.comment-text ul, .comment-text ol {
     padding-left: 1rem;
 }
 
-.comments-text ul li {
+.comment-text ul li {
     list-style: circle;
 }
 
-.comments-text ol li {
+.comment-text ol li {
     list-style:decimal;
 }
 
-.comments-textarea {
+.comment-textarea {
     min-height: 10rem;
 }
 
