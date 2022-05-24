@@ -5,6 +5,38 @@
     --comments-border-radius: 0.375rem;
     --comments-z-dropdown: 2;
     --comments-z-modal: 3;
+
+    /* colors */
+    --comments-color-background: white;
+    --comments-color-background-nested: white;
+    --comments-color-background-paper: rgb(251, 251, 251);
+    --comments-color-background-info: rgba(67, 56, 202, 0.075);
+
+    --comments-color-reaction: rgb(242, 242, 242);
+    --comments-color-reaction-hover: rgb(229, 231, 235);
+    --comments-color-reacted: rgba(67, 56, 202, 0.25);
+    --comments-color-reacted-hover: rgba(67, 56, 202, 0.5);
+
+    --comments-color-border: rgb(221, 221, 221);
+    
+    --comments-color-text:rgb(17, 24, 39);
+    --comments-color-text-dimmed: rgb(156, 163, 175);
+    --comments-color-text-inverse: white;
+    
+    --comments-color-accent: rgba(67, 56, 202);
+    --comments-color-accent-hover: rgba(67, 56, 202, 0.75);
+
+    --comments-color-danger: rgb(225, 29, 72);
+    --comments-color-danger-hover: rgb(225, 29, 72, 0.75);
+
+    --comments-color-success: rgb(10, 200, 134);
+    --comments-color-success-hover: rgb(10, 200, 134, 0.75);
+
+    --comments-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.comments {
+    color: var(--comments-color-text);
 }
 
 .comments-avatar {
@@ -17,13 +49,13 @@
 /** Added to win agains Tailwind CDN specificity */
 .comments-button.comments-button {
     border-radius: var(--comments-border-radius);
-    color: white;
-    background-color: #4338ca;
+    color: var(--comments-color-text-inverse);
+    background-color: var(--comments-color-accent);
     padding: 0.5rem 1rem;
 }
 
 .comments-button:hover {
-    background-color: rgba(67, 56, 202, 0.75);
+    background-color: var(--comments-color-accent-hover);
 }
 
 .comments-button.is-small {
@@ -32,20 +64,28 @@
 
 .comments-button.is-link {
     background-color: transparent;
-    color: rgb(156 163 175);
+    color: var(--comments-color-text-dimmed);
     text-decoration: underline;
 }
 
 .comments-button.is-danger {
-    background-color: rgb(225, 29, 72);
+    background-color: var(--comments-color-danger);
 }
 
 .comments-button.is-danger:hover {
-    background-color: rgb(244, 63, 94);
+    background-color: var(--comments-color-danger-hover);
+}
+
+.comments-button.is-success {
+    background-color: var(--comments-color-success);
+}
+
+.comments-button.is-success:hover {
+    background-color: var(--comments-color-success-hover);
 }
 
 .comments-button svg {
-    stroke: white;
+    stroke: var(--comments-color-text-inverse);
 }
 
 .comments-comment {
@@ -53,7 +93,7 @@
 }
 
 .comments-nested .comments-comment{
-    background-color: #FFF;
+    background-color: var(--comments-color-background-nested);
     padding: 0;
 }
 
@@ -64,17 +104,16 @@
 .comments-comment-header {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     font-weight: 500;
-    color: rgb(17, 24, 39);
+    color: var(--comments-color-text);
     margin-bottom: 0.5rem;
 }
 
 .comments-comment-header-actions {
     display: flex;
-    color: rgb(156 163 175);
+    color: var(--comments-color-text-dimmed);
     font-size: 0.8rem;
-    transform: translateY(0.1em);
     margin-left: 0.5rem;
 }
 
@@ -116,10 +155,9 @@
     position: absolute;
     z-index: var(--comments-z-dropdown);
     width: 12rem;
-    background-color: white;
+    background-color: var(--comments-color-background);
     border-radius: var(--comments-border-radius);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    box-shadow: var( --comments-shadow);
     right: 2rem;
 }
 
@@ -136,7 +174,7 @@
 }
 
 .comments-dropdown-item.danger:hover {
-    color: rgb(239 68 68);
+    color: var(--comments-color-danger);
 }
 
 .comments-dropdown-item:first-child {
@@ -149,13 +187,13 @@
 
 .comments-dropdown-trigger:hover,
 .comments-dropdown-item:hover {
-    background-color: rgb(229 231 235);
+    background-color: var(--comments-color-reaction)
 }
 
 .comments-error {
     margin-top: 0.5rem;
     font-size: 0.875rem;
-    color: rgb(239 68 68);
+    color: var(--comments-color-danger);
 }
 
 .comments-form {
@@ -186,7 +224,7 @@
     bottom: 0;
     right: 0;
     left: calc(var(--comments-avatar-size) + var(--comments-avatar-margin));
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--comments-color-border);
 }
 
 .comments-group .comments-group {
@@ -208,17 +246,16 @@
 .comments-header strong {
     font-size: 1.125rem;
     font-weight: 500;
-    color: rgb(17, 24, 39);
 }
 
 .comments-icon {
     height: 1.25rem;
     width: 1.25rem;
-    stroke: #374151;
+    stroke: var(--comments-color-text);
 }
 
 .comments-info-message {
-    background-color: #dae9fa;
+    background-color: var( --comments-color-background-info);
     border-radius: var(--comments-border-radius);
     padding: 0.5rem;
     font-size: 0.8rem;
@@ -229,9 +266,8 @@
     position: absolute;
     z-index: var(--comments-z-modal);
     width: 16rem;
-    background-color: white;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    background-color: var( --comments-color-background);
+    box-shadow: var( --comments-shadow);
     border-radius: var(--comments-border-radius);
     top: 0;
     right: 0;
@@ -272,12 +308,12 @@
 .comments-no-comment-yet {
     text-align: center;
     margin: 2rem 0 4rem 0;
-    color: gray;
+    color: var(--comments-color-text-dimmed);
 }
 
 .comments-placeholder,
 .comments-textarea {
-    border: 1px solid #ddd;
+    border: 1px solid var(--comments-color-border);
     border-radius: 4px;
     width: 100%;
     padding: 10px;
@@ -301,23 +337,23 @@
     align-items: center;
     border-radius: var(--comments-border-radius);
     cursor: pointer;
-    background-color: #f2f2f2;
+    background-color: var(--comments-color-reaction);
     padding: 0 0.5rem;
     height: 1.5rem;
     font-size: 0.75rem;
 }
 
 .comments-reaction:hover {
-    background-color: rgb(229 231 235);
+    background-color: var(--comments-color-reaction-hover);
 }
 
 .comments-reaction.is-reacted {
-    border: 1px solid #4338ca;
-    background-color: rgba(67, 56, 202, 0.25);
+    border: 1px solid var(--comments-color-accent);
+    background-color: var(--comments-color-reacted);
 }
 
 .comments-reaction.is-reacted:hover {
-    background-color: rgba(67, 56, 202, 0.5);
+    background-color: var(--comments-color-reacted-hover);
 }
 
 .comments-reaction-picker {
@@ -332,11 +368,11 @@
     padding: 0 0.5rem;
     cursor: pointer;
     border-radius: var(--comments-border-radius);
-    background-color: #f2f2f2;
+    background-color: var(--comments-color-reaction);
 }
 
 .comments-reaction-picker-trigger:hover {
-    background-color: rgb(229 231 235);
+    background-color: var(--comments-color-reaction-hover);
 }
 
 .comments-reaction-picker-reactions {
@@ -353,15 +389,15 @@
 }
 
 .comments-reaction-picker-reaction:hover {
-    background-color: rgb(243 244 246);
+    background-color: var(--comments-color-reaction-hover);
 }
 
 .comments-reaction-picker-reaction.is-reacted {
-    background-color: rgba(67, 56, 202, 0.25);
+    background-color: var(--comments-color-reacted);
 }
 
 .comments-reaction-picker-reaction.is-reacted:hover {
-    background-color: rgba(67, 56, 202, 0.5);
+    background-color: var(--comments-color-reacted-hover);
 }
 
 .comments-reply {
@@ -396,7 +432,7 @@
 
 .comment-text code {
     padding: 0.2rem 0.5rem;
-    background-color: #f2f2f2;
+    background-color: var(--comments-color-background-paper);
     border-radius: 0.3rem;
 }
 
@@ -413,13 +449,13 @@
     padding: 0.5rem;
     margin: 0.5rem 0;
     border-radius: 0.2rem;
-    background-color: #f2f2f2 !important;
+    background-color: var(--comments-color-background-paper) !important;
     overflow: hidden;
     overflow-x: scroll;
 }
 
 .comment-text a {
-    color: #4338ca;
+    color: var(--comments-color-accent);
     text-decoration: underline;
 }
 
@@ -461,9 +497,9 @@
 }
 
 .comment-text blockquote {
-    background-color: #fbfbfb;
+    background-color: var(--comments-color-background-paper);
     padding: 1rem;
-    border-left: solid 3px #ddd;
+    border-left: solid 3px var(--comments-color-border);
 }
 
 .comment-text ul, .comment-text ol {
@@ -475,7 +511,7 @@
 }
 
 .comment-text ol li {
-    list-style:decimal;
+    list-style: decimal;
 }
 
 .comments-textarea {

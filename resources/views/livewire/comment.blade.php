@@ -51,14 +51,14 @@
                 </div>
                 @can('reject', $comment)
                     <button
-                        class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded bg-red-200"
+                        class="comments-button is-small is-danger"
                         wire:click="reject">
                         Reject
                     </button>
                 @endcan
                 @can('approve', $comment)
                     <button
-                        class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded bg-green-200"
+                        class="comments-button is-small is-success"
                         wire:click="approve">
                         Approve
                     </button>
