@@ -3,8 +3,7 @@
     --comments-avatar-size: 2.5rem;
     --comments-avatar-margin: 0.75rem;
     --comments-border-radius: 0.3rem;
-    --comments-z-dropdown: 2;
-    --comments-z-modal: 3;
+    --comments-z-modal: 2;
 
     /* colors */
     --comments-color-background: white;
@@ -144,65 +143,6 @@
     color: var(--comments-color-success);
 }
 
-.comments-comment-header .comments-dropdown-trigger {
-    display: none;
-    margin-left: auto;
-}
-
-.comments-dropdown {
-    flex-grow: 1;
-    position: relative;
-    align-items: center;
-}
-
-.comments-dropdown-trigger {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: var(--comments-border-radius);
-    cursor: pointer;
-    padding: 0.25rem;
-}
-
-.comments-dropdown-items {
-    position: absolute;
-    z-index: var(--comments-z-dropdown);
-    width: 12rem;
-    background-color: var(--comments-color-background);
-    border-radius: var(--comments-border-radius);
-    box-shadow: var( --comments-shadow);
-    right: 2rem;
-}
-
-.comments-dropdown-item {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-align: left;
-}
-
-.comments-dropdown-item.danger:hover {
-    color: var(--comments-color-danger);
-}
-
-.comments-dropdown-item:first-child {
-    border-radius: var(--comments-border-radius) var(--comments-border-radius) 0 0;
-}
-
-.comments-dropdown-item:last-child {
-    border-radius: 0 0 var(--comments-border-radius) var(--comments-border-radius);
-}
-
-.comments-dropdown-trigger:hover,
-.comments-dropdown-item:hover {
-    background-color: var(--comments-color-reaction)
-}
-
 .comments-error {
     margin-top: 0.5rem;
     font-size: 0.875rem;
@@ -223,9 +163,8 @@
 }
 
 .comments-form-editor-tip {
-
     color: var(--comments-color-text-dimmed);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     padding: 0.25rem 0;
     text-align: right;
 }
@@ -331,7 +270,8 @@
 .comments-modal {
     position: absolute;
     z-index: var(--comments-z-modal);
-    width: 16rem;
+    min-width: 16rem;
+    max-width: 24rem;
     color: var(--comments-color-text);
     font-size: 1rem;
     background-color: var( --comments-color-background);
@@ -412,7 +352,7 @@
     background-color: var(--comments-color-reaction);
     padding: 0 0.5rem;
     height: 1.5rem;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
 }
 
 .comments-reaction:hover {
@@ -477,6 +417,7 @@
 }
 
 .comments-subscription {
+    position: relative;
     margin-left: auto;
     font-size: 0.8rem;
 }
@@ -485,12 +426,35 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    height: 1.25rem;
-    padding: 0 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--comments-border-radius);
+    background-color: var(--comments-color-reaction);
+}
+
+.comments-subscription-trigger:hover {
+    background-color: var(--comments-color-reaction-hover);
 }
 
 .comments-subscription-current {
     font-weight: 600;
+}
+
+.comments-subscription-item {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+    border-radius: var(--comments-border-radius);
+}
+
+.comments-subscription-item:hover {
+    background-color: var(--comments-color-reaction);
 }
 
 .comment-text {
