@@ -47,10 +47,10 @@
         @endforeach
         {{ $comments->links() }}
     @else
-        <p class="comments-no-comment-yet">{{ $this->noCommentsText ?? __('comments::comments.no_comments_yet') }}</p>
+        <p class="comments-no-comment-yet">{{ $noCommentsText ?? __('comments::comments.no_comments_yet') }}</p>
     @endif
 
-    @if (! $this->newestFirst)
+    @if (! $newestFirst)
         @include('comments::livewire.partials.newComment')
     @endif
 </section>
