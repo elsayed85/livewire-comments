@@ -1,7 +1,13 @@
 <div
     id="comment-{{ $comment->id }}"
     class="comments-group"
-    x-data="{ confirmDelete: false }"
+    x-data="{ confirmDelete: false, urlCopied: false }"
+    x-effect="
+        if (urlCopied) {
+            window.navigator.clipboard.writeText(window.location.href.split('#')[0] + '#comment-{{ $comment->id }}');
+            window.setTimeout(() => urlCopied = false, 2000);
+        }
+    "
 >
     <div class="comments-comment">
         @if($showAvatar)
@@ -16,46 +22,27 @@
                 @else
                     {{ $comment->commentatorProperties()->name }}
                 @endif
-                <span class="comments-comment-header-divider">&bull;</span>
-                <a href="#comment-{{ $comment->id }}">
-                    <x-comments::date :date="$comment->created_at"/>
-                </a>
-                @unless($isEditing)
-                    @if($writable)
-                        <x-comments::dropdown>
-                            @can('update', $comment)
-                                <x-comments::dropdown.item
-                                    wire:click="startEditing"
-                                >
-                                    {{  __('comments::comments.edit') }}
-                                </x-comments::dropdown.item>
-                            @endcan
-                            <x-comments::dropdown.item
-                                @click="closeDropdown(); navigator.clipboard.writeText(window.location.href.split('#')[0] + '#comment-{{ $comment->id }}')"
-                            >
-                                {{  __('comments::comments.copy_link') }}
-                            </x-comments::dropdown.item>
-                            @can('delete', $comment)
-                                <x-comments::dropdown.item class="danger"
-                                                           @click="confirmDelete = true; dropdownOpen = false"
-                                >
-                                    {{ __('comments::comments.delete') }}
-                                </x-comments::dropdown.item>
-                            @endcan
-                            @include('comments::extraCommentHeaderMenuItems')
-                        </x-comments::dropdown>
-                        <x-comments::modal
-                            x-show="confirmDelete"
-                            @click.outside="confirmDelete = false"
-                            :title="__('comments::comments.delete_confirmation_title')"
+                <ul class="comments-comment-header-actions">
+                    <li>
+                        <a
+                            href="#comment-{{ $comment->id }}"
+                            @click.prevent="urlCopied = true"
                         >
-                            <p>{{ __('comments::comments.delete_confirmation_text') }}</p>
-                            <x-comments::button danger small wire:click="deleteComment">
-                                {{ __('comments::comments.delete') }}
-                            </x-comments::button>
-                        </x-comments::modal>
-                    @endif
-                @endunless
+                            <x-comments::date :date="$comment->created_at" />
+                            <span x-show="urlCopied">(copied to clipboard)</span>
+                        </a>
+                    </li>
+                    @can('update', $comment)
+                        <li>
+                            <a href="#" wire:click.prevent="startEditing" aria-role="button">Edit</a>
+                        </li>
+                    @endcan
+                    @can('delete', $comment)
+                        <li>
+                            <a href="#" @click.prevent="confirmDelete = true" aria-role="button">Delete</a>
+                        </li>
+                    @endcan
+                </ul>
             </div>
             @if($comment->isPending())
                 <div class="comments-info-message">
@@ -152,7 +139,7 @@
         </div>
     </div>
     @if($showReplies)
-        @if($comment->isTopLevel())
+        @if($comment->isTopLevel() && $comment->nestedComments->isNotEmpty())
             <div class="comments-nested">
                 @if($this->newestFirst)
                     @auth
@@ -178,4 +165,16 @@
             </div>
         @endif
     @endif
+    @can('delete', $comment)
+        <x-comments::modal
+            x-show="confirmDelete"
+            @click.outside="confirmDelete = false"
+            :title="__('comments::comments.delete_confirmation_title')"
+        >
+            <p>{{ __('comments::comments.delete_confirmation_text') }}</p>
+            <x-comments::button danger small wire:click="deleteComment">
+                {{ __('comments::comments.delete') }}
+            </x-comments::button>
+        </x-comments::modal>
+    @endcan
 </div>
