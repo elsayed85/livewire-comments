@@ -39,8 +39,8 @@
                             return;
                         }
 
-                        this.loadSimpleMDE().then(() => {
-                            editor = new window.SimpleMDE({
+                        this.loadEasyMDE().then(() => {
+                            editor = new window.EasyMDE({
                                 element: textarea,
                                 hideIcons: [
                                     "heading",
@@ -52,6 +52,9 @@
                                 ],
                                 spellChecker: false,
                                 status: false,
+                                insertTexts: {
+                                    link: ["[",  "](https://)"],
+                                },
                             });
 
                             editor.value(this.text);
@@ -71,14 +74,14 @@
                         editor.value("");
                     },
 
-                    loadSimpleMDE() {
-                        if (window.SimpleMDE) {
+                    loadEasyMDE() {
+                        if (window.EasyMDE) {
                             return Promise.resolve();
                         }
 
                         const loadScript = new Promise((resolve) => {
                             const script = document.createElement("script");
-                            script.src = "https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js";
+                            script.src = "https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js";
                             script.addEventListener("load", resolve);
                             document.getElementsByTagName("head")[0].appendChild(script);
                         });
@@ -87,7 +90,7 @@
                             const link = document.createElement("link");
                             link.type = "text/css";
                             link.rel = "stylesheet";
-                            link.href = "https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css";
+                            link.href = "https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css";
                             link.addEventListener("load", resolve);
                             document.getElementsByTagName("head")[0].appendChild(link);
                         });
