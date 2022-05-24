@@ -10,7 +10,8 @@
     --comments-color-background: white;
     --comments-color-background-nested: white;
     --comments-color-background-paper: rgb(251, 251, 251);
-    --comments-color-background-info: rgba(67, 56, 202, 0.075);
+    --comments-color-background-info: rgb(237, 235, 252);
+    --comments-color-background-highlight: rgb(255, 255, 237);
 
     --comments-color-reaction: rgb(242, 242, 242);
     --comments-color-reaction-hover: rgb(229, 231, 235);
@@ -216,6 +217,36 @@
     position: relative;
     padding-bottom: var(--comments-spacing);
     margin-bottom: var(--comments-spacing);
+}
+
+.comments-group:target {
+    margin-top: calc(-1 * var(--comments-spacing));
+    margin-left: calc(-0.5 * var(--comments-spacing));
+    margin-right: calc(-0.5 * var(--comments-spacing));
+    padding-top: var(--comments-spacing);
+    padding-left: calc(0.5 * var(--comments-spacing));
+    padding-right: calc(0.5 * var(--comments-spacing));
+    animation: highlight 2s ease-in-out;
+}
+
+@keyframes highlight {
+    0% {
+        transform: scale(1);
+        background-color: var(--comments-color-background-highlight);
+    }
+    5% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scale(1.035);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1);
+        background-color: transparent;
+    }
 }
 
 .comments-group:after {
