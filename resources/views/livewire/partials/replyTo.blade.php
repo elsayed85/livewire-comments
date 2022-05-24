@@ -1,5 +1,5 @@
 @if($writable)
-    <div class="comments-form">
+    <div class="comments-form comments-reply">
         @if($showAvatar)
             <x-comments::avatar/>
         @endif

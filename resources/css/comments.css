@@ -364,6 +364,10 @@
     background-color: rgba(67, 56, 202, 0.5);
 }
 
+.comments-reply {
+    margin-top: calc(var(--comments-spacing) * 0.66);
+}
+
 .comments-subscription {
     margin-left: auto;
     font-size: 0.8rem;
