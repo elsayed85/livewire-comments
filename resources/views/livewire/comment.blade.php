@@ -28,8 +28,10 @@
                             href="#comment-{{ $comment->id }}"
                             @click.prevent="urlCopied = true"
                         >
-                            <x-comments::date :date="$comment->created_at"/>
-                            <span x-show="urlCopied">(copied to clipboard)</span>
+                            <x-comments::date :date="$comment->created_at" />
+                            <span class="comments-comment-header-copied" x-show="urlCopied">
+                                ✓ Copied!
+                            </span>
                         </a>
                     </li>
                     @if($writable)
@@ -48,23 +50,27 @@
                 </ul>
             </div>
             @if($comment->isPending())
-                <div class="comments-info-message">
-                    This is a pending comment that is awaiting approval
+                <div class="comments-approval">
+                    <span>
+                        This is a pending comment that is awaiting approval
+                    </span>
+                    <span class="comments-approval-buttons">
+                        @can('reject', $comment)
+                            <button
+                                class="comments-button is-small is-danger"
+                                wire:click="reject">
+                                Reject
+                            </button>
+                        @endcan
+                        @can('approve', $comment)
+                            <button
+                                class="comments-button is-small"
+                                wire:click="approve">
+                                Approve
+                            </button>
+                        @endcan
+                    </span>
                 </div>
-                @can('reject', $comment)
-                    <button
-                        class="comments-button is-small is-danger"
-                        wire:click="reject">
-                        Reject
-                    </button>
-                @endcan
-                @can('approve', $comment)
-                    <button
-                        class="comments-button is-small is-success"
-                        wire:click="approve">
-                        Approve
-                    </button>
-                @endcan
             @endif
             @if($isEditing)
                 <div class="comments-form">

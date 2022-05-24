@@ -12,6 +12,10 @@
     <div wire:ignore>
         <textarea placeholder="{{ $placeholder ?? '' }}"></textarea>
     </div>
+    
+    <div class="comments-form-editor-tip">
+        You can use <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" rel="nofollow noopener noreferrer">Markdown</a>
+    </div>
 </div>
 
 @push('comments-scripts')

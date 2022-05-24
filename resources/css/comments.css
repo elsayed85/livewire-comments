@@ -2,7 +2,7 @@
     --comments-spacing: 2.5rem;
     --comments-avatar-size: 2.5rem;
     --comments-avatar-margin: 0.75rem;
-    --comments-border-radius: 0.375rem;
+    --comments-border-radius: 0.3rem;
     --comments-z-dropdown: 2;
     --comments-z-modal: 3;
 
@@ -52,7 +52,8 @@
     border-radius: var(--comments-border-radius);
     color: var(--comments-color-text-inverse);
     background-color: var(--comments-color-accent);
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.75rem;
+    font-weight: 500;
 }
 
 .comments-button:hover {
@@ -60,7 +61,7 @@
 }
 
 .comments-button.is-small {
-    padding: 0.25rem 0.5rem;
+    padding: 0.1rem 0.5rem;
 }
 
 .comments-button.is-link {
@@ -120,6 +121,7 @@
 
 .comments-comment-header-actions li {
     display: flex;
+    position: relative;
 }
 
 .comments-comment-header-actions li:not(:first-child):before {
@@ -130,6 +132,15 @@
 .comments-comment-header-actions a:hover,
 .comments-comment-header-actions button:hover {
     text-decoration: underline;
+}
+
+.comments-comment-header-copied {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    color: var(--comments-color-success);
 }
 
 .comments-comment-header .comments-dropdown-trigger {
@@ -199,6 +210,7 @@
 
 .comments-form {
     display: flex;
+    position: relative;
 }
 
 .comments-form-inner {
@@ -207,6 +219,18 @@
 
 .comments-form-inner button {
     margin-top: 0.5rem;
+}
+
+.comments-form-editor-tip {
+
+    color: var(--comments-color-text-dimmed);
+    font-size: 0.75rem;
+    padding: 0.25rem 0;
+    text-align: right;
+}
+
+.comments-form-editor-tip a {
+    text-decoration: underline;
 }
 
 .comments-newest-first > .comments-form {
@@ -285,12 +309,22 @@
     stroke: var(--comments-color-text);
 }
 
-.comments-info-message {
+.comments-approval {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
     background-color: var( --comments-color-background-info);
     border-radius: var(--comments-border-radius);
     padding: 0.5rem;
     font-size: 0.8rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.comments-approval-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 .comments-modal {
