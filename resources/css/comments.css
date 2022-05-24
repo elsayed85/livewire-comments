@@ -11,7 +11,6 @@
     --comments-color-background-nested: white;
     --comments-color-background-paper: rgb(251, 251, 251);
     --comments-color-background-info: rgb(237, 235, 252);
-    --comments-color-background-highlight: rgb(255, 255, 237);
 
     --comments-color-reaction: rgb(242, 242, 242);
     --comments-color-reaction-hover: rgb(229, 231, 235);
@@ -252,26 +251,26 @@
     padding-top: var(--comments-spacing);
     padding-left: calc(0.5 * var(--comments-spacing));
     padding-right: calc(0.5 * var(--comments-spacing));
-    animation: highlight 2s ease-in-out;
+    animation: highlight 1.5s ease-in-out;
+    border: solid 1px var(--comments-color-accent);
+    border-radius: var(--comments-border-radius);
 }
 
 @keyframes highlight {
     0% {
         transform: scale(1);
-        background-color: var(--comments-color-background-highlight);
     }
     5% {
         transform: scale(1);
     }
     15% {
-        transform: scale(1.035);
+        transform: scaleX(1.015);
     }
     50% {
         transform: scale(1);
     }
     100% {
         transform: scale(1);
-        background-color: transparent;
     }
 }
 
