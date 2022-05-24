@@ -90,52 +90,54 @@
                 <div class="comment-text">
                     {!! $comment->text !!}
                 </div>
-                <div class="comments-reactions">
-                    @foreach($comment->reactions->summary() as $summary)
-                        <div
-                            wire:key="{{ $comment->id }}{{$summary['reaction']}}"
-                            @auth
-                            wire:click="toggleReaction('{{ $summary['reaction'] }}')"
-                            @endauth
-                            @class(['comments-reaction', 'is-reacted' => $summary['commentator_reacted']])
-                        >
-                            {{ $summary['reaction'] }} {{ $summary['count'] }}
-                        </div>
-                    @endforeach
-                    @if($writable)
-                        <div
-                            x-cloak
-                            x-data="{ open: false }"
-                            @click.outside="open = false"
-                            class="comments-reaction-picker"
-                        >
-                            @can('react', $comment)
-                                <button class="comments-reaction-picker-trigger" type="button" @click="open = !open">
-                                    <x-comments::icons.smile/>
-                                </button>
-                                <x-comments::modal x-show="open" compact left>
-                                    <div class="comments-reaction-picker-reactions">
-                                        @foreach(config('comments.allowed_reactions') as $reaction)
-                                            @php
-                                                $commentatorReacted = ! is_bool(array_search(
-                                                    $reaction,
-                                                    array_column($comment->reactions()->get()->toArray(), 'reaction'),
-                                                ));
-                                            @endphp
-                                            <button
-                                                type="button"
-                                                @class(['comments-reaction-picker-reaction', 'is-reacted' => $commentatorReacted])
-                                                wire:click="toggleReaction('{{ $reaction }}')"
-                                            >
-                                                {{ $reaction }}
-                                            </button>
-                                        @endforeach
-                                    </div>
-                                </x-comments::modal>
-                            @endcan
-                        </div>
-                    @endif
-                </div>
+                @if($writable || $comment->reactions->summary()->isNotEmpty())
+                    <div class="comments-reactions">
+                        @foreach($comment->reactions->summary() as $summary)
+                            <div
+                                wire:key="{{ $comment->id }}{{$summary['reaction']}}"
+                                @auth
+                                wire:click="toggleReaction('{{ $summary['reaction'] }}')"
+                                @endauth
+                                @class(['comments-reaction', 'is-reacted' => $summary['commentator_reacted']])
+                            >
+                                {{ $summary['reaction'] }} {{ $summary['count'] }}
+                            </div>
+                        @endforeach
+                        @if($writable)
+                            <div
+                                x-cloak
+                                x-data="{ open: false }"
+                                @click.outside="open = false"
+                                class="comments-reaction-picker"
+                            >
+                                @can('react', $comment)
+                                    <button class="comments-reaction-picker-trigger" type="button" @click="open = !open">
+                                        <x-comments::icons.smile/>
+                                    </button>
+                                    <x-comments::modal x-show="open" compact left>
+                                        <div class="comments-reaction-picker-reactions">
+                                            @foreach(config('comments.allowed_reactions') as $reaction)
+                                                @php
+                                                    $commentatorReacted = ! is_bool(array_search(
+                                                        $reaction,
+                                                        array_column($comment->reactions()->get()->toArray(), 'reaction'),
+                                                    ));
+                                                @endphp
+                                                <button
+                                                    type="button"
+                                                    @class(['comments-reaction-picker-reaction', 'is-reacted' => $commentatorReacted])
+                                                    wire:click="toggleReaction('{{ $reaction }}')"
+                                                >
+                                                    {{ $reaction }}
+                                                </button>
+                                            @endforeach
+                                        </div>
+                                    </x-comments::modal>
+                                @endcan
+                            </div>
+                        @endif
+                    </div>
+                @endif
             @endif
         </div>
     </div>
