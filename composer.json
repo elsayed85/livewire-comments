@@ -15,16 +15,17 @@
             "role": "Developer"
         }
     ],
-    "repositories": [{
-        "type": "path",
-        "url": "../laravel-comments"
-    }
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://satis.spatie.be"
+        }
     ],
     "require": {
         "php": "^8.1",
         "illuminate/contracts": "^9.0",
         "livewire/livewire": "^2.8",
-        "spatie/laravel-comments": "dev-main",
+        "spatie/laravel-comments": "^1.0",
         "spatie/laravel-package-tools": "^1.10.0"
     },
     "require-dev": {
