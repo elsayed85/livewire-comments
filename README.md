@@ -2,11 +2,7 @@
 
 [![run-tests](https://github.com/spatie/laravel-comments-livewire/actions/workflows/run-tests.yml/badge.svg)](https://github.com/spatie/laravel-comments-livewire/actions/workflows/run-tests.yml)
 
-This package contains Livewire components to be used with [the spatie/laravel-comments package](https://spatie.be/docs/laravel-comments).
-
-## Documentation
-
-All documentation is available [on our documentation site](https://spatie.be/docs/laravel-comments).
+Welcome to Laravel Comments. All documentation is available [on our documentation site](https://spatie.be/docs/laravel-comments).
 
 ## Testing
 
