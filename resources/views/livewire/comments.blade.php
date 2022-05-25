@@ -9,8 +9,7 @@
                 @if($showNotificationOptions)
                     <div x-data="{ subscriptionsOpen: false}" class="comments-subscription">
                         <button @click.prevent="subscriptionsOpen = true" class="comments-subscription-trigger">
-                            Send notifications:
-                            <span class="comments-subscription-current">{{ $selectedNotificationSubscriptionType }}</span>
+                            {{ NotificationSubscriptionType::from($selectedNotificationSubscriptionType)->longDescription() }}
                         </button>                            
                         <x-comments::modal
                                 bottom

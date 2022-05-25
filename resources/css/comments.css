@@ -429,14 +429,11 @@
     padding: 0.25rem 0.5rem;
     border-radius: var(--comments-border-radius);
     background-color: var(--comments-color-reaction);
+    font-weight: 600;
 }
 
 .comments-subscription-trigger:hover {
     background-color: var(--comments-color-reaction-hover);
-}
-
-.comments-subscription-current {
-    font-weight: 600;
 }
 
 .comments-subscription-item {
