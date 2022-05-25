@@ -15,6 +15,7 @@
                 <input
                     x-show="!isExpanded"
                     @click="isExpanded = true"
+                    @focus="isExpanded = true"
                     class="comments-placeholder"
                     placeholder="{{ __('comments::comments.write_reply') }}"
                 >
