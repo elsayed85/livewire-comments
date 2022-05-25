@@ -8,13 +8,13 @@
     /* colors */
     --comments-color-background: white;
     --comments-color-background-nested: white;
-    --comments-color-background-paper: rgb(251, 251, 251);
+    --comments-color-background-paper: rgb(249, 250, 251);
     --comments-color-background-info: rgb(237, 235, 252);
 
-    --comments-color-reaction: rgb(242, 242, 242);
+    --comments-color-reaction: rgb(238, 239, 240);
     --comments-color-reaction-hover: rgb(229, 231, 235);
-    --comments-color-reacted: rgba(67, 56, 202, 0.25);
-    --comments-color-reacted-hover: rgba(67, 56, 202, 0.5);
+    --comments-color-reacted: rgba(67, 56, 202, 0.2);
+    --comments-color-reacted-hover: rgba(67, 56, 202, 0.35);
 
     --comments-color-border: rgb(221, 221, 221);
     
@@ -401,7 +401,7 @@
 }
 
 .comments-reaction-picker-reaction:hover {
-    background-color: var(--comments-color-reaction-hover);
+    background-color: var(--comments-color-reaction);
 }
 
 .comments-reaction-picker-reaction.is-reacted {
@@ -551,6 +551,31 @@
     min-height: 10rem;
 }
 
-.CodeMirror-scroll, .CodeMirror{
+
+/* EasyMDE buttons */
+.comments .CodeMirror {
+    border-color: var(--comments-color-border);
+}
+
+.comments .CodeMirror-scroll, .CodeMirror{
     min-height: 10rem !important;
+}
+
+.comments .editor-toolbar {
+    border-color: var(--comments-color-border);
+    padding: 0.35rem;
+}
+
+.comments .editor-toolbar .separator {
+    border-left-color: var(--comments-color-border);
+}
+
+.comments .editor-toolbar button:hover {
+    background-color: var(--comments-color-reaction);
+    border: none;
+}
+
+.comments .editor-toolbar button.active {
+    background-color: var(--comments-color-reaction-hover);
+    border: none;
 }
