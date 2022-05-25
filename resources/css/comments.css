@@ -23,13 +23,13 @@
     --comments-color-text-inverse: white;
     
     --comments-color-accent: rgba(67, 56, 202);
-    --comments-color-accent-hover: rgba(67, 56, 202, 0.75);
+    --comments-color-accent-hover: rgba(67, 56, 202, 0.8);
 
     --comments-color-danger: rgb(225, 29, 72);
-    --comments-color-danger-hover: rgb(225, 29, 72, 0.75);
+    --comments-color-danger-hover: rgb(225, 29, 72, 0.8);
 
     --comments-color-success: rgb(10, 200, 134);
-    --comments-color-success-hover: rgb(10, 200, 134, 0.75);
+    --comments-color-success-hover: rgb(10, 200, 134, 0.8);
 
     --comments-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
@@ -53,6 +53,7 @@
     padding: 0.25rem 0.75rem;
     font-weight: 500;
     line-height: 1.35;
+    transition: background 150ms;
 }
 
 .comments-button:hover {
@@ -353,6 +354,7 @@
     padding: 0 0.5rem;
     height: 1.5rem;
     font-size: 0.8rem;
+    transition: background 150ms;
 }
 
 .comments-reaction:hover {
@@ -381,6 +383,7 @@
     cursor: pointer;
     border-radius: var(--comments-border-radius);
     background-color: var(--comments-color-reaction);
+    transition: background 150ms;
 }
 
 .comments-reaction-picker-trigger:hover {
@@ -398,6 +401,7 @@
     padding: 0 0.25rem;
     border-radius: var(--comments-border-radius);
     cursor: pointer;
+    transition: background 150ms;
 }
 
 .comments-reaction-picker-reaction:hover {
@@ -430,6 +434,7 @@
     border-radius: var(--comments-border-radius);
     background-color: var(--comments-color-reaction);
     font-weight: 600;
+    transition: background 150ms;
 }
 
 .comments-subscription-trigger:hover {
@@ -448,6 +453,7 @@
     text-align: left;
     white-space: nowrap;
     border-radius: var(--comments-border-radius);
+    transition: background 150ms;
 }
 
 .comments-subscription-item:hover {
@@ -570,12 +576,14 @@
     border-left-color: var(--comments-color-border);
 }
 
+.comments .editor-toolbar button {
+    border: none;
+    transition: background 150ms;
+}
 .comments .editor-toolbar button:hover {
     background-color: var(--comments-color-reaction);
-    border: none;
 }
 
 .comments .editor-toolbar button.active {
     background-color: var(--comments-color-reaction-hover);
-    border: none;
 }
