@@ -14,7 +14,7 @@
     </div>
     
     <div class="comments-form-editor-tip">
-        You can use <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank" rel="nofollow noopener noreferrer">Markdown</a>
+        You can use <a href="https://spatie.be/markdown" target="_blank" rel="nofollow noopener noreferrer">Markdown</a>
     </div>
 </div>
 
