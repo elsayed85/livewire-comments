@@ -7,21 +7,23 @@
         @if($writable)
             @auth
                 @if($showNotificationOptions)
-                    <div class="comments-subscription">
-                        <x-comments::dropdown>
-                            <x-slot name="trigger">
-                                <span class="comments-subscription-trigger">
-                                    Send notifications:
-                                    <span class="comments-subscription-current">{{ $selectedNotificationSubscriptionType }}</span>
-                                </span>
-                            </x-slot>
-
+                    <div x-data="{ subscriptionsOpen: false}" class="comments-subscription">
+                        <button @click.prevent="subscriptionsOpen = true" class="comments-subscription-trigger">
+                            Send notifications:
+                            <span class="comments-subscription-current">{{ $selectedNotificationSubscriptionType }}</span>
+                        </button>                            
+                        <x-comments::modal
+                                bottom
+                                compact
+                                x-show="subscriptionsOpen"
+                                @click.outside="subscriptionsOpen = false"
+                            >
                             @foreach(NotificationSubscriptionType::cases() as $case)
-                                <x-comments::dropdown.item @click="dropdownOpen = false" wire:click="updateSelectedNotificationSubscriptionType('{{ $case->value }}')">
+                                <button class="comments-subscription-item" @click="subscriptionsOpen = false" wire:click="updateSelectedNotificationSubscriptionType('{{ $case->value }}')">
                                     {{ $case->description() }}
-                                </x-comments::dropdown.item>
+                                </button>
                             @endforeach
-                        </x-comments::dropdown>
+                        </x-comments::modal>
                     </div>
                 @endif
             @endif
