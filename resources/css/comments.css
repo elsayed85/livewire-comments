@@ -8,13 +8,13 @@
     /* colors */
     --comments-color-background: white;
     --comments-color-background-nested: white;
-    --comments-color-background-paper: rgb(251, 251, 251);
+    --comments-color-background-paper: rgb(249, 250, 251);
     --comments-color-background-info: rgb(237, 235, 252);
 
-    --comments-color-reaction: rgb(242, 242, 242);
+    --comments-color-reaction: rgb(238, 239, 240);
     --comments-color-reaction-hover: rgb(229, 231, 235);
-    --comments-color-reacted: rgba(67, 56, 202, 0.25);
-    --comments-color-reacted-hover: rgba(67, 56, 202, 0.5);
+    --comments-color-reacted: rgba(67, 56, 202, 0.2);
+    --comments-color-reacted-hover: rgba(67, 56, 202, 0.35);
 
     --comments-color-border: rgb(221, 221, 221);
     
@@ -23,13 +23,13 @@
     --comments-color-text-inverse: white;
     
     --comments-color-accent: rgba(67, 56, 202);
-    --comments-color-accent-hover: rgba(67, 56, 202, 0.75);
+    --comments-color-accent-hover: rgba(67, 56, 202, 0.8);
 
     --comments-color-danger: rgb(225, 29, 72);
-    --comments-color-danger-hover: rgb(225, 29, 72, 0.75);
+    --comments-color-danger-hover: rgb(225, 29, 72, 0.8);
 
     --comments-color-success: rgb(10, 200, 134);
-    --comments-color-success-hover: rgb(10, 200, 134, 0.75);
+    --comments-color-success-hover: rgb(10, 200, 134, 0.8);
 
     --comments-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
@@ -53,6 +53,7 @@
     padding: 0.25rem 0.75rem;
     font-weight: 500;
     line-height: 1.35;
+    transition: background 150ms;
 }
 
 .comments-button:hover {
@@ -353,6 +354,7 @@
     padding: 0 0.5rem;
     height: 1.5rem;
     font-size: 0.8rem;
+    transition: background 150ms;
 }
 
 .comments-reaction:hover {
@@ -381,6 +383,7 @@
     cursor: pointer;
     border-radius: var(--comments-border-radius);
     background-color: var(--comments-color-reaction);
+    transition: background 150ms;
 }
 
 .comments-reaction-picker-trigger:hover {
@@ -398,10 +401,11 @@
     padding: 0 0.25rem;
     border-radius: var(--comments-border-radius);
     cursor: pointer;
+    transition: background 150ms;
 }
 
 .comments-reaction-picker-reaction:hover {
-    background-color: var(--comments-color-reaction-hover);
+    background-color: var(--comments-color-reaction);
 }
 
 .comments-reaction-picker-reaction.is-reacted {
@@ -430,6 +434,7 @@
     border-radius: var(--comments-border-radius);
     background-color: var(--comments-color-reaction);
     font-weight: 600;
+    transition: background 150ms;
 }
 
 .comments-subscription-trigger:hover {
@@ -448,6 +453,7 @@
     text-align: left;
     white-space: nowrap;
     border-radius: var(--comments-border-radius);
+    transition: background 150ms;
 }
 
 .comments-subscription-item:hover {
@@ -551,6 +557,33 @@
     min-height: 10rem;
 }
 
-.CodeMirror-scroll, .CodeMirror{
+
+/* EasyMDE buttons */
+.comments .CodeMirror {
+    border-color: var(--comments-color-border);
+}
+
+.comments .CodeMirror-scroll, .CodeMirror{
     min-height: 10rem !important;
+}
+
+.comments .editor-toolbar {
+    border-color: var(--comments-color-border);
+    padding: 0.35rem;
+}
+
+.comments .editor-toolbar .separator {
+    border-left-color: var(--comments-color-border);
+}
+
+.comments .editor-toolbar button {
+    border: none;
+    transition: background 150ms;
+}
+.comments .editor-toolbar button:hover {
+    background-color: var(--comments-color-reaction);
+}
+
+.comments .editor-toolbar button.active {
+    background-color: var(--comments-color-reaction-hover);
 }
