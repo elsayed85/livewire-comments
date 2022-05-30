@@ -141,7 +141,7 @@
                                                 @php
                                                     $commentatorReacted = ! is_bool(array_search(
                                                         $reaction,
-                                                        array_column($comment->reactions()->get()->toArray(), 'reaction'),
+                                                        array_column($comment->reactions->toArray(), 'reaction'),
                                                     ));
                                                 @endphp
                                                 <button
