@@ -105,7 +105,8 @@ class CommentsComponent extends Component
 
         $currentUser->subscribeToCommentNotifications(
             $this->model,
-            NotificationSubscriptionType::from($this->selectedNotificationSubscriptionType));
+            NotificationSubscriptionType::from($this->selectedNotificationSubscriptionType)
+        );
     }
 
     public function render()
