@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-comments` will be documented in this file.
 
+## 1.0.2 - 2022-05-31
+
+- improve support for anonymous comments
+
+**Full Changelog**: https://github.com/spatie/laravel-comments-livewire/compare/1.0.1...1.0.2
+
 ## 1.0.1 - 2022-05-30
 
 - fix n+1 error
