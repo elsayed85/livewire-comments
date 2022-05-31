@@ -1,5 +1,5 @@
 @php
-    $defaultAvatar = 'default.png';
+    $defaultAvatar = 'https://www.gravatar.com/avatar/unknown?d=mp';
 
     if ($user = auth()->user()) {
         $segment = md5(strtolower($user->email));
@@ -9,8 +9,6 @@
 
 <img
     class="comments-avatar"
-    src="{{ isset($comment) ? $comment->commentatorProperties()->avatar : $defaultAvatar }}"
+    src="{{ isset($comment) &&  $comment->commentatorProperties() ? $comment->commentatorProperties()->avatar : $defaultAvatar }}"
     alt="avatar"
 >
-
-

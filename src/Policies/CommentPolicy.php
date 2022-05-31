@@ -55,7 +55,7 @@ class CommentPolicy
      *
      * @return bool
      */
-    public function react(?CanComment $user, Model $commentableModel): bool
+    public function react(CanComment $user, Model $commentableModel): bool
     {
         return true;
     }

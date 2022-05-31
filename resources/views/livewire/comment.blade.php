@@ -15,12 +15,12 @@
         @endif
         <div class="comments-comment-inner">
             <div class="comments-comment-header">
-                @if($url = $comment->commentatorProperties()->url)
+                @if($url = $comment->commentatorProperties()?->url)
                     <a href="{{ $url }}">
                         {{ $comment->commentatorProperties()->name }}
                     </a>
                 @else
-                    {{ $comment->commentatorProperties()->name }}
+                    {{ $comment->commentatorProperties()?->name ?? 'Guest' }}
                 @endif
                 <ul class="comments-comment-header-actions">
                     <li>

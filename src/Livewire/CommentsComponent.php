@@ -91,6 +91,10 @@ class CommentsComponent extends Component
         /** @var \Spatie\Comments\Models\Concerns\Interfaces\CanComment $currentUser */
         $currentUser = auth()->user();
 
+        if (! $currentUser) {
+            return;
+        }
+
         $type = NotificationSubscriptionType::from($this->selectedNotificationSubscriptionType);
 
         if ($type === NotificationSubscriptionType::None) {
@@ -99,7 +103,9 @@ class CommentsComponent extends Component
             return;
         }
 
-        $currentUser->subscribeToCommentNotifications($this->model, NotificationSubscriptionType::from($this->selectedNotificationSubscriptionType));
+        $currentUser->subscribeToCommentNotifications(
+            $this->model,
+            NotificationSubscriptionType::from($this->selectedNotificationSubscriptionType));
     }
 
     public function render()

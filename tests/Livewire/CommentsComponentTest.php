@@ -106,3 +106,15 @@ it('can display a custom text when there are no comments', function () {
         ->assertSuccessful()
         ->assertSee('my custom text');
 });
+
+it('can allow guests to post comments', function() {
+   config()->set('comments.allow_anonymous_comments', true);
+
+    Livewire::test(CommentsComponent::class, ['model' => $this->post])
+        ->assertSuccessful()
+        ->set('text', 'my new comment')
+        ->call('comment')
+        ->assertSee('Guest');
+
+    expect($this->post->comments->first()->original_text)->toBe('my new comment');
+});
