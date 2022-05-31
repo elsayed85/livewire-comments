@@ -28,7 +28,7 @@
                             href="#comment-{{ $comment->id }}"
                             @click.prevent="urlCopied = true"
                         >
-                            <x-comments::date :date="$comment->created_at" />
+                            <x-comments::date :date="$comment->created_at"/>
                             <span class="comments-comment-header-copied" x-show="urlCopied">
                                 ✓ Copied!
                             </span>
@@ -162,13 +162,17 @@
             @endif
         </div>
     </div>
+
     @if($showReplies)
+
         @if($comment->isTopLevel())
+
             <div class="comments-nested">
                 @if($this->newestFirst)
-                    @auth
+                    @if(auth()->check() || config('comments.allow_anonymous_comments'))
                         @include('comments::livewire.partials.replyTo')
-                    @endauth
+                    @endif
+
                 @endif
                 @foreach ($comment->nestedComments as $nestedComment)
                     @can('see', $nestedComment)
@@ -182,9 +186,9 @@
                     @endcan
                 @endforeach
                 @if(! $this->newestFirst)
-                    @auth
+                    @if(auth()->check() || config('comments.allow_anonymous_comments'))
                         @include('comments::livewire.partials.replyTo')
-                    @endauth
+                    @endif
                 @endif
             </div>
         @endif
