@@ -46,7 +46,11 @@
                 />
             @endcan
         @endforeach
-        {{ $comments->links() }}
+        
+        @if ($comments->hasPages())
+            {{ $comments->links() }}
+        @endif
+        
     @else
         <p class="comments-no-comment-yet">{{ $noCommentsText ?? __('comments::comments.no_comments_yet') }}</p>
     @endif
