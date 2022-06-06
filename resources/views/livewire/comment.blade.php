@@ -64,21 +64,21 @@
             @if($comment->isPending())
                 <div class="comments-approval">
                     <span>
-                        This is a pending comment that is awaiting approval
+                        {{ __('This is a pending comment that is awaiting approval') }}
                     </span>
                     <span class="comments-approval-buttons">
                         @can('reject', $comment)
                             <button
                                 class="comments-button is-small is-danger"
                                 wire:click="reject">
-                                Reject
+                                {{ __('Reject') }}
                             </button>
                         @endcan
                         @can('approve', $comment)
                             <button
                                 class="comments-button is-small"
                                 wire:click="approve">
-                                Approve
+                                {{ __('Approve') }}
                             </button>
                         @endcan
                     </span>

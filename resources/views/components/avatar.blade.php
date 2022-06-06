@@ -7,8 +7,10 @@
     }
 @endphp
 
-<img
-    class="comments-avatar"
-    src="{{ isset($comment) &&  $comment->commentatorProperties() ? $comment->commentatorProperties()->avatar : $defaultAvatar }}"
-    alt="avatar"
->
+<a @if(config('comments.avatar_route')) href="{{ route(config('comments.avatar_route'), $comment->commentator) }}" @endif>
+    <img
+        class="comments-avatar"
+        src="{{ isset($comment) &&  $comment->commentatorProperties() ? $comment->commentatorProperties()->avatar : $defaultAvatar }}"
+        alt="avatar"
+    >
+</a>
