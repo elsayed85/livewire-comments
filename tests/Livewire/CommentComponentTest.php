@@ -2,7 +2,7 @@
 
 use Livewire\Livewire;
 use Spatie\Comments\Models\Comment;
-use Spatie\LivewireComments\Livewire\CommentComponent;
+use DanPalmieri\LivewireComments\Livewire\CommentComponent;
 
 it('can mount the render the comment component', function () {
     $comment = Comment::factory()->create();

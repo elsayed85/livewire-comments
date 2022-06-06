@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\LivewireComments\Database\Factories;
+namespace DanPalmieri\LivewireComments\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Spatie\LivewireComments\Tests\Support\Models\Post;
+use DanPalmieri\LivewireComments\Tests\Support\Models\Post;
 
 class PostFactory extends Factory
 {

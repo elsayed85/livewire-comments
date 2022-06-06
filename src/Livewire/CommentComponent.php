@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\LivewireComments\Livewire;
+namespace DanPalmieri\LivewireComments\Livewire;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;

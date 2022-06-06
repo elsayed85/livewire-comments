@@ -6,7 +6,7 @@
             @endif
             <form class="comments-form-inner" wire:submit.prevent="comment">
                 <x-dynamic-component
-                    :component="\Spatie\LivewireComments\Support\Config::editor()"
+                    :component="\DanPalmieri\LivewireComments\Support\Config::editor()"
                     model="text"
                     :placeholder="__('comments::comments.write_comment')"
                 />

@@ -1,9 +1,9 @@
 <?php
 
 use Spatie\Comments\Notifications\PendingCommentNotification;
-use Spatie\LivewireComments\Tests\Support\Models\Post;
-use Spatie\LivewireComments\Tests\Support\Models\User;
-use Spatie\LivewireComments\Tests\Support\Policies\DenyCommentCreationPolicy;
+use DanPalmieri\LivewireComments\Tests\Support\Models\Post;
+use DanPalmieri\LivewireComments\Tests\Support\Models\User;
+use DanPalmieri\LivewireComments\Tests\Support\Policies\DenyCommentCreationPolicy;
 
 beforeEach(function () {
     $this->currentUser = login();

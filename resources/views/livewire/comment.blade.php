@@ -88,7 +88,7 @@
                 <div class="comments-form">
                     <form class="comments-form-inner" wire:submit.prevent="edit">
                         <x-dynamic-component
-                            :component="\Spatie\LivewireComments\Support\Config::editor()"
+                            :component="\DanPalmieri\LivewireComments\Support\Config::editor()"
                             model="editText"
                             :comment="$comment"
                             autofocus

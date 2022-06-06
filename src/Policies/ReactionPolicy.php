@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\LivewireComments\Policies;
+namespace DanPalmieri\LivewireComments\Policies;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Comments\Models\Concerns\Interfaces\CanComment;

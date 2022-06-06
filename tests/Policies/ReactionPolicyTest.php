@@ -1,7 +1,7 @@
 <?php
 
-use Spatie\LivewireComments\Tests\Support\Models\Post;
-use Spatie\LivewireComments\Tests\Support\Models\User;
+use DanPalmieri\LivewireComments\Tests\Support\Models\Post;
+use DanPalmieri\LivewireComments\Tests\Support\Models\User;
 
 beforeEach(function () {
     $this->currentUser = login();

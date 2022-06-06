@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\LivewireComments\View\Components;
+namespace DanPalmieri\LivewireComments\View\Components;
 
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;

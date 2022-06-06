@@ -1,13 +1,13 @@
 <?php
 
-namespace Spatie\LivewireComments\Livewire;
+namespace DanPalmieri\LivewireComments\Livewire;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Comments\Enums\NotificationSubscriptionType;
-use Spatie\LivewireComments\Support\Config;
+use DanPalmieri\LivewireComments\Support\Config;
 
 class CommentsComponent extends Component
 {

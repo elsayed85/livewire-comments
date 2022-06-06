@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\LivewireComments\Tests\Support;
+namespace DanPalmieri\LivewireComments\Tests\Support;
 
 use function class_basename;
 use function config;
@@ -11,7 +11,7 @@ use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Comments\CommentsServiceProvider;
 use Spatie\LaravelRay\RayServiceProvider;
-use Spatie\LivewireComments\LivewireCommentsServiceProvider;
+use DanPalmieri\LivewireComments\LivewireCommentsServiceProvider;
 
 class TestCase extends Orchestra
 {

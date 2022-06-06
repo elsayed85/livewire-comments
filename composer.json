@@ -1,17 +1,16 @@
 {
-    "name": "spatie/laravel-comments-livewire",
+    "name": "danpalmieri/livewire-comments",
     "description": "Livewire components for laravel-comments",
     "keywords": [
-        "spatie",
         "laravel",
         "laravel-comments"
     ],
-    "homepage": "https://github.com/spatie/laravel-comments",
+    "homepage": "https://github.com/danpalmieri/livewire-comments",
     "license": "MIT",
     "authors": [
         {
-            "name": "Freek Van der Herten",
-            "email": "freek@spatie.be",
+            "name": "Dan Palmieri",
+            "email": "contato@danpalmieri.com",
             "role": "Developer"
         }
     ],
@@ -43,14 +42,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\LivewireComments\\": "src",
-            "Spatie\\LivewireComments\\Database\\Factories\\": "database/factories"
+            "DanPalmieri\\LivewireComments\\": "src",
+            "DanPalmieri\\LivewireComments\\Database\\Factories\\": "database/factories"
 
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\LivewireComments\\Tests\\": "tests"
+            "DanPalmieri\\LivewireComments\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -71,7 +70,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\LivewireComments\\LivewireCommentsServiceProvider"
+                "DanPalmieri\\LivewireComments\\LivewireCommentsServiceProvider"
             ]
         }
     },

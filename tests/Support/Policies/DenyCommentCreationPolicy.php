@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\LivewireComments\Tests\Support\Policies;
+namespace DanPalmieri\LivewireComments\Tests\Support\Policies;
 
 use Spatie\Comments\Models\Concerns\Interfaces\CanComment;
-use Spatie\LivewireComments\Policies\CommentPolicy;
+use DanPalmieri\LivewireComments\Policies\CommentPolicy;
 
 class DenyCommentCreationPolicy extends CommentPolicy
 {

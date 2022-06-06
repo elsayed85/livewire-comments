@@ -22,7 +22,7 @@
                 <template x-if="isExpanded">
                     <div>
                         <x-dynamic-component
-                            :component="\Spatie\LivewireComments\Support\Config::editor()"
+                            :component="\DanPalmieri\LivewireComments\Support\Config::editor()"
                             model="replyText"
                             :comment="$comment"
                             :placeholder="__('comments::comments.write_reply')"

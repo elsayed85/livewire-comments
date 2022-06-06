@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Spatie\Comments\Models\Comment;
 use Spatie\Comments\Models\Reaction;
-use Spatie\LivewireComments\Tests\Support\Models\User;
-use Spatie\LivewireComments\Tests\Support\TestCase;
+use DanPalmieri\LivewireComments\Tests\Support\Models\User;
+use DanPalmieri\LivewireComments\Tests\Support\TestCase;
 
 uses(TestCase::class)
     ->beforeEach(function () {

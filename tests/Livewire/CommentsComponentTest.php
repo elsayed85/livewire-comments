@@ -3,8 +3,8 @@
 use Livewire\Livewire;
 use Spatie\Comments\Enums\NotificationSubscriptionType;
 use Spatie\Comments\Models\Comment;
-use Spatie\LivewireComments\Livewire\CommentsComponent;
-use Spatie\LivewireComments\Tests\Support\Models\Post;
+use DanPalmieri\LivewireComments\Livewire\CommentsComponent;
+use DanPalmieri\LivewireComments\Tests\Support\Models\Post;
 
 beforeEach(function () {
     $this->post = Post::factory()->create();

@@ -1,11 +1,11 @@
 <?php
 
-namespace Spatie\LivewireComments\Support;
+namespace DanPalmieri\LivewireComments\Support;
 
 use Spatie\Comments\Support\Config as BaseConfig;
-use Spatie\LivewireComments\Policies\CommentPolicy;
+use DanPalmieri\LivewireComments\Policies\CommentPolicy;
 
-use Spatie\LivewireComments\Policies\ReactionPolicy;
+use DanPalmieri\LivewireComments\Policies\ReactionPolicy;
 
 class Config extends BaseConfig
 {
