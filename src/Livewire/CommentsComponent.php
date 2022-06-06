@@ -127,7 +127,7 @@ class CommentsComponent extends Component
                 'nestedComments.reactions.commentator',
             ])
             ->when($this->newestFirst, fn (Builder $builder) => $builder->latest())
-            ->paginate(10000);
+            ->paginate(config('comments.pagination.results', 10000), ['*'], config('comments.pagination.page_name', 'page'));
 
         return view('comments::livewire.comments', [
             'comments' => $comments,
