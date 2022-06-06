@@ -20,7 +20,7 @@
                         {{ $comment->commentatorProperties()->name }}
                     </a>
                 @else
-                    {{ $comment->commentatorProperties()?->name ?? 'Guest' }}
+                    {{ $comment->commentatorProperties()?->name ?? __('Guest') }}
                 @endif
                 <ul class="comments-comment-header-actions">
                     <li>
@@ -30,19 +30,19 @@
                         >
                             <x-comments::date :date="$comment->created_at"/>
                             <span class="comments-comment-header-copied" x-show="urlCopied">
-                                ✓ Copied!
+                                ✓ {{ __('Copied!') }}
                             </span>
                         </a>
                     </li>
                     @if($writable)
                         @can('update', $comment)
                             <li>
-                                <a href="#" wire:click.prevent="startEditing" aria-role="button">Edit</a>
+                                <a href="#" wire:click.prevent="startEditing" aria-role="button">{{ __('Edit') }}</a>
                             </li>
                         @endcan
                         @can('delete', $comment)
                             <li>
-                                <a href="#" @click.prevent="confirmDelete = true" aria-role="button">Delete</a>
+                                <a href="#" @click.prevent="confirmDelete = true" aria-role="button">{{ __('Delete') }}</a>
                                 <x-comments::modal
                                     left
                                     bottom

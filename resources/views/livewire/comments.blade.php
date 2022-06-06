@@ -10,7 +10,7 @@
                     <div x-data="{ subscriptionsOpen: false}" class="comments-subscription">
                         <button @click.prevent="subscriptionsOpen = true" class="comments-subscription-trigger">
                             {{ NotificationSubscriptionType::from($selectedNotificationSubscriptionType)->longDescription() }}
-                        </button>                            
+                        </button>
                         <x-comments::modal
                                 bottom
                                 compact
@@ -46,11 +46,13 @@
                 />
             @endcan
         @endforeach
-        
+
         @if ($comments->hasPages())
-            {{ $comments->links() }}
+            <div style="margin-top: 20px;">
+                {{ $comments->links() }}
+            </div>
         @endif
-        
+
     @else
         <p class="comments-no-comment-yet">{{ $noCommentsText ?? __('comments::comments.no_comments_yet') }}</p>
     @endif
