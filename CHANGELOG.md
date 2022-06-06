@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-comments` will be documented in this file.
 
+## 1.0.3 - 2022-06-06
+
+### What's Changed
+
+- Prevent livewire multiple root element error by @archilex in https://github.com/spatie/laravel-comments-livewire/pull/17
+
+### New Contributors
+
+- @archilex made their first contribution in https://github.com/spatie/laravel-comments-livewire/pull/17
+
+**Full Changelog**: https://github.com/spatie/laravel-comments-livewire/compare/1.0.2...1.0.3
+
 ## 1.0.2 - 2022-05-31
 
 - improve support for anonymous comments
