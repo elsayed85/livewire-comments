@@ -7,7 +7,7 @@
     }
 @endphp
 
-<a style="margin-right: var(--comments-avatar-margin);" @if($url = $comment->commentatorProperties()?->url) href="{{ $url }}" @endif>
+<a style="margin-right: var(--comments-avatar-margin);" @if(isset($comment) && $url = $comment->commentatorProperties()?->url) href="{{ $url }}" @endif>
     <img
         class="comments-avatar"
         src="{{ isset($comment) &&  $comment->commentatorProperties() ? $comment->commentatorProperties()->avatar : $defaultAvatar }}"
