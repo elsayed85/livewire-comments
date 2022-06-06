@@ -9,7 +9,7 @@
                 @if($showNotificationOptions)
                     <div x-data="{ subscriptionsOpen: false}" class="comments-subscription">
                         <button @click.prevent="subscriptionsOpen = true" class="comments-subscription-trigger">
-                            {{ NotificationSubscriptionType::from($selectedNotificationSubscriptionType)->longDescription() }}
+                            {{ __(NotificationSubscriptionType::from($selectedNotificationSubscriptionType)->longDescription()) }}
                         </button>
                         <x-comments::modal
                                 bottom
@@ -19,7 +19,7 @@
                             >
                             @foreach(NotificationSubscriptionType::cases() as $case)
                                 <button class="comments-subscription-item" @click="subscriptionsOpen = false" wire:click="updateSelectedNotificationSubscriptionType('{{ $case->value }}')">
-                                    {{ $case->description() }}
+                                    {{ __($case->description()) }}
                                 </button>
                             @endforeach
                         </x-comments::modal>
