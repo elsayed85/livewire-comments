@@ -48,7 +48,7 @@
         @endforeach
 
         @if ($comments->hasPages())
-            <div style="margin-top: 20px;">
+            <div style="margin-bottom: 20px;">
                 {{ $comments->links() }}
             </div>
         @endif
