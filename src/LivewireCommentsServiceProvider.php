@@ -16,7 +16,7 @@ class LivewireCommentsServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('laravel-comments')
+            ->name('livewire-comments')
             ->hasViews('comments');
     }
 
@@ -29,7 +29,7 @@ class LivewireCommentsServiceProvider extends PackageServiceProvider
 
     protected function registerComponents(): self
     {
-        Blade::componentNamespace('Spatie\\LivewireComments\\View\\Components', 'comments');
+        Blade::componentNamespace('DanPalmieri\\LivewireComments\\View\\Components', 'comments');
 
         Livewire::component('comments', CommentsComponent::class);
         Livewire::component('comments-comment', CommentComponent::class);

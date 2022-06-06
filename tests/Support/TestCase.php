@@ -20,7 +20,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Spatie\\LivewireComments\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'DanPalmieri\\LivewireComments\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
