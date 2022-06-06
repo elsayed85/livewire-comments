@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-comments` will be documented in this file.
 
+## 1.1.0 - 2022-06-06
+
+### What's Changed
+
+- Allow pagination results and page name to be configured by @archilex in https://github.com/spatie/laravel-comments-livewire/pull/18
+
+**Full Changelog**: https://github.com/spatie/laravel-comments-livewire/compare/1.0.3...1.1.0
+
 ## 1.0.3 - 2022-06-06
 
 ### What's Changed
