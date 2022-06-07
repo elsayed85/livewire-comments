@@ -14,29 +14,10 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://satis.spatie.be"
-        },
-        {
-            "type": "package",
-            "package": {
-            "name": "danpalmieri/laravel-comments",
-            "version":"master",
-            "source": {
-                "url": "git@github.com:danpalmieri/laravel-comments.git",
-                "type": "git",
-                "reference":"main"
-                }
-            }
-        }
-    ],
     "require": {
         "php": "^8.1",
         "illuminate/contracts": "^9.0",
         "livewire/livewire": "^2.8",
-        "danpalmieri/laravel-comments": "*",
         "spatie/laravel-package-tools": "^1.10.0"
     },
     "require-dev": {
