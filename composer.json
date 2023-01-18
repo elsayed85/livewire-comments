@@ -22,7 +22,7 @@
     ],
     "require": {
         "php": "^8.1",
-        "elsayed85/laravel-comments": "dev-main",
+        "elsayed85/lara-comments": "dev-main",
         "illuminate/contracts": "^9.0",
         "livewire/livewire": "^2.8",
         "spatie/laravel-package-tools": "^1.10.0"
